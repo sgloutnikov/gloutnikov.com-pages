@@ -13,73 +13,73 @@
     
     <item>
       <title>Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts</title>
-      <link>https://gloutnikov.com/post/identifying-and-graphing-missing-timeseries-data/</link>
+      <link>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</link>
       <pubDate>Thu, 11 Jan 2018 00:04:37 -0800</pubDate>
       
-      <guid>https://gloutnikov.com/post/identifying-and-graphing-missing-timeseries-data/</guid>
+      <guid>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</guid>
       <description>&lt;p&gt;When performing my analysis and graphing for my previous &lt;a href=&#34;https://gloutnikov.com/post/sxm-theheat-analysis/&#34;&gt;post&lt;/a&gt; I ran into a problem of identifying and displaying missing time series data. From a series of data that occurs daily, I wanted to identify if there were missing days, and to graph them so that they can easily be seen.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Analyzing SiriusXM&#39;s The Heat &#34;Now Playing&#34; Data with Apache Spark</title>
-      <link>https://gloutnikov.com/post/sxm-theheat-analysis/</link>
+      <link>https://gloutnikov.com/post/2018/sxm-theheat-analysis/</link>
       <pubDate>Mon, 08 Jan 2018 16:02:33 -0800</pubDate>
       
-      <guid>https://gloutnikov.com/post/sxm-theheat-analysis/</guid>
+      <guid>https://gloutnikov.com/post/2018/sxm-theheat-analysis/</guid>
       <description>&lt;p&gt;My SiriusXM tracker for &amp;lsquo;The Heat&amp;rsquo; radio station has now been running since the summer of 2016 and has collected a good amount of data. It seemed like a great opportunity to make use of this data for getting some insight into what songs/artists/albums have been popular throughout the months, and also get some Spark practice under my belt.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Using Apache Spark with MongoDB</title>
-      <link>https://gloutnikov.com/post/using-spark-with-mongodb-example/</link>
+      <link>https://gloutnikov.com/post/2017/using-spark-with-mongodb-example/</link>
       <pubDate>Mon, 17 Jul 2017 15:40:06 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/using-spark-with-mongodb-example/</guid>
+      <guid>https://gloutnikov.com/post/2017/using-spark-with-mongodb-example/</guid>
       <description>&lt;p&gt;This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the &lt;a href=&#34;https://www.mongodb.com/products/spark-connector&#34;&gt;MongoDB Connector for Spark&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Vaadin Spring and Spring Boot - Reload UI changes without server restarts in IntelliJ IDEA</title>
-      <link>https://gloutnikov.com/post/vaadin-ui-refresh/</link>
+      <link>https://gloutnikov.com/post/2018/vaadin-ui-refresh/</link>
       <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/vaadin-ui-refresh/</guid>
+      <guid>https://gloutnikov.com/post/2018/vaadin-ui-refresh/</guid>
       <description>After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time.</description>
     </item>
     
     <item>
       <title>Host your own Heroku with Dokku on DreamHost&#39;s Cloud</title>
-      <link>https://gloutnikov.com/post/host-your-own-heroku/</link>
+      <link>https://gloutnikov.com/post/2016/host-your-own-heroku/</link>
       <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/host-your-own-heroku/</guid>
+      <guid>https://gloutnikov.com/post/2016/host-your-own-heroku/</guid>
       <description>&lt;p&gt;After hosting a few of my apps on Heroku I quickly became a fan of the platform, and saw why it gets such high praise. The ease of deploying an application straight through Git is amazing. Not having to worry about managing servers, or managing the environment is perfect&amp;ndash;it allows a developer to go straight into developing and deploying their apps with minimal hassle.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Control your Homebrew package upgrades</title>
-      <link>https://gloutnikov.com/post/control-homebrew-upgrades/</link>
+      <link>https://gloutnikov.com/post/2016/control-homebrew-upgrades/</link>
       <pubDate>Mon, 05 Dec 2016 12:55:19 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/control-homebrew-upgrades/</guid>
+      <guid>https://gloutnikov.com/post/2016/control-homebrew-upgrades/</guid>
       <description>&lt;p&gt;I have always upgraded my installed homebrew packages whenever updates became available. Recently however, I ran into a situation where I did not want to upgrade a specific package while also upgrading the rest. Loved how incredibly easy Homebrew made this.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>SiriusXM: The Heat Tracker</title>
-      <link>https://gloutnikov.com/post/theheat-tracker/</link>
+      <link>https://gloutnikov.com/post/2016/theheat-tracker/</link>
       <pubDate>Tue, 29 Nov 2016 19:14:53 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/theheat-tracker/</guid>
+      <guid>https://gloutnikov.com/post/2016/theheat-tracker/</guid>
       <description>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, The Heat was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify.</description>
     </item>
     
     <item>
       <title>Hello World! From Hugo</title>
-      <link>https://gloutnikov.com/post/hello-world/</link>
+      <link>https://gloutnikov.com/post/2016/hello-world/</link>
       <pubDate>Tue, 11 Oct 2016 12:56:44 +0300</pubDate>
       
-      <guid>https://gloutnikov.com/post/hello-world/</guid>
+      <guid>https://gloutnikov.com/post/2016/hello-world/</guid>
       <description>First post from Hugo&amp;ndash;the fast and modern static website engine.
 I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN post about Hugo.</description>
     </item>
