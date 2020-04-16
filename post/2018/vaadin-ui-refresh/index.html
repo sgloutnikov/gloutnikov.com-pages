@@ -158,16 +158,6 @@
   <a class="myImg">
       <img src="/vaadin-ui-refresh/run-config-spring.png" target="_self" style="width: 75%" >
   </a>
-  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content"> 
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <img src="" class="imagepreview" style="width: 100%;" >
-        </div>
-      </div>       
-    </div>
-  </div>
 </center>
 <ul>
 <li>We then add a basic UI class to have something to start with:</li>
@@ -210,16 +200,6 @@ public class MyUI extends UI {
   <a class="myImg">
       <img src="/vaadin-ui-refresh/run-config.png" target="_self" style="width: 75%" >
   </a>
-  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content"> 
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <img src="" class="imagepreview" style="width: 100%;" >
-        </div>
-      </div>        
-    </div>
-  </div>
 </center>
 <ul>
 <li>By default, Vaain uses the Jetty Maven plugin to run and is configured to scan the classpath for changes every 2 seconds. If changes to any classes are found Jetty is restarted. We do not this behavior as we will let our IDE take care of swapping updated classes on the already running Jetty server. To achieve this we edit the <code>pom.xml</code> file and comment out or delete the following lines inside the Jetty plugin configuration:</li>
@@ -283,7 +263,7 @@ public class MyUI extends UI {
   </script>
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
