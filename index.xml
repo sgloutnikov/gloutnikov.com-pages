@@ -81,7 +81,7 @@
       
       <guid>https://gloutnikov.com/page/projects/</guid>
       <description>NeterraProxy On-demand m3u8 playlist/playback daemon for Neterra.tv, running on Android.
-SiriusXM: The Highway Tracker &amp;amp; The Heat Tracker Tracks songs played on SiriusXM&amp;rsquo;s The Heat R&amp;amp;B and Hip-Hop station. Displays top played statistics and new songs. Python, MongoDB, Django. [Blog] [Tracker] [Web]
+SiriusXM: The Heat Tracker &amp;amp; The Highway Tracker Tracks songs played on SiriusXM&amp;rsquo;s The Heat R&amp;amp;B and Hip-Hop station. Displays top played statistics and new songs. Python, MongoDB, Django. [Blog] [Tracker] [Web]
 Bulsatcom Fire TV Application Amazon Fire TV application for watching the Bulgarian TV provider Bulsatcom. The official and incompatible touch apps for Android and iOS were used to reverse engineer the APIs.</description>
     </item>
     
