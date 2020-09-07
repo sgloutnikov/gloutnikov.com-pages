@@ -3,27 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gloutnikov.com/tags/books/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gloutnikov.com/post/2020/pragmatic-programmer-tips/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gloutnikov.com/tags/software-engineering/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2020-09-06T21:57:40-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gloutnikov.com/tags/apple/</loc>
     <lastmod>2020-03-25T17:29:18-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2020-03-25T17:29:18-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gloutnikov.com/post/2020/prevent-appleid-from-constantly-getting-locked/</loc>
-    <lastmod>2020-03-25T17:29:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2020-03-25T17:29:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2020-03-25T17:29:18-07:00</lastmod>
   </url>
   
