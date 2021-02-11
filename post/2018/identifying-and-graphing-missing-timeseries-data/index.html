@@ -20,7 +20,7 @@
     
     <meta property="og:tags" content="scala">
     
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <title>Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -139,8 +139,8 @@
 <p>By default, when Highcharts plots time series data and there are missing points along the x-axis, the graph is still connected between the last two available points. Since we do not even know if any data is missing in the first place, this makes it difficult to identify a gap in a larger dataset&ndash;especially if the two values are close to each other. I prefer to see the missing data as if the value on the y-axis is 0. There are several ways to approach this, one of which might be to tinker with Highcharts and write some custom JavaScript when creating the chart, but at this stage I wanted to avoid it. Making sure that missing data is represented in my resulting dataset meant that plotting it in Highchars became trivial, as well as made it easier down the line if I wanted to use a different graphing library.</p>
 <p>For example, there are four missing days in the following data, and the second chart is our desired outcome.</p>
 <center>
-    <img src="/img/identifying-and-graphing-missing-timeseries-data/nogap.png" target="_self" style="width: 75%" >
-    <img src="/img/identifying-and-graphing-missing-timeseries-data/gap.png" target="_self" style="width: 75%" >
+    <img src="/post/2018/identifying-and-graphing-missing-timeseries-data/nogap.png" target="_self" style="width: 75%" >
+    <img src="/post/2018/identifying-and-graphing-missing-timeseries-data/gap.png" target="_self" style="width: 75%" >
 </center>
 <h3 id="find-the-missing-data">Find The Missing Data</h3>
 <p>We begin with our initial <em>DataFrame</em> from the original data. Group by day, and count the number of records per day.</p>

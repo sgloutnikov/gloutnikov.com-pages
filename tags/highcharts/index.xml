@@ -6,11 +6,7 @@
     <description>Recent content in highcharts on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jan 2018 00:04:37 -0800</lastBuildDate>
-    
-	<atom:link href="https://gloutnikov.com/tags/highcharts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 11 Jan 2018 00:04:37 -0800</lastBuildDate><atom:link href="https://gloutnikov.com/tags/highcharts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts</title>
       <link>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</link>

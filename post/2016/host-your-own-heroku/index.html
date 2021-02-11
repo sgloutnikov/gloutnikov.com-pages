@@ -20,7 +20,7 @@
     
     <meta property="og:tags" content="DreamCompute">
     
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <title>Host your own Heroku with Dokku on DreamHost&#39;s Cloud - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -203,11 +203,11 @@
 <p>Login to DreamHost&rsquo;s DreamCompute web control panel, and launch a new instance from the <code>Compute &gt; Instances</code> menu.</p>
 <p><em><strong>Launch a new instance</strong></em></p>
 <p>Select the availability zone, give the instance a name, pick the flavor/plan, and select the Ubuntu 14.04 image:</p>
-<div style="text-align:center"><img src ="/host-your-own-heroku/instance1.png" /></div>
+<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance1.png" /></div>
 <p>Add our SSH public key and select the default security group:</p>
-<div style="text-align:center"><img src ="/host-your-own-heroku/instance2.png" /></div>
+<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance2.png" /></div>
 <p>Ensure the public network is selected:</p>
-<div style="text-align:center"><img src ="/host-your-own-heroku/instance3.png" /></div>
+<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance3.png" /></div>
 <p>In the final tab, add the following post-creation script and replace <code>$YOUR_FULL_QUALIFIED_DOMAIN</code> at the bottom with the domain name you intend to use for Dokku, and click launch.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#cloud-config</span>
 apt_upgrade: true

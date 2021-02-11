@@ -20,7 +20,7 @@
     
     <meta property="og:tags" content="IntelliJ IDEA">
     
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <title>Vaadin Spring and Spring Boot - Reload UI changes without server restarts in IntelliJ IDEA - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="/modalimages/modalimg.css">
@@ -144,7 +144,7 @@
 <p>These should be the default Debugger HotSwap settings, but it&rsquo;s good to verify them.</p>
 <center>
   <a class="myImg">
-      <img src="/vaadin-ui-refresh/settings.png" target="_self" style="width: 75%" >
+      <img src="/post/2018/vaadin-ui-refresh/settings.png" target="_self" style="width: 75%" >
   </a>
   <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -168,7 +168,7 @@
 </ul>
 <center>
   <a class="myImg">
-      <img src="/vaadin-ui-refresh/run-config-spring.png" target="_self" style="width: 75%" >
+      <img src="/post/2018/vaadin-ui-refresh/run-config-spring.png" target="_self" style="width: 75%" >
   </a>
 </center>
 <ul>
@@ -190,7 +190,7 @@ public class MyUI extends UI {
 <pre><code>spring.devtools.restart.enabled=false
 </code></pre><ul>
 <li>
-<p>Start the application in <code>Debug Mode</code> &ndash; <img src="/vaadin-ui-refresh/debugapp.png" alt="" title="IntelliJ Debug"></p>
+<p>Start the application in <code>Debug Mode</code> &ndash; <img src="/post/2018/vaadin-ui-refresh/debugapp.png" alt="" title="IntelliJ Debug"></p>
 </li>
 <li>
 <p>We open up http://localhost:8080 and make sure that the application works fine. Back in IntelliJ we make some changes inside the <code>MyUI</code> class and apply them to the already running instance by going to <code>Run &gt; Reload Changed Classes</code> or by right clicking and selecting <code>Recompile MyUI.java</code>.</p>
@@ -210,7 +210,7 @@ public class MyUI extends UI {
 </ul>
 <center>
   <a class="myImg">
-      <img src="/vaadin-ui-refresh/run-config.png" target="_self" style="width: 75%" >
+      <img src="/post/2018/vaadin-ui-refresh/run-config.png" target="_self" style="width: 75%" >
   </a>
 </center>
 <ul>
@@ -220,7 +220,7 @@ public class MyUI extends UI {
   &lt;scanIntervalSeconds&gt;2&lt;/scanIntervalSeconds&gt;
 &lt;/configuration&gt;
 </code></pre><ul>
-<li>Start the application in <code>Debug Mode</code> &ndash; <img src="/vaadin-ui-refresh/debug.png" alt="" title="IntelliJ Debug"></li>
+<li>Start the application in <code>Debug Mode</code> &ndash; <img src="/post/2018/vaadin-ui-refresh/debug.png" alt="" title="IntelliJ Debug"></li>
 <li>We open up http://localhost:8080 again and make sure that the application works fine. Back in IntelliJ we make some changes inside the <code>MyUI</code> class and apply them to the already running instance by going to <code>Run &gt; Reload Changed Classes</code> or by right clicking and selecting <code>Recompile MyUI.java</code>.</li>
 <li>After we refresh the browser our changes will be updated, without the need to restart Jetty.
 <br></li>

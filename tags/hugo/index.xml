@@ -6,11 +6,7 @@
     <description>Recent content in hugo on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Oct 2016 12:56:44 +0300</lastBuildDate>
-    
-	<atom:link href="https://gloutnikov.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 11 Oct 2016 12:56:44 +0300</lastBuildDate><atom:link href="https://gloutnikov.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World! From Hugo</title>
       <link>https://gloutnikov.com/post/2016/hello-world/</link>
