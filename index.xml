@@ -6,7 +6,20 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Sep 2020 21:57:40 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Mar 2021 10:54:48 -0800</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quotes</title>
+      <link>https://gloutnikov.com/page/quotes/</link>
+      <pubDate>Mon, 08 Mar 2021 10:54:48 -0800</pubDate>
+      
+      <guid>https://gloutnikov.com/page/quotes/</guid>
+      <description>My absolute favorite to kick off this list:
+ &#34;There are only two hard things in Computer Science: cache invalidation and naming things.&#34; Phil Karlton
+ later evolved to
+ &#34;There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.&#34;  If you are wondering how could naming things be hard, I suggest checking out one of these posts [0] [1].
+ &#34;A complex system that works is invariably found to have evolved from a simple system that worked.</description>
+    </item>
+    
     <item>
       <title>Pragmatic Programmer Tips</title>
       <link>https://gloutnikov.com/post/2020/pragmatic-programmer-tips/</link>
