@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/sql/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/2021/time-series-windows-sql-query/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/time-series/</loc>
+    <lastmod>2021-04-17T14:46:46-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/golang/</loc>
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
@@ -12,15 +30,6 @@
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/2021/graphql-subscriptions-golang-gqlgen-example/</loc>
-    <lastmod>2021-03-28T14:08:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2021-03-28T14:08:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2021-03-28T14:08:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/page/</loc>
