@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>heroku on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/heroku/</link>
+    <description>Recent content in heroku on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Dec 2016 21:06:48 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Host your own Heroku with Dokku on DreamHost&#39;s Cloud</title>
+      <link>https://gloutnikov.com/post/2016/host-your-own-heroku/</link>
+      <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2016/host-your-own-heroku/</guid>
+      <description>&lt;p&gt;After hosting a few of my apps on Heroku I quickly became a fan of the platform, and saw why it gets such high praise. The ease of deploying an application straight through Git is amazing. Not having to worry about managing servers, or managing the environment is perfect&amp;ndash;it allows a developer to go straight into developing and deploying their apps with minimal hassle.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SiriusXM: The Heat Tracker</title>
+      <link>https://gloutnikov.com/post/2016/theheat-tracker/</link>
+      <pubDate>Tue, 29 Nov 2016 19:14:53 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2016/theheat-tracker/</guid>
+      <description>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, The Heat was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify.</description>
+    </item>
+    
+  </channel>
+</rss>

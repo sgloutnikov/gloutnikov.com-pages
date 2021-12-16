@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/</link>
+    <description>Recent content in Tags on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Apr 2021 14:46:46 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>sql</title>
+      <link>https://gloutnikov.com/tags/sql/</link>
+      <pubDate>Sat, 17 Apr 2021 14:46:46 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time-series</title>
+      <link>https://gloutnikov.com/tags/time-series/</link>
+      <pubDate>Sat, 17 Apr 2021 14:46:46 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/time-series/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://gloutnikov.com/tags/go/</link>
+      <pubDate>Sun, 28 Mar 2021 14:08:22 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gqlgen</title>
+      <link>https://gloutnikov.com/tags/gqlgen/</link>
+      <pubDate>Sun, 28 Mar 2021 14:08:22 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/gqlgen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphql</title>
+      <link>https://gloutnikov.com/tags/graphql/</link>
+      <pubDate>Sun, 28 Mar 2021 14:08:22 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>books</title>
+      <link>https://gloutnikov.com/tags/books/</link>
+      <pubDate>Sun, 06 Sep 2020 21:57:40 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>software-engineering</title>
+      <link>https://gloutnikov.com/tags/software-engineering/</link>
+      <pubDate>Sun, 06 Sep 2020 21:57:40 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/software-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apple</title>
+      <link>https://gloutnikov.com/tags/apple/</link>
+      <pubDate>Wed, 25 Mar 2020 17:29:18 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tips</title>
+      <link>https://gloutnikov.com/tags/tips/</link>
+      <pubDate>Wed, 25 Mar 2020 17:29:18 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apache-spark</title>
+      <link>https://gloutnikov.com/tags/apache-spark/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/apache-spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>highcharts</title>
+      <link>https://gloutnikov.com/tags/highcharts/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/highcharts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scala</title>
+      <link>https://gloutnikov.com/tags/scala/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mongodb</title>
+      <link>https://gloutnikov.com/tags/mongodb/</link>
+      <pubDate>Mon, 17 Jul 2017 15:40:06 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IntelliJ IDEA</title>
+      <link>https://gloutnikov.com/tags/intellij-idea/</link>
+      <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/intellij-idea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spring</title>
+      <link>https://gloutnikov.com/tags/spring/</link>
+      <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vaadin</title>
+      <link>https://gloutnikov.com/tags/vaadin/</link>
+      <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/vaadin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dokku</title>
+      <link>https://gloutnikov.com/tags/dokku/</link>
+      <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/dokku/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DreamCompute</title>
+      <link>https://gloutnikov.com/tags/dreamcompute/</link>
+      <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/dreamcompute/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>heroku</title>
+      <link>https://gloutnikov.com/tags/heroku/</link>
+      <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/heroku/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>homebrew</title>
+      <link>https://gloutnikov.com/tags/homebrew/</link>
+      <pubDate>Mon, 05 Dec 2016 12:55:19 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/homebrew/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macOS</title>
+      <link>https://gloutnikov.com/tags/macos/</link>
+      <pubDate>Mon, 05 Dec 2016 12:55:19 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>project</title>
+      <link>https://gloutnikov.com/tags/project/</link>
+      <pubDate>Tue, 29 Nov 2016 19:14:53 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://gloutnikov.com/tags/hugo/</link>
+      <pubDate>Tue, 11 Oct 2016 12:56:44 +0300</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>site</title>
+      <link>https://gloutnikov.com/tags/site/</link>
+      <pubDate>Tue, 11 Oct 2016 12:56:44 +0300</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/site/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

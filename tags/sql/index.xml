@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/sql/</link>
+    <description>Recent content in sql on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Apr 2021 14:46:46 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Time Series Session Window(s) SQL Query</title>
+      <link>https://gloutnikov.com/post/2021/time-series-windows-sql-query/</link>
+      <pubDate>Sat, 17 Apr 2021 14:46:46 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2021/time-series-windows-sql-query/</guid>
+      <description>&lt;p&gt;A while back I needed to identify time windows within a time series dataset which led me to discover some interesting SQL functions I was not aware of. In short, what I refer to as a window is a start and end timestamp during which certain defined conditions were true. This post will explore a bit more of the problem definition and go over an example SQL query to tackle it.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

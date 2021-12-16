@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/sgloutnikov
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://gloutnikov.com
+  * I am sgloutnikov (https://keybase.io/sgloutnikov) on keybase.
+  * I have a public key with fingerprint 2121 0D73 CC8D 9C08 5211  E90A F5B6 73B1 EF93 FABB
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101ae47b0581ff082d3a4717b30eb54f044dfcab6239f9535b5b514288270e83b650a",
+      "fingerprint": "21210d73cc8d9c085211e90af5b673b1ef93fabb",
+      "host": "keybase.io",
+      "key_id": "f5b673b1ef93fabb",
+      "kid": "0101ae47b0581ff082d3a4717b30eb54f044dfcab6239f9535b5b514288270e83b650a",
+      "uid": "6465b441e0365c78989bafd5b9e73e19",
+      "username": "sgloutnikov"
+    },
+    "service": {
+      "hostname": "gloutnikov.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1502693756,
+  "expire_in": 157680000,
+  "prev": "68c64b2488324978bc4d0a205139c528b453b8366489863c789a2a38b065abb0",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.73
+Comment: https://keybase.io/crypto
+
+yMIqAnicrZJfbAxBHMevOK3zJy5Koi9NttWINjWzs7M7e+L8CyIiiBBN1GVnd/Zu
+09o9e3vHRU+EapQ2F0TShFBBI8QLIRGNKOXFv4f2QUOqpRKJP9UIHmiZbYgXj2Ye
+JjO/z+/7+31/me7pEwOhgonnVr6bOrL9WMHDrlPpQM3RNQ17BOoYWSGyR6hj4wer
+N1jKi9VZhhARAARQY5JCASbQNAERDaRJClQoAoxiyQSSZJi6RmURqaaKEaZ8Q0kk
+RFQAI4jKGGhClWBadpy5SdeyPS4rQhECQ0G6TgxVBwSLEDIVaCamsoIoZKaKTI1S
+nphwUn4Gb45qKVZtOfyNX2Lj7f2D/899p8flZEnGVJIgA0jGukJUolLNNDBVmYIY
+VH0wxVxb28E4nYrXO2nPtuqcjJCrEnggY+nMn61v5jf0l6nWnR1cIOk6nqM79TyW
+8LxkKuLnetmkD+9iNPZbJkYt2+DD5BkZ5qYsxxYikJO6Z/m6EANRVpGC5SqB7U5a
+LotZPoEVmQC+/Dos41siuixRUSIEiZKqEKpLBtBEgCFSdSwSKmFECZJlibuVkW9a
+EzVEKJAxnzQQfGM7bUeI8EqeFvd9W3Fb89IuE3J372ybFCgIBSYHJ/ifLBCaMvPP
+1zu5tXC05MzwEXi5vDc3dv/biRWvN37Yf6G2MDrPXTjQ/+ya/T2tlR0OdqC1tSMD
+nTNWDg0dSATVlz8bKkp6x5pvhisa889H2tZ/sZf0vDDxWac5d4fuLfJeu2LXp3eb
+N4X71fyj6GDfjetNlZeW5LNG75tbxcv3PSi9fmjd16GWtr5XUSXaMWv2YMm3xaWs
+vej8supEe+vjDWUNT8uHm8+k74ZKy+Y2tp2+9+bs0uBY6fsnBz9NW/D2QPvFOVtu
+d348vzMUZtF53cGCl1doxeylipbIDe//nG2piR0PqZU3Rg45wR9wtGl17ej8vY1T
+WsPlVyubWhflJ3wVa1f1jG1pOVmcnUZ/AWGIQIs=
+=Q1VT
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/sgloutnikov
+
+==================================================================

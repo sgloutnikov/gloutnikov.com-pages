@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>highcharts on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/highcharts/</link>
+    <description>Recent content in highcharts on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://gloutnikov.com/tags/highcharts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts</title>
+      <link>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</guid>
+      <description>&lt;p&gt;When performing my analysis and graphing for my previous &lt;a href=&#34;https://gloutnikov.com/post/sxm-theheat-analysis/&#34;&gt;post&lt;/a&gt; I ran into a problem of identifying and displaying missing time series data. From a series of data that occurs daily, I wanted to identify if there were missing days, and to graph them so that they can easily be seen.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Analyzing SiriusXM&#39;s The Heat &#34;Now Playing&#34; Data with Apache Spark</title>
+      <link>https://gloutnikov.com/post/2018/sxm-theheat-analysis/</link>
+      <pubDate>Mon, 08 Jan 2018 16:02:33 -0800</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2018/sxm-theheat-analysis/</guid>
+      <description>&lt;p&gt;My SiriusXM tracker for &amp;lsquo;The Heat&amp;rsquo; radio station has now been running since the summer of 2016 and has collected a good amount of data. It seemed like a great opportunity to make use of this data for getting some insight into what songs/artists/albums have been popular throughout the months, and also get some Spark practice under my belt.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

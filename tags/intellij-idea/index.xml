@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IntelliJ IDEA on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/intellij-idea/</link>
+    <description>Recent content in IntelliJ IDEA on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Mar 2017 21:19:15 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/intellij-idea/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vaadin Spring and Spring Boot - Reload UI changes without server restarts in IntelliJ IDEA</title>
+      <link>https://gloutnikov.com/post/2018/vaadin-ui-refresh/</link>
+      <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/2018/vaadin-ui-refresh/</guid>
+      <description>After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time.</description>
+    </item>
+    
+  </channel>
+</rss>
