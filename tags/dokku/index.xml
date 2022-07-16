@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 14 Dec 2016 21:06:48 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/dokku/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Host your own Heroku with Dokku on DreamHost&#39;s Cloud</title>
-      <link>https://gloutnikov.com/post/2016/host-your-own-heroku/</link>
+      <link>https://gloutnikov.com/post/host-your-own-heroku/</link>
       <pubDate>Wed, 14 Dec 2016 21:06:48 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/2016/host-your-own-heroku/</guid>
+      <guid>https://gloutnikov.com/post/host-your-own-heroku/</guid>
       <description>&lt;p&gt;After hosting a few of my apps on Heroku I quickly became a fan of the platform, and saw why it gets such high praise. The ease of deploying an application straight through Git is amazing. Not having to worry about managing servers, or managing the environment is perfect&amp;ndash;it allows a developer to go straight into developing and deploying their apps with minimal hassle.&lt;/p&gt;</description>
     </item>
     

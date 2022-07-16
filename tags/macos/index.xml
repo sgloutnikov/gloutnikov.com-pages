@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 05 Dec 2016 12:55:19 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Control your Homebrew package upgrades</title>
-      <link>https://gloutnikov.com/post/2016/control-homebrew-upgrades/</link>
+      <link>https://gloutnikov.com/post/control-homebrew-upgrades/</link>
       <pubDate>Mon, 05 Dec 2016 12:55:19 +0200</pubDate>
       
-      <guid>https://gloutnikov.com/post/2016/control-homebrew-upgrades/</guid>
+      <guid>https://gloutnikov.com/post/control-homebrew-upgrades/</guid>
       <description>&lt;p&gt;I have always upgraded my installed homebrew packages whenever updates became available. Recently however, I ran into a situation where I did not want to upgrade a specific package while also upgrading the rest. Loved how incredibly easy Homebrew made this.&lt;/p&gt;</description>
     </item>
     

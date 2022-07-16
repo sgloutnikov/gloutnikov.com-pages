@@ -14,7 +14,7 @@
     <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2021-04-17T14:46:46-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2021/time-series-windows-sql-query/</loc>
+    <loc>https://gloutnikov.com/post/time-series-windows-sql-query/</loc>
     <lastmod>2021-04-17T14:46:46-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/time-series/</loc>
@@ -29,7 +29,7 @@
     <loc>https://gloutnikov.com/tags/graphql/</loc>
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2021/graphql-subscriptions-go-gqlgen-example/</loc>
+    <loc>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</loc>
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/page/</loc>
@@ -41,7 +41,7 @@
     <loc>https://gloutnikov.com/tags/books/</loc>
     <lastmod>2020-09-06T21:57:40-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2020/pragmatic-programmer-tips/</loc>
+    <loc>https://gloutnikov.com/post/pragmatic-programmer-tips/</loc>
     <lastmod>2020-09-06T21:57:40-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/software-engineering/</loc>
@@ -50,7 +50,7 @@
     <loc>https://gloutnikov.com/tags/apple/</loc>
     <lastmod>2020-03-25T17:29:18-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2020/prevent-appleid-from-constantly-getting-locked/</loc>
+    <loc>https://gloutnikov.com/post/prevent-appleid-from-constantly-getting-locked/</loc>
     <lastmod>2020-03-25T17:29:18-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/tips/</loc>
@@ -62,19 +62,19 @@
     <loc>https://gloutnikov.com/tags/highcharts/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2018/identifying-and-graphing-missing-timeseries-data/</loc>
+    <loc>https://gloutnikov.com/post/identifying-and-graphing-missing-timeseries-data/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/scala/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2018/sxm-theheat-analysis/</loc>
+    <loc>https://gloutnikov.com/post/sxm-theheat-analysis/</loc>
     <lastmod>2018-01-08T16:02:33-08:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/mongodb/</loc>
     <lastmod>2017-07-17T15:40:06-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2017/using-spark-with-mongodb-example/</loc>
+    <loc>https://gloutnikov.com/post/using-spark-with-mongodb-example/</loc>
     <lastmod>2017-07-17T15:40:06-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/intellij-idea/</loc>
@@ -86,7 +86,7 @@
     <loc>https://gloutnikov.com/tags/vaadin/</loc>
     <lastmod>2017-03-16T21:19:15+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2017/vaadin-ui-refresh/</loc>
+    <loc>https://gloutnikov.com/post/vaadin-ui-refresh/</loc>
     <lastmod>2017-03-16T21:19:15+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/dokku/</loc>
@@ -98,10 +98,10 @@
     <loc>https://gloutnikov.com/tags/heroku/</loc>
     <lastmod>2016-12-14T21:06:48+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2016/host-your-own-heroku/</loc>
+    <loc>https://gloutnikov.com/post/host-your-own-heroku/</loc>
     <lastmod>2016-12-14T21:06:48+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2016/control-homebrew-upgrades/</loc>
+    <loc>https://gloutnikov.com/post/control-homebrew-upgrades/</loc>
     <lastmod>2016-12-05T12:55:19+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/homebrew/</loc>
@@ -116,13 +116,13 @@
     <loc>https://gloutnikov.com/tags/project/</loc>
     <lastmod>2016-11-29T19:14:53+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2016/theheat-tracker/</loc>
+    <loc>https://gloutnikov.com/post/theheat-tracker/</loc>
     <lastmod>2016-11-29T19:14:53+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/page/aboutme/</loc>
     <lastmod>2016-10-11T15:08:16+03:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/2016/hello-world/</loc>
+    <loc>https://gloutnikov.com/post/hello-world/</loc>
     <lastmod>2016-10-11T12:56:44+03:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/hugo/</loc>

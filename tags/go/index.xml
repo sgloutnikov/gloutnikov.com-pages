@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 28 Mar 2021 14:08:22 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GraphQL Subscriptions with Go (gqlgen) Example</title>
-      <link>https://gloutnikov.com/post/2021/graphql-subscriptions-go-gqlgen-example/</link>
+      <link>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</link>
       <pubDate>Sun, 28 Mar 2021 14:08:22 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/2021/graphql-subscriptions-go-gqlgen-example/</guid>
+      <guid>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</guid>
       <description>&lt;p&gt;GraphQL subscriptions are extremely useful in situations when a server needs to update its clients. A chat application is a great example to demonstrate this, as when new messages arrive we want to distribute them among all chat participants as quickly as possible without polling. When I first started looking at implementing GraphQL subscriptions in Go it took me a bit before I had my aha moment and everything clicked together. Also, at that time there were not a whole lot of examples that I could look at or reference. This post will go over a concrete chat application example using GraphQL subscriptions and a backend built in Go with gqlgen.&lt;/p&gt;</description>
     </item>
     
