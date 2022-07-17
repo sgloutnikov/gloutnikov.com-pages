@@ -32,10 +32,7 @@
     <loc>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</loc>
     <lastmod>2021-03-28T14:08:22-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/page/</loc>
-    <lastmod>2021-03-08T10:54:48-08:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/page/quotes/</loc>
+    <loc>https://gloutnikov.com/quotes/</loc>
     <lastmod>2021-03-08T10:54:48-08:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/books/</loc>
@@ -110,7 +107,7 @@
     <loc>https://gloutnikov.com/tags/macos/</loc>
     <lastmod>2016-12-05T12:55:19+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/page/projects/</loc>
+    <loc>https://gloutnikov.com/projects/</loc>
     <lastmod>2016-11-29T23:22:28+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/project/</loc>
@@ -119,7 +116,7 @@
     <loc>https://gloutnikov.com/post/theheat-tracker/</loc>
     <lastmod>2016-11-29T19:14:53+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/page/aboutme/</loc>
+    <loc>https://gloutnikov.com/aboutme/</loc>
     <lastmod>2016-10-11T15:08:16+03:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/hello-world/</loc>
