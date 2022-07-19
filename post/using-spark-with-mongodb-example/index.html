@@ -139,7 +139,7 @@
 	</small>
 
 	<article>
-		<p>This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the <a href="https://www.mongodb.com/products/spark-connector">MongoDB Connector for Spark</a>.</p>
+		<p>This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the <a href="https://www.mongodb.com/products/spark-connector" target="_blank">MongoDB Connector for Spark</a>.</p>
 <h3 id="setup">Setup</h3>
 <p>We will use <code>sbt</code> to install the required dependencies. The following <code>build.sbt</code> will download them for us:</p>
 <pre tabindex="0"><code>scalaVersion := &#34;2.11.11&#34;
@@ -150,41 +150,22 @@ libraryDependencies ++= Seq(
   &#34;org.mongodb.spark&#34; %% &#34;mongo-spark-connector&#34; % &#34;2.2.0&#34;
 )
 </code></pre><p>We create a <code>SparkSession</code> and include our MongoDB configuration settings. If you would like to reduce the ammount of Spark logging output and have not edited the default Spark <code>log4j.properties</code> you can do so from your program.</p>
-<pre><code class="scala">import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.SparkSession
-
-object SparkMongo {
-  def main(args: Array[String]) {
-    // Spam reduction
-    Logger.getLogger("org").setLevel(Level.ERROR)
-    Logger.getLogger("akka").setLevel(Level.ERROR)
-
-    val sparkSession = SparkSession.builder().appName("SparkMongo")
-      .master("local[*]")
-      .config("spark.mongodb.input.uri", "mongodb://localhost:27017/db.collection")
-      .config("spark.mongodb.output.uri", "mongodb://localhost:27017/db.collection")
-      .getOrCreate()
-  }
-}
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Things to note:</p>
 <ul>
 <li>Remember to include a collection when specifying the input/output URI.</li>
 <li>Protect your URI if it contains sensitive information. I prefer specifying an environment variable and reading that into the program&ndash;<code>sys.env(&quot;MONGO_URI&quot;)</code></li>
 </ul>
-<p>Additional input/output configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/">documentation</a>.</p>
+<p>Additional input/output configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/" target="_blank">documentation</a>.</p>
 <h3 id="read">Read</h3>
 <p>We use the <code>MongoSpark.load()</code> method to in this create a <code>DataFrame</code> on which Spark can operate.</p>
-<pre><code class="scala">val data = MongoSpark.load(sparkSession)
-println(data.count())
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="read-from-multiple-collections">Read from Multiple Collections</h3>
-<p>In the example above, we were able to read only from the collection specified with the <code>spark.mongodb.input.uri</code>  setting. If we want to read from multple MongoDB collections, we need to pass a <code>ReadConfig</code> to the <code>MongoSpark.load()</code> method. More input configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/#spark-input-conf">documentation</a></p>
-<pre><code class="scala">val ordersReadConfig = ReadConfig(Map("collection" -> "orders"),
-      Some(ReadConfig(sparkSession)))
-val ordersData = MongoSpark.load(sparkSession, ordersReadConfig)
-println(ordersData.count())
-</code></pre>
+<p>In the example above, we were able to read only from the collection specified with the <code>spark.mongodb.input.uri</code>  setting. If we want to read from multple MongoDB collections, we need to pass a <code>ReadConfig</code> to the <code>MongoSpark.load()</code> method. More input configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/#spark-input-conf" target="_blank">documentation</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Here we are specify thet the collection we read from is <code>orders</code>.</p>
 <h3 id="write">Write</h3>
 <p>Writing works exactly like reading, except of course with different methods.</p>
@@ -193,7 +174,7 @@ println(ordersData.count())
 <li>Use <code>MongoSpark.save(documents)</code> method to save documents.</li>
 <li>Pass a <code>WriteConfig</code> to the <code>MongoSpark.save(documents, writeConfig)</code> method to save in a different collection.</li>
 </ul>
-<p>Refer to the official <a href="https://docs.mongodb.com/spark-connector/master">documentation</a> for more details.</p>
+<p>Refer to the official <a href="https://docs.mongodb.com/spark-connector/master" target="_blank">documentation</a> for more details.</p>
 <p><strong>Spark on!</strong></p>
 	</article>
 </main>

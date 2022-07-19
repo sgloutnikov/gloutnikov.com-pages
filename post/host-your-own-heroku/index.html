@@ -140,78 +140,23 @@
 
 	<article>
 		<p>After hosting a few of my apps on Heroku I quickly became a fan of the platform, and saw why it gets such high praise. The ease of deploying an application straight through Git is amazing. Not having to worry about managing servers, or managing the environment is perfect&ndash;it allows a developer to go straight into developing and deploying their apps with minimal hassle.</p>
-<p>Heroku has a great free tier that gives developers 1000 free hours per month, great for playing around with the platform and hosting a single app continuously. There are however a few limitations that I went into in my previous <a href="https://gloutnikov.com/post/theheat-tracker/">post</a> regarding hosting my app. In a few words, Heroku is great for a single hobby application, but hosting more than one hobby application can become pretty expensive. Heroku&rsquo;s pricing model can be found <a href="https://www.heroku.com/pricing">here</a>. Luckily there is an alternative that gives us all the goodies at a very reasonable price. It will take a little initial effort on our part, but after that it is smooth sailing.</p>
-<p>Enter <a href="http://dokku.viewdocs.io/dokku">Dokku</a>. Dokku is an open-source mini-Heroku powered by <a href="https://www.docker.com/">Docker</a>. Once it&rsquo;s set up on a host, you can push Heroku-compatible applications to it via Git. They&rsquo;ll build using Heroku buildpacks, and then run in isolated containers. The end result is your own, single-host version of Heroku.</p>
-<p>There are a several great SSD cloud computing hosting providers out there like <a href="https://www.digitalocean.com">DigitalOcean</a> or <a href="https://www.linode.com">linode</a>, but I chose to give a so-called &lsquo;outsider&rsquo; a chance. <a href="https://www.dreamhost.com/cloud/computing/">DreamCompute</a> is DreamHost&rsquo;s all-SSD cloud computing platform engineered around OpenStack and Ceph. DreamHost won me over after seeing their plans and respective prices. In addition, after asking around there had not been any negative feedback. All servers get charged only up to a maximum of 600 hours (25 days) in a given month. To sweeten the deal even more, all accounts receive free unlimited bandwidth, 100GB of block storage, and 80 GB SSD disk space per server instance. For my current needs I will be going with the minimal &lsquo;semisonic&rsquo; plan, but here is all of what DreamHost offers:</p>
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;margin-left:auto;margin-right:auto;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:3px 3px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-yw4l">Flavor/Plan</th>
-    <th class="tg-baqh"><b>vCPU</b></th>
-    <th class="tg-baqh"><b>Memory</b></th>
-    <th class="tg-baqh"><b>Hourly Price</b></th>
-    <th class="tg-baqh"><b>Max Monthly Price</b></th>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">semisonic</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">512 MB</td>
-    <td class="tg-baqh">$0.0075</td>
-    <td class="tg-baqh">$4.50</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">subsonic</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1 GB</td>
-    <td class="tg-baqh">$0.01</td>
-    <td class="tg-baqh">$6.00</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">supersonic</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">2 GB</td>
-    <td class="tg-baqh">$0.02</td>
-    <td class="tg-baqh">$12.00</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">lightspeed</td>
-    <td class="tg-baqh">2</td>
-    <td class="tg-baqh">4 GB</td>
-    <td class="tg-baqh">$0.04</td>
-    <td class="tg-baqh">$24.00</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">warpseed</td>
-    <td class="tg-baqh">4</td>
-    <td class="tg-baqh">8 GB</td>
-    <td class="tg-baqh">$0.08</td>
-    <td class="tg-baqh">$48.00</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">hyperspeed</td>
-    <td class="tg-baqh">8</td>
-    <td class="tg-baqh">16 GB</td>
-    <td class="tg-baqh">$0.16</td>
-    <td class="tg-baqh">$96.00</td>
-  </tr>
-</table>
+<p>Heroku has a great free tier that gives developers 1000 free hours per month, great for playing around with the platform and hosting a single app continuously. There are however a few limitations that I went into in my previous <a href="https://gloutnikov.com/post/theheat-tracker/" target="_blank">post</a> regarding hosting my app. In a few words, Heroku is great for a single hobby application, but hosting more than one hobby application can become pretty expensive. Heroku&rsquo;s pricing model can be found <a href="https://www.heroku.com/pricing" target="_blank">here</a>. Luckily there is an alternative that gives us all the goodies at a very reasonable price. It will take a little initial effort on our part, but after that it is smooth sailing.</p>
+<p>Enter <a href="http://dokku.viewdocs.io/dokku" target="_blank">Dokku</a>. Dokku is an open-source mini-Heroku powered by <a href="https://www.docker.com/" target="_blank">Docker</a>. Once it&rsquo;s set up on a host, you can push Heroku-compatible applications to it via Git. They&rsquo;ll build using Heroku buildpacks, and then run in isolated containers. The end result is your own, single-host version of Heroku.</p>
+<p>There are a several great SSD cloud computing hosting providers out there like <a href="https://www.digitalocean.com" target="_blank">DigitalOcean</a> or <a href="https://www.linode.com" target="_blank">linode</a>, but I chose to give a so-called &lsquo;outsider&rsquo; a chance. <a href="https://www.dreamhost.com/cloud/computing/" target="_blank">DreamCompute</a> is DreamHost&rsquo;s all-SSD cloud computing platform engineered around OpenStack and Ceph. DreamHost won me over after seeing their plans and respective prices. In addition, after asking around there had not been any negative feedback. All servers get charged only up to a maximum of 600 hours (25 days) in a given month. To sweeten the deal even more, all accounts receive free unlimited bandwidth, 100GB of block storage, and 80 GB SSD disk space per server instance. For my current needs I will be going with the minimal &lsquo;semisonic&rsquo; plan, but here is all of what DreamHost offers:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>With all the janitorial tasks out of the way, let&rsquo;s get to setting up Dokku on a fresh DreamCompute instance. There are two ways to go about this, one is through DreamHost&rsquo;s Web UI, and the other is via the OpenStack command line interface.</p>
 <p>We will be using the pre-loaded Ubuntu-14.04 image, allowing us to add a post-creation script that installs Dokku automatically. Currently the other available images (Debian-8 and Ubuntu-16.04) are slightly incomplete and require fixing of a few minor things like adding a FQDN inside /etc/hosts, or adding nameservers inside /etc/resolv.conf in order to automate the creation of the instance and installation of Dokku. I have contacted DreamHost support regarding these minor issues, and have gotten a reply that they will be rebuilding the images in question to fix this. Note: Installing Dokku on the Ubuntu-16.04 or Debian-8 images is completely valid, but currently could require a few extra steps.</p>
 <h4 id="web-ui">Web UI</h4>
 <p>Login to DreamHost&rsquo;s DreamCompute web control panel, and launch a new instance from the <code>Compute &gt; Instances</code> menu.</p>
 <p><em><strong>Launch a new instance</strong></em></p>
 <p>Select the availability zone, give the instance a name, pick the flavor/plan, and select the Ubuntu 14.04 image:</p>
-<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance1.png" /></div>
+<!-- raw HTML omitted -->
 <p>Add our SSH public key and select the default security group:</p>
-<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance2.png" /></div>
+<!-- raw HTML omitted -->
 <p>Ensure the public network is selected:</p>
-<div style="text-align:center"><img src ="/post/2016/host-your-own-heroku/instance3.png" /></div>
+<!-- raw HTML omitted -->
 <p>In the final tab, add the following post-creation script and replace <code>$YOUR_FULL_QUALIFIED_DOMAIN</code> at the bottom with the domain name you intend to use for Dokku, and click launch.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#cloud-config</span>
 </span></span><span style="display:flex;"><span>apt_upgrade: true
@@ -359,11 +304,11 @@
 <p><em><strong>Add Public Keys and download the DreamCompute credentials file</strong></em></p>
 <ul>
 <li>Add our SSH Public Key through the Web UI in the <code>Access &amp; Security &gt; Key Pairs</code> section.</li>
-<li>Download the DreamCompute credentials file to our working directory from the <code>Access &amp; Security &gt; API Access</code> section or click <a href="https://iad2.dreamcompute.com/project/access_and_security/api_access/openrc">here</a>. This allows the OpenStack client to connect to DreamHost API endpoints.</li>
+<li>Download the DreamCompute credentials file to our working directory from the <code>Access &amp; Security &gt; API Access</code> section or click <a href="https://iad2.dreamcompute.com/project/access_and_security/api_access/openrc" target="_blank">here</a>. This allows the OpenStack client to connect to DreamHost API endpoints.</li>
 </ul>
 <p><em><strong>Install the OpenStack CLI</strong></em></p>
 <ul>
-<li>Detailed instructions on installing the client can be found <a href="http://docs.openstack.org/user-guide/common/cli-install-openstack-command-line-clients.html">here</a>.</li>
+<li>Detailed instructions on installing the client can be found <a href="http://docs.openstack.org/user-guide/common/cli-install-openstack-command-line-clients.html" target="_blank">here</a>.</li>
 </ul>
 <p><em><strong>Create Post-Creation Script</strong></em></p>
 <p>Next we create a <code>dokku-cloudinit.sh</code> script that contains instructions to add Docker and Dokku&rsquo;s apt repositories and install Dokku with the proper debconf options set. Replace <code>$YOUR_FULL_QUALIFIED_DOMAIN</code> at the bottom with the domain name you intend to use for Dokku.</p>
@@ -520,8 +465,8 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  dokku
 </span></span></code></pre></div><p>After the instance is created and started, our server will be running Dokku. We can see the IP to SSH into by running:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>nova list
-</span></span></code></pre></div><br>
-<p><a name="finalnotes" target="_self"></a></p>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h4 id="final-notes">Final Notes</h4>
 <p>SSH into our instance with the installed SSH Public Keys using the <code>ubuntu</code> or <code>debian</code> username depending on our OS.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh ubuntu@$IP
@@ -529,7 +474,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dokku version
 </span></span></code></pre></div><p>If there is an error, most likely Dokku is still installing in the background. Everything should be installed in a few minutes, and we can re-run the command again to verify.</p>
 <p>At this stage Dokku is now ready to host our heroku-compatible applications in a heroku-like environment for a very afordable price.</p>
-<p>Complete documentation on creating, deploying, and managing Dokku apps can be found <a href="http://dokku.viewdocs.io/dokku/getting-started/installation">here</a>.</p>
+<p>Complete documentation on creating, deploying, and managing Dokku apps can be found <a href="http://dokku.viewdocs.io/dokku/getting-started/installation" target="_blank">here</a>.</p>
 <p>Happy coding :)</p>
 	</article>
 </main>

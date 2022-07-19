@@ -31,7 +31,7 @@
       <pubDate>Mon, 17 Jul 2017 15:40:06 -0700</pubDate>
       
       <guid>https://gloutnikov.com/post/using-spark-with-mongodb-example/</guid>
-      <description>&lt;p&gt;This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the &lt;a href=&#34;https://www.mongodb.com/products/spark-connector&#34;&gt;MongoDB Connector for Spark&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the &lt;a href=&#34;https://www.mongodb.com/products/spark-connector&#34; target=&#34;_blank&#34;&gt;MongoDB Connector for Spark&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

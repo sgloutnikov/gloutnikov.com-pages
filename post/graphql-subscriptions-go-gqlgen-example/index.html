@@ -141,130 +141,46 @@
 	<article>
 		<p>GraphQL subscriptions are extremely useful in situations when a server needs to update its clients. A chat application is a great example to demonstrate this, as when new messages arrive we want to distribute them among all chat participants as quickly as possible without polling. When I first started looking at implementing GraphQL subscriptions in Go it took me a bit before I had my aha moment and everything clicked together. Also, at that time there were not a whole lot of examples that I could look at or reference. This post will go over a concrete chat application example using GraphQL subscriptions and a backend built in Go with gqlgen.</p>
 <h4 id="source-code">Source Code</h4>
-<p>If you would like to jump straight to the code and run the example yourself, it is available in the following <a href="https://github.com/sgloutnikov/gqlgen-react-chatapp">repo</a>.</p>
+<p>If you would like to jump straight to the code and run the example yourself, it is available in the following <a href="https://github.com/sgloutnikov/gqlgen-react-chatapp" target="_blank">repo</a>.</p>
 <h4 id="introduction">Introduction</h4>
-<p>My assumption here is that you are already familiar with GraphQL and gqlgen, so let&rsquo;s first go over a high-level overview of how the chat application will work. <em>For details on GraphQL refer to the great resources at <a href="https://www.howtographql.com">howtographql.com</a>.</em></p>
+<p>My assumption here is that you are already familiar with GraphQL and gqlgen, so let&rsquo;s first go over a high-level overview of how the chat application will work. <em>For details on GraphQL refer to the great resources at <a href="https://www.howtographql.com" target="_blank">howtographql.com</a>.</em></p>
 <ul>
 <li>Clients communicate with a server to send and receive messages.</li>
 <li>Clients use a GraphQL mutation to post new messages.</li>
 <li>When starting up, clients open a GraphQL subscription over WebSocket to instantly receive new messages being posted.</li>
 </ul>
-<p>We will use the front-end chat client and GraphQL schema from the following <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ">tutorial</a> and replace the backend with our own Go version. Let&rsquo;s begin by looking at the more interesting bits needed to put together our GraphQL server. The schema defines a <code>Message</code> type, and a query, mutation, subscription to interact with the messages as follows:</p>
-<pre><code class="yaml">type Message {
-  id: ID!
-  user: String!
-  content: String!
-}
-type Query {
-  messages: [Message!]
-}
-type Mutation {
-  postMessage(user: String!, content: String!): ID!
-}
-type Subscription {
-  messages: [Message!]
-}
-</code></pre>
+<p>We will use the front-end chat client and GraphQL schema from the following <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ" target="_blank">tutorial</a> and replace the backend with our own Go version. Let&rsquo;s begin by looking at the more interesting bits needed to put together our GraphQL server. The schema defines a <code>Message</code> type, and a query, mutation, subscription to interact with the messages as follows:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h4 id="graphql-server">GraphQL Server</h4>
 <p>Next, let&rsquo;s look at defining our GraphQL server with gqlgen. One thing to note is we will not use <code>NewDefaultServer</code> when declaring the server to have more freedom adding additional transports.</p>
-<pre><code class="golang">...
-// CORS setup
-c := cors.New(cors.Options{
-    AllowedOrigins:   []string{"http://localhost:4000", "http://localhost:8080"},
-    AllowCredentials: true,
-    Debug:            false,
-})
-// Use New instead of NewDefaultServer in order to have full control over defining transports
-srv := handler.New(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{
-    ChatMessages: []*model.Message{},
-    ChatObservers: map[string]chan []*model.Message{},
-}}))
-srv.AddTransport(transport.POST{})
-srv.AddTransport(transport.Websocket{
-    KeepAlivePingInterval: 10 * time.Second,
-    Upgrader: websocket.Upgrader{
-        CheckOrigin: func(r *http.Request) bool {
-            return true
-        },
-    },
-})
-srv.Use(extension.Introspection{})
-...
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h4 id="graphql-resolvers">GraphQL Resolvers</h4>
 <p>The last interesting bit to look at is the gqlgen generated resolvers and how we can implement them. Let&rsquo;s first look at the <code>Resolver</code> struct which serves as dependency injection and point out that this is where we will maintain the state of active subscriptions. That is, whenever a client opens a subscription, the server needs to keep track of it so data can be pushed to it. We achieve this with a Go channel. We have a field named <code>ChatObservers</code> of type <code>map[string]chan []*model.Message</code> to maintain state, and match what the schema has defined for our subscription. The <code>Resolver</code> would look like this:</p>
-<pre><code class="golang">type Resolver struct {
-    // All messages since launching the GraphQL endpoint
-    ChatMessages  []*model.Message
-    // All active subscriptions
-    ChatObservers map[string]chan []*model.Message
-    mu            sync.Mutex
-}
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h5 id="subscription">Subscription</h5>
 <p>The <code>Messages</code> subscription resolver is where we implement the subscription. When a client creates a subscription, the server will create a unique identifier for it and open a Go channel on which future data updates can be pushed. The gqlgen internals will handle reading from the channel and push the updates over the WebSocket for each client. When the channel is created it is added to the <code>ChatObservers</code> map we defined in <code>Resolver</code>. All the clients need to know is that they will receive a slice of messages whenever they are available on the WebSocket subscription they opened. Perfect, that&rsquo;s exactly what we want!</p>
-<pre><code class="golang">func (r *subscriptionResolver) Messages(ctx context.Context) (<-chan []*model.Message, error) {
-    // Create an ID and channel for each active subscription. We will push changes into this channel.
-    // When a new subscription is created by the client, this resolver will fire first.
-    id := randString(8)
-    msgs := make(chan []*model.Message, 1)
-
-    // Start a goroutine to allow for cleaning up subscriptions that are disconnected.
-    // This go routine will only get past Done() when a client terminates the subscription. This allows us
-    // to only then remove the reference from the list of ChatObservers since it is no longer needed.
-    go func() {
-        <-ctx.Done()
-        r.mu.Lock()
-        delete(r.ChatObservers, id)
-        r.mu.Unlock()
-    }()
-    r.mu.Lock()
-    // Keep a reference of the channel so that we can push changes into it when new messages are posted.
-    r.ChatObservers[id] = msgs
-    r.mu.Unlock()
-    // This is optional, and this allows newly subscribed clients to get a list of all the messages that have been
-    // posted so far. Upon subscribing the client will be pushed the messages once, further changes are handled
-    // in the PostMessage mutation.
-    r.ChatObservers[id] <- r.ChatMessages
-    return msgs, nil
-}
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h5 id="mutation">Mutation</h5>
 <p>The <code>PostMessage</code> mutation is how each client posts new messages into the chat room. Here is where we have data changes (mutations) and is a good place for the server to notify its subscribers of those changes. Client posts a message -&gt; server processes it -&gt; notifies subscribed clients of message changes -&gt; repeat.</p>
-<pre><code class="golang">func (r *mutationResolver) PostMessage(ctx context.Context, user string, content string) (int, error) {
-    // Construct the newly sent message and append it to the existing messages
-    msg := model.Message{
-        ID:      len(r.ChatMessages),
-        User:    user,
-        Content: content,
-    }
-    r.ChatMessages = append(r.ChatMessages, &msg)
-    r.mu.Lock()
-    // Notify all active subscriptions that a new message has been posted by posted. In this case we push the now
-    // updated ChatMessages array to all clients that care about it.
-    for _, observer := range r.ChatObservers {
-        observer <- r.ChatMessages
-    }
-    r.mu.Unlock()
-    return msg.ID, nil
-}
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h4 id="run-the-code">Run The Code</h4>
-<p>Clone the code for this example from the following <a href="https://github.com/sgloutnikov/gqlgen-react-chatapp">repo</a>.</p>
+<p>Clone the code for this example from the following <a href="https://github.com/sgloutnikov/gqlgen-react-chatapp" target="_blank">repo</a>.</p>
 <h5 id="start-server">Start Server</h5>
-<pre><code class="shell">cd server
-go run server.go
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h5 id="start-clients">Start Clients</h5>
-<pre><code class="shell">cd client
-yarn
-yarn start
-</code></pre>
-<p>A client will be available on <a href="http://localhost:8080">http://localhost:8080</a>. Launch multiple clients in different windows to simulate a chat.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>A client will be available on <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>. Launch multiple clients in different windows to simulate a chat.</p>
 <h4 id="observations">Observations</h4>
 <p>You may have noticed that when a new message is posted, the server will send the entire slice of messages recorded since starting up. This of course is not very efficient as the number of messages grows, but for simplicity&rsquo;s sake, it is sufficient for showing how a GraphQL subscription in Go with gqlgen works. A possible improvement could be to change the schema for the subscription to return a single <code>Message</code> each time and add a Query for getting all messages. That way the client can query once for all the messages when it starts up, and only receive new messages over the wire on its subscription.</p>
 <h4 id="acknowledgments">Acknowledgments</h4>
-<p>The front-end React client in this example is from Jack Herrington&rsquo;s video tutorial available <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ">here</a>.</p>
+<p>The front-end React client in this example is from Jack Herrington&rsquo;s video tutorial available <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ" target="_blank">here</a>.</p>
 	</article>
 </main>
 

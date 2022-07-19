@@ -135,16 +135,17 @@
 	</small>
 
 	<article>
-		<p>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, <a href="https://www.siriusxm.com/theheat">The Heat</a> was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify. This seemed like a good excuse for using the data which SiriusXM provides on their websites for &rsquo;now playing&rsquo;, and a fun small project to learn something about technologies that I had not used before.</p>
+		<p>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, <a href="https://www.siriusxm.com/theheat" target="_blank">The Heat</a> was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify. This seemed like a good excuse for using the data which SiriusXM provides on their websites for &rsquo;now playing&rsquo;, and a fun small project to learn something about technologies that I had not used before.</p>
 <p>I chose Python as my base, mainly because I wanted to see what Django was all about. It seemed easy to get some interactive web site up and running quick. In the end, it did not really matter as I ended up splitting the web and back-end parts into separate projects because of Heroku. MongoDB got the nod, as it seemed like a reasonable and mature choice for storing my JSON records.</p>
-<p>Heroku&rsquo;s free app hosting is great, limited to 1000 hours per month, per account. That&rsquo;s fine, as this is enough to run an app 24/7 for the entire month, but there is a small catch which I noticed after deploying the live project. If there is a web dyno running in Heroku, and it does not receive any traffic for 30 minutes it begins to sleep, putting to sleep any other tasks in the app with it until there is HTTP traffic for it to wake up again. In the tracker case, I need the back-end to periodically query the SXM API for new songs and going to sleep was not acceptable. Setting up a pinger seemed like an unnecessary burden and dependency, so I split up the web and back-end parts, running them in separate apps. The best part from all this was that I learned about the <a href="http://dokku.viewdocs.io/dokku/">Dokku</a> project. Dokku allows you to host your own Heroku on an affordable platform like DigitalOcean or DreamCloud, and is something that I will definitely be trying out in the near future.</p>
+<p>Heroku&rsquo;s free app hosting is great, limited to 1000 hours per month, per account. That&rsquo;s fine, as this is enough to run an app 24/7 for the entire month, but there is a small catch which I noticed after deploying the live project. If there is a web dyno running in Heroku, and it does not receive any traffic for 30 minutes it begins to sleep, putting to sleep any other tasks in the app with it until there is HTTP traffic for it to wake up again. In the tracker case, I need the back-end to periodically query the SXM API for new songs and going to sleep was not acceptable. Setting up a pinger seemed like an unnecessary burden and dependency, so I split up the web and back-end parts, running them in separate apps. The best part from all this was that I learned about the <a href="http://dokku.viewdocs.io/dokku/" target="_blank">Dokku</a> project. Dokku allows you to host your own Heroku on an affordable platform like DigitalOcean or DreamCloud, and is something that I will definitely be trying out in the near future.</p>
 <h4 id="live-project--code">Live Project + Code:</h4>
 <ul>
-<li><a href="https://theheat.gloutnikov.com">The Heat Tracker</a></li>
-<li><a href="https://github.com/sgloutnikov/sxm-tracker">Back-end Code</a></li>
-<li><a href="https://github.com/sgloutnikov/sxm-tracker-web">Django Web Client Code</a></li>
+<li><a href="https://theheat.gloutnikov.com" target="_blank">The Heat Tracker</a></li>
+<li><a href="https://github.com/sgloutnikov/sxm-tracker" target="_blank">Back-end Code</a></li>
+<li><a href="https://github.com/sgloutnikov/sxm-tracker-web" target="_blank">Django Web Client Code</a></li>
 </ul>
-<br>
+<!-- raw HTML omitted -->
+
 	</article>
 </main>
 

@@ -138,7 +138,7 @@
 
 	<article>
 		<p>My SiriusXM tracker for &lsquo;The Heat&rsquo; radio station has now been running since the summer of 2016 and has collected a good amount of data. It seemed like a great opportunity to make use of this data for getting some insight into what songs/artists/albums have been popular throughout the months, and also get some Spark practice under my belt.</p>
-<p>For more information regarding the tracker you can see my previous <a href="http://gloutnikov.com/post/theheat-tracker/">blog post</a> or view the live web client <a href="http://theheat.gloutnikov.com">here</a>. There is also a clone tracking <a href="http://thehighway.gloutnikov.com">&lsquo;The Highway&rsquo;</a> station. The source code for following post is available at the end.</p>
+<p>For more information regarding the tracker you can see my previous <a href="http://gloutnikov.com/post/theheat-tracker/" target="_blank">blog post</a> or view the live web client <a href="http://theheat.gloutnikov.com" target="_blank">here</a>. There is also a clone tracking <a href="http://thehighway.gloutnikov.com" target="_blank">&amp;lsquo;The Highway&amp;rsquo;</a> station. The source code for following post is available at the end.</p>
 <h3 id="data-quality">Data Quality</h3>
 <p>Before a song is stored in the database it is ran through some filters to ensure that only real songs are kept, and things like promos, different channel advertisements, DJ Mixes, etc. are discarded. A song that passes the filters then is checked against the Spotify API, and if it exists there the Spotify metadata is  recorded as well. We can say that the stored songs, which also have Spotify data can be regarded as <em>good</em>. Nothing is perfect of course, and sometimes songs are not found on Spotify because of different spellings between SiriusXM and Spotify or some bad data has slipped through the filters.</p>
 <p>From all the songs tracked, <strong>97.27%</strong> have Spotify metadata. From the remaining <strong>2.73%</strong> that do not, the top 3 played songs among them are by Beyoncé. Since Beyoncé&rsquo;s music is not on Spotify, we can safely assume that those 3 songs can also be counted as <em>good</em>. Bringing the amount of <em>good</em> data to <strong>99.12%</strong>. Looking very good!</p>
@@ -823,10 +823,10 @@ $(document).ready(function() {
 <h3 id="overview">Overview</h3>
 <ul>
 <li>
-<p><strong>First tracked song:</strong> <a href="https://theheat.gloutnikov.com/song/?artist=Mike%20Will%20Made-It/Rihanna&amp;song=Nothing%20Is%20Promised">Nothing Is Promised</a> by Mike WiLL Made-It, Rihanna on <em>June 20th, 2016</em>.</p>
+<p><strong>First tracked song:</strong> <a href="https://theheat.gloutnikov.com/song/?artist=Mike%20Will%20Made-It/Rihanna&amp;song=Nothing%20Is%20Promised" target="_blank">Nothing Is Promised</a> by Mike WiLL Made-It, Rihanna on <em>June 20th, 2016</em>.</p>
 </li>
 <li>
-<p><strong>Last tracked song:</strong> <a href="https://theheat.gloutnikov.com/song/?artist=Post%20Malone/21%20Savage&amp;song=Rockstar">rockstar</a> by Post Malone, 21 Savage on <em>January 8th, 2017</em>.</p>
+<p><strong>Last tracked song:</strong> <a href="https://theheat.gloutnikov.com/song/?artist=Post%20Malone/21%20Savage&amp;song=Rockstar" target="_blank">rockstar</a> by Post Malone, 21 Savage on <em>January 8th, 2017</em>.</p>
 </li>
 <li>
 <p><strong>Total songs:</strong> 200,871</p>
@@ -1506,7 +1506,7 @@ It looks like December 4th and 6th were some very repetitive days for The Heat l
         </tbody>
 </table>
 <h3 id="source-code">Source Code</h3>
-<p>The source code and Spark project for the analysis above can be found on my <a href="https://github.com/sgloutnikov/sxm-tracker-analysis/blob/master/src/main/scala/TheHeatAnalysis.scala">GitHub</a>.</p>
+<p>The source code and Spark project for the analysis above can be found on my <a href="https://github.com/sgloutnikov/sxm-tracker-analysis/blob/master/src/main/scala/TheHeatAnalysis.scala" target="_blank">GitHub</a>.</p>
 <p><strong>Spark on!</strong></p>
 	</article>
 </main>

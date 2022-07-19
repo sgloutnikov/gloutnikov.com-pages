@@ -32,10 +32,9 @@
       
       <guid>https://gloutnikov.com/quotes/</guid>
       <description>My absolute favorite to kick off this list:
-&#34;There are only two hard things in Computer Science: cache invalidation and naming things.&#34; Phil Karlton
 later evolved to
-&#34;There are two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors.&#34; If you are wondering how naming things could be hard, I suggest checking out these posts [0] [1].
-&#34;A complex system that works is invariably found to have evolved from a simple system that worked.</description>
+If you are wondering how naming things could be hard, I suggest checking out these posts [0] [1].
+Software is a gas. Software always expands to fit whatever container it is stored in. Software grows until it becomes limited by Moore&amp;rsquo;s law. The growth of software is initially rapid, like gas expanding, but is inevitably limited by the rate of increase in hardware speed.</description>
     </item>
     
     <item>
@@ -44,7 +43,7 @@ later evolved to
       <pubDate>Sun, 06 Sep 2020 21:57:40 -0700</pubDate>
       
       <guid>https://gloutnikov.com/post/pragmatic-programmer-tips/</guid>
-      <description>&lt;p&gt;One of my favorite software engineering books recently released a new edition and has been an absolute pleasure to read again. &lt;a href=&#34;https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/&#34;&gt;The Pragmatic Programmer&lt;/a&gt; is back with a 20th-anniversary edition and a fresh look at the modern software development landscape.&lt;/p&gt;</description>
+      <description>&lt;p&gt;One of my favorite software engineering books recently released a new edition and has been an absolute pleasure to read again. &lt;a href=&#34;https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/&#34; target=&#34;_blank&#34;&gt;The Pragmatic Programmer&lt;/a&gt; is back with a 20th-anniversary edition and a fresh look at the modern software development landscape.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,7 +79,7 @@ later evolved to
       <pubDate>Mon, 17 Jul 2017 15:40:06 -0700</pubDate>
       
       <guid>https://gloutnikov.com/post/using-spark-with-mongodb-example/</guid>
-      <description>&lt;p&gt;This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the &lt;a href=&#34;https://www.mongodb.com/products/spark-connector&#34;&gt;MongoDB Connector for Spark&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This example will go over setting up a simple Scala project in which we will access a Mongo Database and perform read/write operations. In order to access MongoDB from spark we will need the &lt;a href=&#34;https://www.mongodb.com/products/spark-connector&#34; target=&#34;_blank&#34;&gt;MongoDB Connector for Spark&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>

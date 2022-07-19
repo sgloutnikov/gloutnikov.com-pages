@@ -141,53 +141,27 @@
 	</small>
 
 	<article>
-		<p>After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time. As a total newbie in Vaadin, I found it a little frustrating that there were no simple instructions on how to achieve this or how it worked. After some digging, I did find a Vaadin blog <a href="https://vaadin.com/blog/-/blogs/getting-started-with-vaadin-development-using-eclipse-maven">post</a> that was probably the most helpful, but it only focused on using Eclipse.</p>
-<p>We&rsquo;ll go over setting up a demo application and show how simple UI changes can be reflected in the browser without the need to restart the server thus saving some time. I&rsquo;ll be using IntelliJ IDEA Community Edition as it requires a few extra steps&ndash;the Ultimate Edition makes things even easier as it supports Vaadin and Spring out of the box. The code for these examples can be found <a href="https://github.com/sgloutnikov/vaadin-intellij-demo">here</a>.</p>
-<p>Before getting started there are a few important things to point out. Hot swapping a class has some limitations put in place by how the JVM works internally. We will only be able to make &ldquo;simple&rdquo; changes&ndash;we can&rsquo;t add new methods, or change method signatures. In such a case a server restart will be required, but it still saves us tons of time when working and testing smaller tasks. There is a very interesting <a href="https://zeroturnaround.com/rebellabs/reloading_java_classes_401_hotswap_jrebel/">blog post</a> on reloading Java classes, which is also an advertisement for JRebel. <a href="https://zeroturnaround.com/software/jrebel/">JRebel</a> is a commercial product that breaks the barrier of only being able to do &ldquo;simple&rdquo; hot swaps, and gives a developer much more freedom. There is also an open-source option called <a href="https://github.com/dcevm/dcevm">DCEVM</a> which is not as powerful as JRebel, but could be very helpful down the line.</p>
+		<p>After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time. As a total newbie in Vaadin, I found it a little frustrating that there were no simple instructions on how to achieve this or how it worked. After some digging, I did find a Vaadin blog <a href="https://vaadin.com/blog/-/blogs/getting-started-with-vaadin-development-using-eclipse-maven" target="_blank">post</a> that was probably the most helpful, but it only focused on using Eclipse.</p>
+<p>We&rsquo;ll go over setting up a demo application and show how simple UI changes can be reflected in the browser without the need to restart the server thus saving some time. I&rsquo;ll be using IntelliJ IDEA Community Edition as it requires a few extra steps&ndash;the Ultimate Edition makes things even easier as it supports Vaadin and Spring out of the box. The code for these examples can be found <a href="https://github.com/sgloutnikov/vaadin-intellij-demo" target="_blank">here</a>.</p>
+<p>Before getting started there are a few important things to point out. Hot swapping a class has some limitations put in place by how the JVM works internally. We will only be able to make &ldquo;simple&rdquo; changes&ndash;we can&rsquo;t add new methods, or change method signatures. In such a case a server restart will be required, but it still saves us tons of time when working and testing smaller tasks. There is a very interesting <a href="https://zeroturnaround.com/rebellabs/reloading_java_classes_401_hotswap_jrebel/" target="_blank">blog post</a> on reloading Java classes, which is also an advertisement for JRebel. <a href="https://zeroturnaround.com/software/jrebel/" target="_blank">JRebel</a> is a commercial product that breaks the barrier of only being able to do &ldquo;simple&rdquo; hot swaps, and gives a developer much more freedom. There is also an open-source option called <a href="https://github.com/dcevm/dcevm" target="_blank">DCEVM</a> which is not as powerful as JRebel, but could be very helpful down the line.</p>
 <h3 id="intellij-settings">IntelliJ Settings</h3>
 <p>These should be the default Debugger HotSwap settings, but it&rsquo;s good to verify them.</p>
-<center>
-  <a class="myImg">
-      <img src="/post/2018/vaadin-ui-refresh/settings.png" target="_self" style="width: 75%" >
-  </a>
-  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content"> 
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <img src="" class="imagepreview" style="width: 100%;" >
-        </div>
-      </div>          
-    </div>
-  </div>
-</center>
+<!-- raw HTML omitted -->
 <h3 id="vaadin--spring-boot">Vaadin + Spring Boot</h3>
 <ul>
 <li>
-<p>Start by creating a Spring Boot project from <a href="http://start.spring.io">http://start.spring.io</a>. Download and extract the generated zip file. For dependencies include at least <code>Vaadin</code>. An optional dependency that I like to use is <code>DevTools</code>.</p>
+<p>Start by creating a Spring Boot project from <a href="http://start.spring.io" target="_blank">http://start.spring.io</a>. Download and extract the generated zip file. For dependencies include at least <code>Vaadin</code>. An optional dependency that I like to use is <code>DevTools</code>.</p>
 </li>
 <li>
 <p>Open the project and create an Application run configuration targeting the class and main method generated by Spring Boot.</p>
 </li>
 </ul>
-<center>
-  <a class="myImg">
-      <img src="/post/2018/vaadin-ui-refresh/run-config-spring.png" target="_self" style="width: 75%" >
-  </a>
-</center>
+<!-- raw HTML omitted -->
 <ul>
 <li>We then add a basic UI class to have something to start with:</li>
 </ul>
-<pre><code class="java">
-@SpringUI
-public class MyUI extends UI {
-    @Override
-    protected void init(VaadinRequest vaadinRequest) {
-        Label label = new Label("Hello world!");
-        setContent(label);
-    }
-}
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li>If <code>DevTools</code> was included as a Spring Boot dependency, we need to set a property to stop devtools from automatically restarting the application server when changes are detected. Add the following property inside the <code>application.properties</code> file:</li>
 </ul>
@@ -205,18 +179,14 @@ public class MyUI extends UI {
 </ul>
 <h3 id="default-vaadin-application">Default Vaadin Application</h3>
 <ul>
-<li>Start by creating a default Vaadin application from the maven archetype <a href="https://vaadin.com/framework/get-started">https://vaadin.com/framework/get-started</a></li>
+<li>Start by creating a default Vaadin application from the maven archetype <a href="https://vaadin.com/framework/get-started" target="_blank">https://vaadin.com/framework/get-started</a></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mvn -B archetype:generate -DarchetypeGroupId<span style="color:#f92672">=</span>com.vaadin -DarchetypeArtifactId<span style="color:#f92672">=</span>vaadin-archetype-application -DarchetypeVersion<span style="color:#f92672">=</span>8.0.2 -DgroupId<span style="color:#f92672">=</span>org.test -DartifactId<span style="color:#f92672">=</span>vaadin-app -Dversion<span style="color:#f92672">=</span>1.0-SNAPSHOT
 </span></span></code></pre></div><ul>
 <li>Import the project into IntelliJ as a Maven project.</li>
 <li>Create a Maven run configuration and run the application to verify it works at http://localhost:8080</li>
 </ul>
-<center>
-  <a class="myImg">
-      <img src="/post/2018/vaadin-ui-refresh/run-config.png" target="_self" style="width: 75%" >
-  </a>
-</center>
+<!-- raw HTML omitted -->
 <ul>
 <li>By default, Vaain uses the Jetty Maven plugin to run and is configured to scan the classpath for changes every 2 seconds. If changes to any classes are found Jetty is restarted. We do not this behavior as we will let our IDE take care of swapping updated classes on the already running Jetty server. To achieve this we edit the <code>pom.xml</code> file and comment out or delete the following lines inside the Jetty plugin configuration:</li>
 </ul>
@@ -227,7 +197,7 @@ public class MyUI extends UI {
 <li>Start the application in <code>Debug Mode</code> &ndash; <img src="/post/2018/vaadin-ui-refresh/debug.png" alt="" title="IntelliJ Debug"></li>
 <li>We open up http://localhost:8080 again and make sure that the application works fine. Back in IntelliJ we make some changes inside the <code>MyUI</code> class and apply them to the already running instance by going to <code>Run &gt; Reload Changed Classes</code> or by right clicking and selecting <code>Recompile MyUI.java</code>.</li>
 <li>After we refresh the browser our changes will be updated, without the need to restart Jetty.
-<br></li>
+<!-- raw HTML omitted --></li>
 </ul>
 
 	</article>
