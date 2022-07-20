@@ -32,9 +32,12 @@
       
       <guid>https://gloutnikov.com/quotes/</guid>
       <description>My absolute favorite to kick off this list:
+&amp;ldquo;There are only two hard things in Computer Science: cache invalidation and naming things.&amp;rdquo;
+&amp;ndash; Phil Karlton
 later evolved to
+&amp;ldquo;There are two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors.&amp;rdquo;
 If you are wondering how naming things could be hard, I suggest checking out these posts [0] [1].
-Software is a gas. Software always expands to fit whatever container it is stored in. Software grows until it becomes limited by Moore&amp;rsquo;s law. The growth of software is initially rapid, like gas expanding, but is inevitably limited by the rate of increase in hardware speed.</description>
+&amp;ldquo;A complex system that works is invariably found to have evolved from a simple system that worked.</description>
     </item>
     
     <item>
