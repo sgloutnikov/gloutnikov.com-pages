@@ -150,21 +150,23 @@
 <li>When starting up, clients open a GraphQL subscription over WebSocket to instantly receive new messages being posted.</li>
 </ul>
 <p>We will use the front-end chat client and GraphQL schema from the following <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ" target="_blank">tutorial</a> and replace the backend with our own Go version. Let&rsquo;s begin by looking at the more interesting bits needed to put together our GraphQL server. The schema defines a <code>Message</code> type, and a query, mutation, subscription to interact with the messages as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>type Message {
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">id</span>: ID!
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">user</span>: String!
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">content</span>: String!
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>type Query {
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">messages</span>: [Message!]
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>type Mutation {
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">postMessage(user: String!, content: String!)</span>: ID!
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>type Subscription {
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">messages</span>: [Message!]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="graphql-server">GraphQL Server</h4>
+<pre><code class="graphql">
+type Message {
+  id: ID!
+  user: String!
+  content: String!
+}
+type Query {
+  messages: [Message!]
+}
+type Mutation {
+  postMessage(user: String!, content: String!): ID!
+}
+type Subscription {
+  messages: [Message!]
+}
+ </code></pre>
+<h4 id="graphql-server">GraphQL Server</h4>
 <p>Next, let&rsquo;s look at defining our GraphQL server with gqlgen. One thing to note is we will not use <code>NewDefaultServer</code> when declaring the server to have more freedom adding additional transports.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">// CORS setup
