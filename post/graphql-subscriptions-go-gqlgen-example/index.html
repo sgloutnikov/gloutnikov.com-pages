@@ -150,33 +150,110 @@
 <li>When starting up, clients open a GraphQL subscription over WebSocket to instantly receive new messages being posted.</li>
 </ul>
 <p>We will use the front-end chat client and GraphQL schema from the following <a href="https://www.youtube.com/watch?v=E3NHd-PkLrQ" target="_blank">tutorial</a> and replace the backend with our own Go version. Let&rsquo;s begin by looking at the more interesting bits needed to put together our GraphQL server. The schema defines a <code>Message</code> type, and a query, mutation, subscription to interact with the messages as follows:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="graphql-server">GraphQL Server</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>type Message {
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">id</span>: ID!
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">user</span>: String!
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">content</span>: String!
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>type Query {
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">messages</span>: [Message!]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>type Mutation {
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">postMessage(user: String!, content: String!)</span>: ID!
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>type Subscription {
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">messages</span>: [Message!]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="graphql-server">GraphQL Server</h4>
 <p>Next, let&rsquo;s look at defining our GraphQL server with gqlgen. One thing to note is we will not use <code>NewDefaultServer</code> when declaring the server to have more freedom adding additional transports.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="graphql-resolvers">GraphQL Resolvers</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">// CORS setup
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>c := cors.New(cors.Options{
+</span></span><span style="display:flex;"><span>    AllowedOrigins:   []<span style="color:#fff;font-weight:bold">string</span>{<span style="color:#0ff;font-weight:bold">&#34;http://localhost:4000&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;http://localhost:8080&#34;</span>},
+</span></span><span style="display:flex;"><span>    AllowCredentials: <span style="color:#fff;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>    Debug:            <span style="color:#fff;font-weight:bold">false</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">// Use New instead of NewDefaultServer in order to have full control over defining transports
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>srv := handler.New(generated.NewExecutableSchema(generated.Config{Resolvers: &amp;graph.Resolver{
+</span></span><span style="display:flex;"><span>    ChatMessages: []*model.Message{},
+</span></span><span style="display:flex;"><span>    ChatObservers: <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">chan</span> []*model.Message{},
+</span></span><span style="display:flex;"><span>}}))
+</span></span><span style="display:flex;"><span>srv.AddTransport(transport.POST{})
+</span></span><span style="display:flex;"><span>srv.AddTransport(transport.Websocket{
+</span></span><span style="display:flex;"><span>    KeepAlivePingInterval: <span style="color:#ff0;font-weight:bold">10</span> * time.Second,
+</span></span><span style="display:flex;"><span>    Upgrader: websocket.Upgrader{
+</span></span><span style="display:flex;"><span>        CheckOrigin: <span style="color:#fff;font-weight:bold">func</span>(r *http.Request) <span style="color:#fff;font-weight:bold">bool</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>srv.Use(extension.Introspection{})
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><h4 id="graphql-resolvers">GraphQL Resolvers</h4>
 <p>The last interesting bit to look at is the gqlgen generated resolvers and how we can implement them. Let&rsquo;s first look at the <code>Resolver</code> struct which serves as dependency injection and point out that this is where we will maintain the state of active subscriptions. That is, whenever a client opens a subscription, the server needs to keep track of it so data can be pushed to it. We achieve this with a Go channel. We have a field named <code>ChatObservers</code> of type <code>map[string]chan []*model.Message</code> to maintain state, and match what the schema has defined for our subscription. The <code>Resolver</code> would look like this:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="subscription">Subscription</h5>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Resolver <span style="color:#fff;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// All messages since launching the GraphQL endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    ChatMessages  []*model.Message
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// All active subscriptions
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    ChatObservers <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">chan</span> []*model.Message
+</span></span><span style="display:flex;"><span>    mu            sync.Mutex
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="subscription">Subscription</h5>
 <p>The <code>Messages</code> subscription resolver is where we implement the subscription. When a client creates a subscription, the server will create a unique identifier for it and open a Go channel on which future data updates can be pushed. The gqlgen internals will handle reading from the channel and push the updates over the WebSocket for each client. When the channel is created it is added to the <code>ChatObservers</code> map we defined in <code>Resolver</code>. All the clients need to know is that they will receive a slice of messages whenever they are available on the WebSocket subscription they opened. Perfect, that&rsquo;s exactly what we want!</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="mutation">Mutation</h5>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> (r *subscriptionResolver) Messages(ctx context.Context) (&lt;-<span style="color:#fff;font-weight:bold">chan</span> []*model.Message, <span style="color:#fff;font-weight:bold">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// Create an ID and channel for each active subscription. We will push changes into this channel.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// When a new subscription is created by the client, this resolver will fire first.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    id := randString(<span style="color:#ff0;font-weight:bold">8</span>)
+</span></span><span style="display:flex;"><span>    msgs := <span style="color:#fff;font-weight:bold">make</span>(<span style="color:#fff;font-weight:bold">chan</span> []*model.Message, <span style="color:#ff0;font-weight:bold">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// Start a goroutine to allow for cleaning up subscriptions that are disconnected.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// This go routine will only get past Done() when a client terminates the subscription. This allows us
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// to only then remove the reference from the list of ChatObservers since it is no longer needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">go</span> <span style="color:#fff;font-weight:bold">func</span>() {
+</span></span><span style="display:flex;"><span>        &lt;-ctx.Done()
+</span></span><span style="display:flex;"><span>        r.mu.Lock()
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">delete</span>(r.ChatObservers, id)
+</span></span><span style="display:flex;"><span>        r.mu.Unlock()
+</span></span><span style="display:flex;"><span>    }()
+</span></span><span style="display:flex;"><span>    r.mu.Lock()
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// Keep a reference of the channel so that we can push changes into it when new messages are posted.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    r.ChatObservers[id] = msgs
+</span></span><span style="display:flex;"><span>    r.mu.Unlock()
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// This is optional, and this allows newly subscribed clients to get a list of all the messages that have been
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// posted so far. Upon subscribing the client will be pushed the messages once, further changes are handled
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// in the PostMessage mutation.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    r.ChatObservers[id] &lt;- r.ChatMessages
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> msgs, <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="mutation">Mutation</h5>
 <p>The <code>PostMessage</code> mutation is how each client posts new messages into the chat room. Here is where we have data changes (mutations) and is a good place for the server to notify its subscribers of those changes. Client posts a message -&gt; server processes it -&gt; notifies subscribed clients of message changes -&gt; repeat.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="run-the-code">Run The Code</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> (r *mutationResolver) PostMessage(ctx context.Context, user <span style="color:#fff;font-weight:bold">string</span>, content <span style="color:#fff;font-weight:bold">string</span>) (<span style="color:#fff;font-weight:bold">int</span>, <span style="color:#fff;font-weight:bold">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// Construct the newly sent message and append it to the existing messages
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    msg := model.Message{
+</span></span><span style="display:flex;"><span>        ID:      <span style="color:#fff;font-weight:bold">len</span>(r.ChatMessages),
+</span></span><span style="display:flex;"><span>        User:    user,
+</span></span><span style="display:flex;"><span>        Content: content,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    r.ChatMessages = <span style="color:#fff;font-weight:bold">append</span>(r.ChatMessages, &amp;msg)
+</span></span><span style="display:flex;"><span>    r.mu.Lock()
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// Notify all active subscriptions that a new message has been posted by posted. In this case we push the now
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// updated ChatMessages array to all clients that care about it.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">for</span> _, observer := <span style="color:#fff;font-weight:bold">range</span> r.ChatObservers {
+</span></span><span style="display:flex;"><span>        observer &lt;- r.ChatMessages
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    r.mu.Unlock()
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> msg.ID, <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="run-the-code">Run The Code</h4>
 <p>Clone the code for this example from the following <a href="https://github.com/sgloutnikov/gqlgen-react-chatapp" target="_blank">repo</a>.</p>
 <h5 id="start-server">Start Server</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h5 id="start-clients">Start Clients</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>A client will be available on <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>. Launch multiple clients in different windows to simulate a chat.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> server
+</span></span><span style="display:flex;"><span>go run server.go
+</span></span></code></pre></div><h5 id="start-clients">Start Clients</h5>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> client
+</span></span><span style="display:flex;"><span>yarn
+</span></span><span style="display:flex;"><span>yarn start
+</span></span></code></pre></div><p>A client will be available on <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>. Launch multiple clients in different windows to simulate a chat.</p>
 <h4 id="observations">Observations</h4>
 <p>You may have noticed that when a new message is posted, the server will send the entire slice of messages recorded since starting up. This of course is not very efficient as the number of messages grows, but for simplicity&rsquo;s sake, it is sufficient for showing how a GraphQL subscription in Go with gqlgen works. A possible improvement could be to change the schema for the subscription to return a single <code>Message</code> each time and add a Query for getting all messages. That way the client can query once for all the messages when it starts up, and only receive new messages over the wire on its subscription.</p>
 <h4 id="acknowledgments">Acknowledgments</h4>

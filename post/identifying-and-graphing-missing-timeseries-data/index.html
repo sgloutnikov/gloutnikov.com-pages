@@ -142,13 +142,18 @@
 		<p>When performing my analysis and graphing for my previous <a href="/post/sxm-theheat-analysis/">post</a> I ran into a problem of identifying and displaying missing time series data. From a series of data that occurs daily, I wanted to identify if there were missing days, and to graph them so that they can easily be seen.</p>
 <p>By default, when Highcharts plots time series data and there are missing points along the x-axis, the graph is still connected between the last two available points. Since we do not even know if any data is missing in the first place, this makes it difficult to identify a gap in a larger dataset&ndash;especially if the two values are close to each other. I prefer to see the missing data as if the value on the y-axis is 0. There are several ways to approach this, one of which might be to tinker with Highcharts and write some custom JavaScript when creating the chart, but at this stage I wanted to avoid it. Making sure that missing data is represented in my resulting dataset meant that plotting it in Highchars became trivial, as well as made it easier down the line if I wanted to use a different graphing library.</p>
 <p>For example, there are four missing days in the following data, and the second chart is our desired outcome.</p>
-<!-- raw HTML omitted -->
+<center>
+    <img src="/post/2018/identifying-and-graphing-missing-timeseries-data/nogap.png" target="_self" style="width: 75%" >
+    <img src="/post/2018/identifying-and-graphing-missing-timeseries-data/gap.png" target="_self" style="width: 75%" >
+</center>
 <h3 id="find-the-missing-data">Find The Missing Data</h3>
 <p>We begin with our initial <em>DataFrame</em> from the original data. Group by day, and count the number of records per day.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code class="scala">val totalSongsPerDay = allSongsDF.groupBy(year($"startTime").alias("year"), month($"startTime").alias("month"), dayofmonth($"startTime").alias("day"))
+  .count()
+  .sort("year", "month", "day")
+</code></pre>
 <p>Our totalSongsPerDay <em>DataFrame</em> looks like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+----+-----+---+-----+
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+----+-----+---+-----+
 </span></span><span style="display:flex;"><span>|year|month|day|count|
 </span></span><span style="display:flex;"><span>+----+-----+---+-----+
 </span></span><span style="display:flex;"><span>|2016|    6| 20|  271|
@@ -157,28 +162,37 @@
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><h5 id="create-full-date-range-rdd">Create Full Date Range RDD</h5>
 <p>Next we need to create a list of dates from our oldest data available to the newest. We use <a href="http://www.joda.org/joda-time/" target="_blank">joda-time</a> to help us with iterating through all the dates in our range. At the end of this step we will be left with a <em>RDD</em> containing the year, month, day columns we desire as well as a 0 column which we will use in the final step when we join both <em>DataFrames</em>.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>2016,6,20,0<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2016,6,21,0<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2016,6,22,0<span style="color:#f92672">]</span>
+<pre><code class="scala">def dayIterator(start: LocalDate, end: LocalDate) = Iterator.iterate(start)(_ plusDays 1) takeWhile (_ isBefore end)</code></pre>
+<pre><code class="java">val emptyDateList = new ListBuffer[Row]()
+</code></pre>
+<pre><code class="scala">dayIterator(new LocalDate(startYear, startMonth, startDay), new LocalDate(endYear, endMonth, endDay)).foreach(
+  ts => { val row = Row(ts.getYear, ts.getMonthOfYear, ts.getDayOfMonth, 0)
+    emptyDateList += row
+  }
+)</code></pre>
+<pre><code class="scala">val emptyDateRDD = spark.sparkContext.parallelize(emptyDateList)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[2016,6,20,0]
+</span></span><span style="display:flex;"><span>[2016,6,21,0]
+</span></span><span style="display:flex;"><span>[2016,6,22,0]
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><h5 id="convert-rdd-to-dataframe">Convert RDD to DataFrame</h5>
 <p>The next step is to convert the <em>RDD</em> we produced to a <em>DataFrame</em> so that we can join on it with our original data. We define a schema, and create the <em>DataFrame</em>.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code class="scala">val fieldsSchema = List(
+  StructField("eYear", IntegerType, nullable = false),
+  StructField("eMonth", IntegerType, nullable = false),
+  StructField("eDay", IntegerType, nullable = false),
+  StructField("eCount", IntegerType, nullable = false)
+)</code></pre>
+<pre><code class="scala">val emptyDateRange = spark.createDataFrame(emptyDateRDD, StructType(fieldsSchema))
+</code></pre>
 <h5 id="merge-full-date-range-with-original-data">Merge Full Date Range with Original Data</h5>
 <p>Finally, we merge our generated date &rsquo;emptyDateRange&rsquo; <em>DataFrame</em> with the original &rsquo;totalSongsPerDay&rsquo; <em>DataFrame</em>. The resulting <em>DataFrame</em> will contain a column with all the dates and counts, as well as a <em>null</em> in the &lsquo;mergedCount&rsquo; column if no data is available for a certain date.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
+<pre><code class="scala">val mergedChartData = emptyDateRange.join(totalSongsPerDay, $"eYear" === $"year" &&
+  $"eMonth" === $"month" && $"eDay" === $"day", "left_outer")
+  .withColumn("mergedCount", $"eCount" + $"count")
+  .sort("eYear", "eMonth", "eDay")</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
 </span></span><span style="display:flex;"><span>|eYear|eMonth|eDay|eCount|year|month| day |count|mergedCount|
 </span></span><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
 </span></span><span style="display:flex;"><span>| 2016|     6|  20|     0|2016|    6|   20|  271|        271|

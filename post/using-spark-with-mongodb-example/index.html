@@ -150,8 +150,23 @@ libraryDependencies ++= Seq(
   &#34;org.mongodb.spark&#34; %% &#34;mongo-spark-connector&#34; % &#34;2.2.0&#34;
 )
 </code></pre><p>We create a <code>SparkSession</code> and include our MongoDB configuration settings. If you would like to reduce the ammount of Spark logging output and have not edited the default Spark <code>log4j.properties</code> you can do so from your program.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code class="scala">import org.apache.log4j.{Level, Logger}
+import org.apache.spark.sql.SparkSession
+
+object SparkMongo {
+  def main(args: Array[String]) {
+    // Spam reduction
+    Logger.getLogger("org").setLevel(Level.ERROR)
+    Logger.getLogger("akka").setLevel(Level.ERROR)
+
+    val sparkSession = SparkSession.builder().appName("SparkMongo")
+      .master("local[*]")
+      .config("spark.mongodb.input.uri", "mongodb://localhost:27017/db.collection")
+      .config("spark.mongodb.output.uri", "mongodb://localhost:27017/db.collection")
+      .getOrCreate()
+  }
+}
+</code></pre>
 <p>Things to note:</p>
 <ul>
 <li>Remember to include a collection when specifying the input/output URI.</li>
@@ -160,12 +175,16 @@ libraryDependencies ++= Seq(
 <p>Additional input/output configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/" target="_blank">documentation</a>.</p>
 <h3 id="read">Read</h3>
 <p>We use the <code>MongoSpark.load()</code> method to in this create a <code>DataFrame</code> on which Spark can operate.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code class="scala">val data = MongoSpark.load(sparkSession)
+println(data.count())
+</code></pre>
 <h3 id="read-from-multiple-collections">Read from Multiple Collections</h3>
 <p>In the example above, we were able to read only from the collection specified with the <code>spark.mongodb.input.uri</code>  setting. If we want to read from multple MongoDB collections, we need to pass a <code>ReadConfig</code> to the <code>MongoSpark.load()</code> method. More input configuration settings can be found in the <a href="https://docs.mongodb.com/spark-connector/master/configuration/#spark-input-conf" target="_blank">documentation</a></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code class="scala">val ordersReadConfig = ReadConfig(Map("collection" -> "orders"),
+      Some(ReadConfig(sparkSession)))
+val ordersData = MongoSpark.load(sparkSession, ordersReadConfig)
+println(ordersData.count())
+</code></pre>
 <p>Here we are specify thet the collection we read from is <code>orders</code>.</p>
 <h3 id="write">Write</h3>
 <p>Writing works exactly like reading, except of course with different methods.</p>
