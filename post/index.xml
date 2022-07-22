@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Jul 2021 01:29:51 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Jun 2022 13:34:52 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Print on Your Old HP Printer From Any Client in Your Home Network</title>
+      <link>https://gloutnikov.com/post/raspberry-pi-print-server/</link>
+      <pubDate>Sun, 12 Jun 2022 13:34:52 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/raspberry-pi-print-server/</guid>
+      <description>&lt;p&gt;If you are like me, you may have an old, but still perfectly functioning printer which you would like to print on from anywhere in your house. In my case, I even kept an old Windows PC just for printing. That PC is soon going to recycling, now that a Raspberry Pi helped make the printer reachable from any computer, phone, or tablet on the home network. This post will show how to easily achieve this.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Getting Started with Apache Pulsar on Kubernetes</title>
       <link>https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/</link>
