@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Apr 2021 14:46:46 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jul 2021 01:29:51 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started with Apache Pulsar on Kubernetes</title>
+      <link>https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/</link>
+      <pubDate>Fri, 16 Jul 2021 01:29:51 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/</guid>
+      <description>&lt;p&gt;Apache Pulsar is a distributed pub-sub messaging system that I have recently enjoyed testing for some projects of mine. It has grown very much on me and am now preferring it over Apache Kafka. In this post we will go over installing and getting started with an Apache Pulsar instance running on Kubernetes.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Time Series Session Window(s) SQL Query</title>
       <link>https://gloutnikov.com/post/time-series-windows-sql-query/</link>
