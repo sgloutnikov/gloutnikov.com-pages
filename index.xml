@@ -6,7 +6,16 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Jun 2022 13:34:52 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 12:14:52 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dataset Release: Six Years of SiriusXM Now Playing Data</title>
+      <link>https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/</link>
+      <pubDate>Fri, 22 Jul 2022 12:14:52 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/</guid>
+      <description>&lt;p&gt;My Sirius XM &lt;a href=&#34;https://github.com/sgloutnikov/sxm-tracker&#34; target=&#34;_blank&#34;&gt;now playing tracker&lt;/a&gt; has been running for six years without any major interruptions. Today I gathered all of the data collected to date, and am open sourcing the dataset for anyone can use.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Print on Your Old Printer from Any Client on Your Home Network</title>
       <link>https://gloutnikov.com/post/raspberry-pi-print-server/</link>

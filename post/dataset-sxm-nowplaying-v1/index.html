@@ -3,18 +3,23 @@
 <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta property="og:title" content="Posts">
+    <meta name="description" content="Open source release of SiriusXM now playing data collected through the years">
+    <meta name="keywords" content="dataset, open-source, sxm-nowplaying">
+    <meta property="og:title" content="Dataset Release: Six Years of SiriusXM Now Playing Data">
     
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2022-07-22">
     
-    <meta property="og:description" content="">
-    <meta property="og:url" content="https://gloutnikov.com/post/">
+    <meta property="og:description" content="Open source release of SiriusXM now playing data collected through the years">
+    <meta property="og:url" content="https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
+    <meta property="og:tags" content="dataset">
+    
+    <meta property="og:tags" content="open-source">
+    
     <meta name="generator" content="Hugo 0.101.0" />
-    <title>Posts - Stefan Gloutnikov</title>
+    <title>Dataset Release: Six Years of SiriusXM Now Playing Data - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     
@@ -119,49 +124,104 @@
 			<div class="row">
 				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
 
-<article>
+<main>
 	<header>
-		<h1>Posts</a></h1>
+		<h1>Dataset Release: Six Years of SiriusXM Now Playing Data</h1>
 	</header>
+
+	<small>
+		22 July 2022
+		<br><br>
+	</small>
+
+	<article>
+		<p>My Sirius XM <a href="https://github.com/sgloutnikov/sxm-tracker" target="_blank">now playing tracker</a> has been running for six years without any major interruptions. Today I gathered all of the data collected to date, and am open sourcing the dataset for anyone can use.</p>
+<p>The tracker has been recording data for <a href="https://www.siriusxm.com/channels/the-highway" target="_blank">The Highway</a> country and <a href="https://www.siriusxm.com/channels/the-heat" target="_blank">The Heat</a> hip-hop stations.</p>
+<h3 id="download-links">Download Links</h3>
 <ul>
-	
-	<li><a href="https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/">Dataset Release: Six Years of SiriusXM Now Playing Data</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/raspberry-pi-print-server/">Print on Your Old Printer from Any Client on Your Home Network</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/">Getting Started with Apache Pulsar on Kubernetes</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/time-series-windows-sql-query/">Time Series Session Window(s) SQL Query</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/">GraphQL Subscriptions with Go (gqlgen) Example</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/pragmatic-programmer-tips/">Pragmatic Programmer Tips</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/prevent-appleid-from-constantly-getting-locked/">Prevent your Apple ID from constantly getting locked</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/identifying-and-graphing-missing-timeseries-data/">Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/sxm-theheat-analysis/">Analyzing SiriusXM&#39;s The Heat &#34;Now Playing&#34; Data with Apache Spark</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/using-spark-with-mongodb-example/">Using Apache Spark with MongoDB</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/vaadin-ui-refresh/">Vaadin Spring and Spring Boot - Reload UI changes without server restarts in IntelliJ IDEA</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/host-your-own-heroku/">Host your own Heroku with Dokku on DreamHost&#39;s Cloud</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/control-homebrew-upgrades/">Control your Homebrew package upgrades</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/theheat-tracker/">SiriusXM: The Heat Tracker</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/hello-world/">Hello World! From Hugo</a></li>
-	
+<li><a href="https://www.kaggle.com/datasets/sgloutnikov/sxm-nowplaying" target="_blank">Download from Kaggle</a></li>
+<li><a href="https://zenodo.org/record/6886768" target="_blank">Download from zenodo</a></li>
 </ul>
-</article>
+<h3 id="dataset-details">Dataset Details</h3>
+<h4 id="total-entries">Total Entries</h4>
+<ul>
+<li>The Heat Total: <code>643472</code></li>
+<li>The Highway Total: <code>604861</code></li>
+</ul>
+<h4 id="entry-date-ranges">Entry Date Ranges</h4>
+<ul>
+<li>The Heat First: <code>Mon Jun 20 2016 18:49:38 (GMT)</code></li>
+<li>The Heat Last:  <code>Fri Jul 15 2022 18:08:38 (GMT)</code></li>
+<li>The Highway First: <code>Tue Nov 29 2016 00:03:40 (GMT)</code></li>
+<li>The Highway Last: <code>Fri Jul 15 2022 18:11:09 (GMT)</code></li>
+</ul>
+<h4 id="fields">Fields</h4>
+<ul>
+<li><code>artist</code> &ndash; Artist name</li>
+<li><code>title</code> &ndash; Song title</li>
+<li><code>start_time</code> &ndash; Song start timestamp in UNIX epoch (GMT)</li>
+<li><code>spotify</code> &ndash; Matched song spotify metadata (may be unavailable)</li>
+<li>
+<ul>
+<li><code>spotify.artist</code> &ndash; Artist name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>spotify.title</code> &ndash; Song title</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>spotify.url</code> &ndash; Spotify song URL</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>spotify.uri</code> &ndash; Spotify song URI</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>spotify.album</code> &ndash; Album title</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>spotify.album_image</code> &ndash; Album image URL</li>
+</ul>
+</li>
+</ul>
+	</article>
+</main>
 
 <br>
 <div id="bottom-nav" class="text-center center-block">
 	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
 </div>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 						</div>
 					</div>
