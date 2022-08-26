@@ -140,7 +140,7 @@
 <p>Heroku&rsquo;s free app hosting is great, limited to 1000 hours per month, per account. That&rsquo;s fine, as this is enough to run an app 24/7 for the entire month, but there is a small catch which I noticed after deploying the live project. If there is a web dyno running in Heroku, and it does not receive any traffic for 30 minutes it begins to sleep, putting to sleep any other tasks in the app with it until there is HTTP traffic for it to wake up again. In the tracker case, I need the back-end to periodically query the SXM API for new songs and going to sleep was not acceptable. Setting up a pinger seemed like an unnecessary burden and dependency, so I split up the web and back-end parts, running them in separate apps. The best part from all this was that I learned about the <a href="http://dokku.viewdocs.io/dokku/" target="_blank">Dokku</a> project. Dokku allows you to host your own Heroku on an affordable platform like DigitalOcean or DreamCloud, and is something that I will definitely be trying out in the near future.</p>
 <h4 id="live-project--code">Live Project + Code:</h4>
 <ul>
-<li><a href="https://theheat.gloutnikov.com" target="_blank">The Heat Tracker</a></li>
+<li><a href="https://sxm-theheat.fly.dev" target="_blank">The Heat Tracker</a></li>
 <li><a href="https://github.com/sgloutnikov/sxm-tracker" target="_blank">Back-end Code</a></li>
 <li><a href="https://github.com/sgloutnikov/sxm-tracker-web" target="_blank">Django Web Client Code</a></li>
 </ul>
