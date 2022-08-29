@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CNCF on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/cncf/</link>
+    <description>Recent content in CNCF on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Aug 2022 12:42:47 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/cncf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CNCF Projects Programming Language Statistics</title>
+      <link>https://gloutnikov.com/post/cncf-language-stats/</link>
+      <pubDate>Sun, 28 Aug 2022 12:42:47 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/cncf-language-stats/</guid>
+      <description>&lt;p&gt;I had heard before that Go dominates as the programming language of the cloud and wanted to investigate that claim. For this post I looked at the repositories of all Cloud Native Computing Foundation (CNCF) repositories and assembled statistics on the programming languages used.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

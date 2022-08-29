@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Statistics on Cloud Native Computing Foundation (CNCF) projects programming langauges">
+    <meta name="keywords" content="CNCF, repo statistics, repository statistics, analysis">
+    <meta property="og:title" content="CNCF Projects Programming Language Statistics">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2022-08-28">
+    
+    <meta property="og:description" content="Statistics on Cloud Native Computing Foundation (CNCF) projects programming langauges">
+    <meta property="og:url" content="https://gloutnikov.com/post/cncf-language-stats/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="CNCF">
+    
+    <meta property="og:tags" content="data-analysis">
+    
+    <meta property="og:tags" content="go">
+    
+    <meta name="generator" content="Hugo 0.101.0" />
+    <title>CNCF Projects Programming Language Statistics - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    <link href="https://gloutnikov.com/index.xml" rel="alternate" type="application/rss+xml" title="Stefan Gloutnikov" />
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.png" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://twitter.com/sgloutnikov"><i class="fab fa-twitter fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>CNCF Projects Programming Language Statistics</h1>
+	</header>
+
+	<small>
+		28 August 2022
+		<br><br>
+	</small>
+
+	<article>
+		<p>I had heard before that Go dominates as the programming language of the cloud and wanted to investigate that claim. For this post I looked at the repositories of all Cloud Native Computing Foundation (CNCF) repositories and assembled statistics on the programming languages used.</p>
+<p>I wrote a quick <a href="https://github.com/sgloutnikov/cncf-language-stats" target="_blank">Go application</a> that goes through each <a href="https://github.com/sgloutnikov/cncf-language-stats/blob/main/repos.yaml" target="_blank">repository</a> and uses GitHub&rsquo;s API to gather language statistics. The raw results can be found <a href="https://github.com/sgloutnikov/cncf-language-stats/tree/main/results" target="_blank">here</a>.</p>
+<script>
+    const color_go = '#00ADD8';
+    const color_python = '#3572A5';
+    const color_cpp= '#f34b7d'; 
+    const color_ruby = '#701516';
+    const color_rust = '#dea584';
+    const color_shell = '#89e051';
+    const color_csharp = '#178600';
+    const color_c = '#555555';
+    const color_typescript = '#3178c6';
+    const color_html = '#e34c26';
+    const color_java = '#b07219';
+    const color_javascript = '#f1e05a';
+    const color_makefile = '#427819';
+    const color_starlark = '#76d275';
+    const color_objectivec = '#438eff';
+</script>
+<h3 id="top-langauge">Top Langauge</h3>
+<h4 id="graduated-projects">Graduated Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="4c48db4cbcd5fce4ec1af8a6c8c2fd5d"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('4c48db4cbcd5fce4ec1af8a6c8c2fd5d').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'Python', 'C++', 'Ruby', 'Rust', 'Shell'],
+        datasets: [{
+            data: [13, 1, 1, 1, 1, 1],
+            backgroundColor: [
+                color_go,
+                color_python,
+                color_cpp,
+                color_ruby,
+                color_rust,
+                color_shell
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    },
+    options: {
+        plugins: {
+            // Change options for ALL labels of THIS CHART
+            datalabels: {
+                color: '#36A2EB'
+            }
+        },
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+
+<br>
+<h4 id="incubating-projects">Incubating Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="88cad45ec254bd6fccd4bc1de8cfcfa4"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('88cad45ec254bd6fccd4bc1de8cfcfa4').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'C++', 'Python', 'Shell', 'TypeScript', 'C', 'C#', 'HTML'],
+        datasets: [{
+            data: [26, 3, 2, 2, 1, 1, 1, 1],
+            backgroundColor: [
+                color_go,
+                color_cpp,
+                color_python,
+                color_shell,
+                color_typescript,
+                color_c,
+                color_csharp,
+                color_html
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+
+<br>
+<h4 id="sandbox-projects">Sandbox Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="8c4d5fd4cec8bfdf8a6c2ce4cc1ab4d5"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('8c4d5fd4cec8bfdf8a6c2ce4cc1ab4d5').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'Rust', 'C++', 'Python', 'Java', 'Makefile', 'TypeScript', 'Shell', 'JavaScript', 'C'],
+        datasets: [{
+            data: [47, 8, 3, 3, 3, 3, 2, 2, 1, 1],
+            backgroundColor: [
+                color_go,
+                color_rust,
+                color_cpp,
+                color_python,
+                color_java,
+                color_makefile,
+                color_typescript,
+                color_shell,
+                color_javascript,
+                color_c
+            ],
+            borderWidth: 1,
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+
+<br>
+<h3 id="top-10-lines-of-code">Top 10 Lines of Code</h3>
+<h4 id="graduated-projects-1">Graduated Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="cc58cfb8482ba6acd444ded5efccfcd1"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('cc58cfb8482ba6acd444ded5efccfcd1').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'C++', 'Rust', 'Ruby', 'TypeScript', 'Shell', 'Starlark', 'Python', 'Java', 'C'],
+        datasets: [{
+            data: [128493434, 34684002, 14988954, 3195202, 3108462, 2900327, 1958312, 1616246, 990163, 929930],
+            backgroundColor: [
+                color_go,
+                color_cpp,
+                color_rust,
+                color_ruby,
+                color_typescript,
+                color_shell,
+                color_starlark,
+                color_python,
+                color_java,
+                color_c
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+
+<br>
+<h4 id="incubating-projects-1">Incubating Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="bc1feba4f6d4845cdacc8ccfd24ec5d8"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('bc1feba4f6d4845cdacc8ccfd24ec5d8').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'C++', 'TypeScript', 'HTML', 'Python', 'C', 'Shell', 'Starlark', 'Java', 'Objective-C'],
+        datasets: [{
+            data: [94492847, 26150439, 20532278, 6683330, 6451521, 4565934, 3216869, 1221302, 1149252, 724357],
+            backgroundColor: [
+                color_go,
+                color_cpp,
+                color_typescript,
+                color_html,
+                color_python,
+                color_c,
+                color_shell,
+                color_starlark,
+                color_java,
+                color_objectivec
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+
+<br>
+<h4 id="sandbox-projects-1">Sandbox Projects</h4>
+
+
+
+
+
+
+<div style="width: 100%;height: 450px;margin: 0 auto">
+    <canvas id="c28c56d4f54dabc8eedcfc4fbacc4d18"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('c28c56d4f54dabc8eedcfc4fbacc4d18').getContext('2d');
+    var options = 
+{
+    type: 'doughnut',
+    data: {
+        labels: ['Go', 'Java', 'C++', 'Python', 'JavaScript', 'Rust', 'TypeScript', 'Shell', 'C', 'Starlark'],
+        datasets: [{
+            data: [86296690, 43900727, 13804997, 12897917, 9488202, 8597092, 7503537, 2632081, 1943402, 1100820],
+            backgroundColor: [
+                color_go,
+                color_java,
+                color_cpp,
+                color_python,
+                color_javascript,
+                color_rust,
+                color_typescript,
+                color_shell,
+                color_c,
+                color_starlark
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+    }
+};
+    new Chart(ctx, options);
+</script>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85593700-1', 'auto');
+    ga('send', 'pageview');
+    window.baseURL = "https:\/\/gloutnikov.com\/";
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>

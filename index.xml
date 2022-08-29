@@ -6,7 +6,16 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Aug 2022 11:31:51 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Aug 2022 12:42:47 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CNCF Projects Programming Language Statistics</title>
+      <link>https://gloutnikov.com/post/cncf-language-stats/</link>
+      <pubDate>Sun, 28 Aug 2022 12:42:47 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/cncf-language-stats/</guid>
+      <description>&lt;p&gt;I had heard before that Go dominates as the programming language of the cloud and wanted to investigate that claim. For this post I looked at the repositories of all Cloud Native Computing Foundation (CNCF) repositories and assembled statistics on the programming languages used.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Consuming Protobuf Messages in Apache Flink Example</title>
       <link>https://gloutnikov.com/post/apache-flink-protobuf-example/</link>
