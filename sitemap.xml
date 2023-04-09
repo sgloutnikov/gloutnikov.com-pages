@@ -2,22 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/tags/ci-cd/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/github-actions/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/go/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/testcontainers/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/testing/</loc>
+    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/getting-started/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/grpc/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</loc>
+    <lastmod>2023-02-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/colima/</loc>
     <lastmod>2022-11-27T15:36:23-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/docker/</loc>
     <lastmod>2022-11-27T15:36:23-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2022-11-27T15:36:23-07:00</lastmod>
-  </url><url>
     <loc>https://gloutnikov.com/post/replacing_docker_desktop_with-colima/</loc>
-    <lastmod>2022-11-27T15:36:23-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2022-11-27T15:36:23-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2022-11-27T15:36:23-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/helm/</loc>
@@ -36,12 +63,6 @@
     <lastmod>2022-10-16T10:19:12-08:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</loc>
-    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/github-actions/</loc>
-    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/go/</loc>
     <lastmod>2022-09-03T13:16:45-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/cncf/</loc>

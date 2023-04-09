@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/testing/</link>
+    <description>Recent content in testing on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Mar 2023 20:55:41 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integration Tests with External Dependencies in Go</title>
+      <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</link>
+      <pubDate>Sat, 25 Mar 2023 20:55:41 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</guid>
+      <description>&lt;p&gt;Integration tests are tests which use or depend on some external software like a database, cache layer, or any service. While unit tests validate smaller pieces of software logic, it is always good to also run integration tests in an as-close-as-possible to real environment, and preferably also have them automated. This post will go over a way to easily include and automate the use of external dependencies in your integration tests and CI/CD environment.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

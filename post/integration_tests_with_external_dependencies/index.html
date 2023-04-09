@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:title" content="Integration Tests with External Dependencies in Go">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2023-03-25">
+    
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://gloutnikov.com/post/integration_tests_with_external_dependencies/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="testing">
+    
+    <meta property="og:tags" content="go">
+    
+    <meta property="og:tags" content="testcontainers">
+    
+    <meta property="og:tags" content="ci-cd">
+    
+    <meta property="og:tags" content="github-actions">
+    
+    <meta name="generator" content="Hugo 0.101.0" />
+    <title>Integration Tests with External Dependencies in Go - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    <link href="https://gloutnikov.com/index.xml" rel="alternate" type="application/rss+xml" title="Stefan Gloutnikov" />
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.png" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://twitter.com/sgloutnikov"><i class="fab fa-twitter fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>Integration Tests with External Dependencies in Go</h1>
+	</header>
+
+	<small>
+		25 March 2023
+		<br><br>
+	</small>
+
+	<article>
+		<p>Integration tests are tests which use or depend on some external software like a database, cache layer, or any service. While unit tests validate smaller pieces of software logic, it is always good to also run integration tests in an as-close-as-possible to real environment, and preferably also have them automated. This post will go over a way to easily include and automate the use of external dependencies in your integration tests and CI/CD environment.</p>
+<p>We will run our dependencies in containers, and the tests will interact with these containers when they run. An extremely helpful library to help us do this is <a href="https://golang.testcontainers.org/quickstart/" target="_blank">testcontainers-go</a>. Testcontainers for Go makes it simple to create and clean up container-based dependencies for automated integration tests. The clean, easy-to-use API enables developers to programmatically define containers that should be run as part of a test and clean up those resources when the test is done.</p>
+<h2 id="integration-test-declaration">Integration Test Declaration</h2>
+<p>It is important to distinguish between unit and integration tests so that they can be run independently of each other. Unlike integration, unit tests should not have external dependencies and run quickly.</p>
+<p>An effective way to declare integration tests is to name their function declarations ending in <code>Integration</code> and skip them if the <code>short</code> flag is passed when running.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestSomeNameHereIntegration(t *testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> testing.Short() {
+</span></span><span style="display:flex;"><span>		t.Skip()
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="example">Example</h2>
+<p>The following is an example of starting up a DynamoDB container in Docker using <code>testcontainers-go</code> and running a test against this DynamoDB instance. Please refer to the <a href="https://golang.testcontainers.org" target="_blank">documentation</a> for help with setting up your local container environment (<code>Docker</code>, <code>colima</code>, or <code>Podman</code>) to work with <code>testcontainers-go</code>.</p>
+<h3 id="setup-container">Setup Container</h3>
+<p>The <code>SetupDynamoDBContainer</code> function can be called during the setup phase of the integration tests. It will start an <code>amazon/dynamodb-local:1.20.0</code> container that tests can reach at the specified port.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> DynamoDBContainer <span style="color:#fff;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	testcontainers.Container
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> SetupDynamoDBContainer(ctx context.Context, port <span style="color:#fff;font-weight:bold">string</span>) (*DynamoDBContainer, <span style="color:#fff;font-weight:bold">error</span>) {
+</span></span><span style="display:flex;"><span>	exposedPort := fmt.Sprintf(<span style="color:#0ff;font-weight:bold">&#34;%s:8000/tcp&#34;</span>, port)
+</span></span><span style="display:flex;"><span>	req := testcontainers.ContainerRequest{
+</span></span><span style="display:flex;"><span>		Image:        <span style="color:#0ff;font-weight:bold">&#34;amazon/dynamodb-local:1.20.0&#34;</span>,
+</span></span><span style="display:flex;"><span>		Cmd:          []<span style="color:#fff;font-weight:bold">string</span>{<span style="color:#0ff;font-weight:bold">&#34;-jar&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;DynamoDBLocal.jar&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;-inMemory&#34;</span>},
+</span></span><span style="display:flex;"><span>		ExposedPorts: []<span style="color:#fff;font-weight:bold">string</span>{exposedPort},
+</span></span><span style="display:flex;"><span>		<span style="color:#007f7f">// Block until DynamoDB has started
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>		WaitingFor: wait.ForExposedPort(),
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	ddbContainer, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+</span></span><span style="display:flex;"><span>		ContainerRequest: req,
+</span></span><span style="display:flex;"><span>		Started:          <span style="color:#fff;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> &amp;DynamoDBContainer{Container: ddbContainer}, <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="test">Test</h3>
+<p>The tests use <a href="https://pkg.go.dev/testing#hdr-Main" target="_blank"><code>TestMain</code></a> to do some setup before running the actual tests. This is where we call our <code>SetupDynamoDBContainer</code> function and perform any additional setup steps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">var</span> dynamoDBRepo *DynamoDBRepo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestMain(m *testing.M) {
+</span></span><span style="display:flex;"><span>	flag.Parse()
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> !testing.Short() {
+</span></span><span style="display:flex;"><span>		port := <span style="color:#0ff;font-weight:bold">&#34;8000&#34;</span>
+</span></span><span style="display:flex;"><span>		ctx := context.Background()
+</span></span><span style="display:flex;"><span>		ddbContainer, err := test.SetupDynamoDBContainer(ctx, port)
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">panic</span>(err)
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#007f7f">// Stop the container when tests exit
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>		<span style="color:#fff;font-weight:bold">defer</span> <span style="color:#fff;font-weight:bold">func</span>() {
+</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">if</span> err := ddbContainer.Terminate(ctx); err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>				fmt.Println(err)
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}()
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Get created container&#39;s host. For some CI/CD environemntes it will not be localhost.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>		host, err := ddbContainer.Host(ctx)
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">panic</span>(err)
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Initialize the use of the DynamoDB instance
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>		dynamoDBRepo = NewDynamoDBRepo(<span style="color:#fff;font-weight:bold">true</span>, WithHost(host), WithPort(port))
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	os.Exit(m.Run())
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestDynamoDBRepoIntegration(t *testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> testing.Short() {
+</span></span><span style="display:flex;"><span>		t.Skip()
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    ... test code with dynamoDBRepo  ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="makefile">Makefile</h2>
+<p>An effective way to run our tests locally or in a CI/CD environment is with a Makefile. Here are some example Makefile targets that can run our unit, integration, or all tests. The <code>PKG_LIST</code> variable is evaluated earlier in the Makefile and lists all <code>go</code> packages that should be tested, excluding some packages containing generated code. You can remove it to test against all packages in your project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span>.PHONY: test
+</span></span><span style="display:flex;"><span>test: <span style="color:#007f7f">## Run all tests
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all unit and integration tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_unit: <span style="color:#007f7f">## Run unit tests
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all unit tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -short -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_integration: <span style="color:#007f7f">## Run integration tests
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all integration tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -run=<span style="color:#0ff;font-weight:bold">&#34;.Integration&#34;</span> -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+</span></span></code></pre></div><h2 id="github-actions-integration">GitHub Actions Integration</h2>
+<p>Running the tests in GitHub Actions CI/CD environment requires running the code in a Docker container and providing the container access to a Docker socket so that <code>testcontainers-go</code> can use it to spin up new dependency containers. Example of a test step running lint, unit and integration tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="font-weight:bold">lint-and-test</span>:
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">container</span>:
+</span></span><span style="display:flex;"><span>      <span style="font-weight:bold">image</span>: golangci/golangci-lint:v1.52
+</span></span><span style="display:flex;"><span>      <span style="font-weight:bold">volumes</span>:
+</span></span><span style="display:flex;"><span>        - /var/run/docker.sock:/var/run/docker.sock
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="font-weight:bold">uses</span>: actions/checkout@v2
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">if</span>: startsWith(github.ref, &#39;refs/tags/&#39;) == false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="font-weight:bold">name</span>: Lint and Test
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">id</span>: lint-and-test
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">run</span>: |<span style="color:#0ff;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          go mod download all
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make clean &amp;&amp; make generate
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make lint
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make test</span>          
+</span></span></code></pre></div>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-85593700-1', 'auto');
+    ga('send', 'pageview');
+    window.baseURL = "https:\/\/gloutnikov.com\/";
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>

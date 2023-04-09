@@ -6,7 +6,25 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Nov 2022 15:36:23 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Mar 2023 20:55:41 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integration Tests with External Dependencies in Go</title>
+      <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</link>
+      <pubDate>Sat, 25 Mar 2023 20:55:41 +0200</pubDate>
+      
+      <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</guid>
+      <description>&lt;p&gt;Integration tests are tests which use or depend on some external software like a database, cache layer, or any service. While unit tests validate smaller pieces of software logic, it is always good to also run integration tests in an as-close-as-possible to real environment, and preferably also have them automated. This post will go over a way to easily include and automate the use of external dependencies in your integration tests and CI/CD environment.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>gRPC Go Example and Boilerplate</title>
+      <link>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</guid>
+      <description>&lt;p&gt;I put together a simple example and all the boilerplate needed to get started with a gRPC service in Go. The following Git repository includes some of what I consider best practices, useful middleware, observability, and other features.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Replacing Docker Desktop with Colima</title>
       <link>https://gloutnikov.com/post/replacing_docker_desktop_with-colima/</link>
