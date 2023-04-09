@@ -71,9 +71,45 @@
     </item>
     
     <item>
+      <title>docker</title>
+      <link>https://gloutnikov.com/tags/docker/</link>
+      <pubDate>Sat, 02 Jul 2022 15:25:33 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell-alias</title>
+      <link>https://gloutnikov.com/tags/shell-alias/</link>
+      <pubDate>Sat, 02 Jul 2022 15:25:33 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/shell-alias/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://gloutnikov.com/tags/kubernetes/</link>
+      <pubDate>Sun, 26 Jun 2022 15:21:49 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubie</title>
+      <link>https://gloutnikov.com/tags/kubie/</link>
+      <pubDate>Sun, 26 Jun 2022 15:21:49 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/tags/kubie/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>aws</title>
       <link>https://gloutnikov.com/tags/aws/</link>
-      <pubDate>Sun, 26 Jun 2022 15:20:33 -0700</pubDate>
+      <pubDate>Sat, 25 Jun 2022 15:20:33 -0700</pubDate>
       
       <guid>https://gloutnikov.com/tags/aws/</guid>
       <description></description>
@@ -82,7 +118,7 @@
     <item>
       <title>awscli</title>
       <link>https://gloutnikov.com/tags/awscli/</link>
-      <pubDate>Sun, 26 Jun 2022 15:20:33 -0700</pubDate>
+      <pubDate>Sat, 25 Jun 2022 15:20:33 -0700</pubDate>
       
       <guid>https://gloutnikov.com/tags/awscli/</guid>
       <description></description>
@@ -103,15 +139,6 @@
       <pubDate>Fri, 16 Jul 2021 01:29:51 +0200</pubDate>
       
       <guid>https://gloutnikov.com/tags/apache-pulsar/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://gloutnikov.com/tags/kubernetes/</link>
-      <pubDate>Fri, 16 Jul 2021 01:29:51 +0200</pubDate>
-      
-      <guid>https://gloutnikov.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     

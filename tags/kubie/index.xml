@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubie on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/kubie/</link>
+    <description>Recent content in kubie on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jun 2022 15:21:49 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/kubie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes impersonations with kubie</title>
+      <link>https://gloutnikov.com/post/k8s_impersonation_with_kubie/</link>
+      <pubDate>Sun, 26 Jun 2022 15:21:49 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/k8s_impersonation_with_kubie/</guid>
+      <description>&lt;p&gt;Some Kubernetes resources require elevated privileges to access. For example, passing &lt;code&gt;--as &amp;lt;namespace&amp;gt;-admin&lt;/code&gt; to each &lt;code&gt;kubectl&lt;/code&gt; command. Below is a convenient alias to elevate your permissions for such resources.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
