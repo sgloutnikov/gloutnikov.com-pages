@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/github-actions/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/go/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2022-09-03T13:16:45-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/cncf/</loc>
     <lastmod>2022-08-28T12:42:47-07:00</lastmod>
   </url><url>
@@ -9,18 +27,6 @@
     <lastmod>2022-08-28T12:42:47-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/data-analysis/</loc>
-    <lastmod>2022-08-28T12:42:47-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/go/</loc>
-    <lastmod>2022-08-28T12:42:47-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2022-08-28T12:42:47-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2022-08-28T12:42:47-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2022-08-28T12:42:47-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/apache-flink/</loc>

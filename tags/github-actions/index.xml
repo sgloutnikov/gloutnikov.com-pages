@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github-actions on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/github-actions/</link>
+    <description>Recent content in github-actions on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Sep 2022 13:16:45 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Embedding Git commit hash in a Go binary</title>
+      <link>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</link>
+      <pubDate>Sat, 03 Sep 2022 13:16:45 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</guid>
+      <description>&lt;p&gt;This post will go over how to embed the Git commit hash inside a Go binary in order to support a &lt;code&gt;/versionz&lt;/code&gt; endpoint. A &lt;code&gt;/versionz&lt;/code&gt; could include multiple things, including manually defined version numbers, but another nice to have is the Git commit hash which produced the binary of the running software.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
