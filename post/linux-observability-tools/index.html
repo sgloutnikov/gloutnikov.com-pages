@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta property="og:title" content="shell-alias">
+    <meta property="og:title" content="Linux Observability Tools">
     
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2022-07-24">
     
     <meta property="og:description" content="">
-    <meta property="og:url" content="https://gloutnikov.com/tags/shell-alias/">
+    <meta property="og:url" content="https://gloutnikov.com/post/linux-observability-tools/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
+    <meta property="og:tags" content="linux">
+    
+    <meta property="og:tags" content="observability">
+    
+    <meta property="og:tags" content="system-performance">
+    
     <meta name="generator" content="Hugo 0.101.0" />
-    <title>shell-alias - Stefan Gloutnikov</title>
+    <title>Linux Observability Tools - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="/modalimages/modalimg.css">
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     
@@ -119,23 +128,80 @@
 			<div class="row">
 				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
 
-<article>
+<main>
 	<header>
-		<h1>shell-alias</a></h1>
+		<h1>Linux Observability Tools</h1>
 	</header>
+
+	<small>
+		24 July 2022
+		<br><br>
+	</small>
+
+	<article>
+		<p>The following is a collection of Linux observability tool diagrams that I have collected and keep close by for reference. They primarily come from the blog posts or books of Brendan Gregg.</p>
+<center>
+  <a class="myImg">
+      <img src="/post/2022/linux-observability-tools/LinuxPerfAnalysis.png" target="_self" style="width: 75%" >
+  </a>
+  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content"> 
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>          
+    </div>
+  </div>
+</center>
+<br>
+<center>
+  <a class="myImg">
+      <img src="/post/2022/linux-observability-tools/LinuxObservability.png" target="_self" style="width: 75%" >
+  </a>
+</center>
+<br>
+<center>
+  <a class="myImg">
+      <img src="/post/2022/linux-observability-tools/BPFTools.png" target="_self" style="width: 75%" >
+  </a>
+</center>
+<h3 id="related-books">Related Books</h3>
 <ul>
-	
-	<li><a href="https://gloutnikov.com/post/docker-container-shell-alias/">Quick docker container shell alias</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/k8s-impersonation-with-kubie/">Kubernetes impersonations with kubie</a></li>
-	
+<li><a href="https://www.amazon.com/Systems-Performance-Brendan-Gregg/dp/0136820158" target="_blank">Systems Performance 2nd edition - Brendan Gregg (Addison-Wesley, 2021)</a></li>
+<li><a href="https://www.amazon.com/Performance-Tools-Addison-Wesley-Professional-Computing-dp-0136554822/dp/0136554822/" target="_blank">BPF Performance Tools - Brendan Gregg (Addison-Wesley, 2019)</a></li>
 </ul>
-</article>
+	</article>
+</main>
 
 <br>
 <div id="bottom-nav" class="text-center center-block">
 	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
 </div>
+
+
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 						</div>
 					</div>
@@ -160,6 +226,8 @@
   
   
   <script src="https://gloutnikov.com//js/App.js"></script>
+  
+  <script src="/modalimages/modalimg.js"></script>
   
 </body>
 </html>

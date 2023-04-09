@@ -32,6 +32,18 @@
     <loc>https://gloutnikov.com/tags/protobuf/</loc>
     <lastmod>2022-08-07T11:31:51-07:00</lastmod>
   </url><url>
+    <loc>https://gloutnikov.com/tags/linux/</loc>
+    <lastmod>2022-07-24T14:20:34-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/linux-observability-tools/</loc>
+    <lastmod>2022-07-24T14:20:34-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/observability/</loc>
+    <lastmod>2022-07-24T14:20:34-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/system-performance/</loc>
+    <lastmod>2022-07-24T14:20:34-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/dataset/</loc>
     <lastmod>2022-07-22T12:14:52-07:00</lastmod>
   </url><url>
@@ -44,7 +56,7 @@
     <loc>https://gloutnikov.com/tags/docker/</loc>
     <lastmod>2022-07-02T15:25:33-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/docker_container_shell_alias/</loc>
+    <loc>https://gloutnikov.com/post/docker-container-shell-alias/</loc>
     <lastmod>2022-07-02T15:25:33-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/shell-alias/</loc>
@@ -53,7 +65,7 @@
     <loc>https://gloutnikov.com/tags/kubernetes/</loc>
     <lastmod>2022-06-26T15:21:49-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/k8s_impersonation_with_kubie/</loc>
+    <loc>https://gloutnikov.com/post/k8s-impersonation-with-kubie/</loc>
     <lastmod>2022-06-26T15:21:49-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/kubie/</loc>
@@ -65,7 +77,7 @@
     <loc>https://gloutnikov.com/tags/awscli/</loc>
     <lastmod>2022-06-25T15:20:33-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/awscli_multiple_accounts/</loc>
+    <loc>https://gloutnikov.com/post/awscli-multiple-accounts/</loc>
     <lastmod>2022-06-25T15:20:33-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/raspberry-pi-print-server/</loc>

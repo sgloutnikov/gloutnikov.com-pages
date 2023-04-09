@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 25 Jun 2022 15:20:33 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/awscli/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using awscli with multiple AWS accounts</title>
-      <link>https://gloutnikov.com/post/awscli_multiple_accounts/</link>
+      <link>https://gloutnikov.com/post/awscli-multiple-accounts/</link>
       <pubDate>Sat, 25 Jun 2022 15:20:33 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/awscli_multiple_accounts/</guid>
+      <guid>https://gloutnikov.com/post/awscli-multiple-accounts/</guid>
       <description>&lt;p&gt;Described below is a convenient way to configure and switch &lt;code&gt;awscli&lt;/code&gt; between multiple AWS accounts.&lt;/p&gt;</description>
     </item>
     

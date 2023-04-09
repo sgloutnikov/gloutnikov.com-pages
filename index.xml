@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>Linux Observability Tools</title>
+      <link>https://gloutnikov.com/post/linux-observability-tools/</link>
+      <pubDate>Sun, 24 Jul 2022 14:20:34 -0700</pubDate>
+      
+      <guid>https://gloutnikov.com/post/linux-observability-tools/</guid>
+      <description>&lt;p&gt;The following is a collection of Linux observability tool diagrams that I have collected and keep close by for reference. They primarily come from the blog posts or books of Brendan Gregg.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Dataset Release: Six Years of SiriusXM Now Playing Data</title>
       <link>https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/</link>
       <pubDate>Fri, 22 Jul 2022 12:14:52 -0700</pubDate>
@@ -36,28 +45,28 @@
     
     <item>
       <title>Quick docker container shell alias</title>
-      <link>https://gloutnikov.com/post/docker_container_shell_alias/</link>
+      <link>https://gloutnikov.com/post/docker-container-shell-alias/</link>
       <pubDate>Sat, 02 Jul 2022 15:25:33 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/docker_container_shell_alias/</guid>
+      <guid>https://gloutnikov.com/post/docker-container-shell-alias/</guid>
       <description>&lt;p&gt;Often we need to run shell commands on a running docker container. The traditional way would be to run &lt;code&gt;docker exec -it &amp;lt;container&amp;gt; /bin/bash&lt;/code&gt; for example. Below is an alias to simplify this process a bit.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Kubernetes impersonations with kubie</title>
-      <link>https://gloutnikov.com/post/k8s_impersonation_with_kubie/</link>
+      <link>https://gloutnikov.com/post/k8s-impersonation-with-kubie/</link>
       <pubDate>Sun, 26 Jun 2022 15:21:49 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/k8s_impersonation_with_kubie/</guid>
+      <guid>https://gloutnikov.com/post/k8s-impersonation-with-kubie/</guid>
       <description>&lt;p&gt;Some Kubernetes resources require elevated privileges to access. For example, passing &lt;code&gt;--as &amp;lt;namespace&amp;gt;-admin&lt;/code&gt; to each &lt;code&gt;kubectl&lt;/code&gt; command. Below is a convenient alias to elevate your permissions for such resources.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Using awscli with multiple AWS accounts</title>
-      <link>https://gloutnikov.com/post/awscli_multiple_accounts/</link>
+      <link>https://gloutnikov.com/post/awscli-multiple-accounts/</link>
       <pubDate>Sat, 25 Jun 2022 15:20:33 -0700</pubDate>
       
-      <guid>https://gloutnikov.com/post/awscli_multiple_accounts/</guid>
+      <guid>https://gloutnikov.com/post/awscli-multiple-accounts/</guid>
       <description>&lt;p&gt;Described below is a convenient way to configure and switch &lt;code&gt;awscli&lt;/code&gt; between multiple AWS accounts.&lt;/p&gt;</description>
     </item>
     

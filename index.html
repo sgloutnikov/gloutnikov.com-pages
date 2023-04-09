@@ -204,6 +204,39 @@
 	<div class="panel panel-default">
 	<div class="panel-header">
 		<h3>
+			<a href="https://gloutnikov.com/post/linux-observability-tools/">Linux Observability Tools</a>
+			<br>
+			<small>
+				24 July 2022
+			</small>
+		</h3>
+	</div>
+	<div class="panel-body">
+		<p>The following is a collection of Linux observability tool diagrams that I have collected and keep close by for reference. They primarily come from the blog posts or books of Brendan Gregg.</p>
+		
+			... <a href="https://gloutnikov.com/post/linux-observability-tools/">Read More</a>
+		
+	</div>
+	<div class="panel-footer">
+		
+		<small class="text-muted">
+			
+			
+				<a href="https://gloutnikov.com/tags/linux"><span class="label label-success">linux</span></a>
+			
+				<a href="https://gloutnikov.com/tags/observability"><span class="label label-success">observability</span></a>
+			
+				<a href="https://gloutnikov.com/tags/system-performance"><span class="label label-success">system-performance</span></a>
+			
+		</small>
+		
+	</div>
+</div>
+
+
+	<div class="panel panel-default">
+	<div class="panel-header">
+		<h3>
 			<a href="https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/">Dataset Release: Six Years of SiriusXM Now Playing Data</a>
 			<br>
 			<small>
@@ -235,7 +268,7 @@
 	<div class="panel panel-default">
 	<div class="panel-header">
 		<h3>
-			<a href="https://gloutnikov.com/post/docker_container_shell_alias/">Quick docker container shell alias</a>
+			<a href="https://gloutnikov.com/post/docker-container-shell-alias/">Quick docker container shell alias</a>
 			<br>
 			<small>
 				2 July 2022
@@ -245,7 +278,7 @@
 	<div class="panel-body">
 		<p>Often we need to run shell commands on a running docker container. The traditional way would be to run <code>docker exec -it &lt;container&gt; /bin/bash</code> for example. Below is an alias to simplify this process a bit.</p>
 		
-			... <a href="https://gloutnikov.com/post/docker_container_shell_alias/">Read More</a>
+			... <a href="https://gloutnikov.com/post/docker-container-shell-alias/">Read More</a>
 		
 	</div>
 	<div class="panel-footer">
@@ -266,7 +299,7 @@
 	<div class="panel panel-default">
 	<div class="panel-header">
 		<h3>
-			<a href="https://gloutnikov.com/post/k8s_impersonation_with_kubie/">Kubernetes impersonations with kubie</a>
+			<a href="https://gloutnikov.com/post/k8s-impersonation-with-kubie/">Kubernetes impersonations with kubie</a>
 			<br>
 			<small>
 				26 June 2022
@@ -276,7 +309,7 @@
 	<div class="panel-body">
 		<p>Some Kubernetes resources require elevated privileges to access. For example, passing <code>--as &lt;namespace&gt;-admin</code> to each <code>kubectl</code> command. Below is a convenient alias to elevate your permissions for such resources.</p>
 		
-			... <a href="https://gloutnikov.com/post/k8s_impersonation_with_kubie/">Read More</a>
+			... <a href="https://gloutnikov.com/post/k8s-impersonation-with-kubie/">Read More</a>
 		
 	</div>
 	<div class="panel-footer">
@@ -299,7 +332,7 @@
 	<div class="panel panel-default">
 	<div class="panel-header">
 		<h3>
-			<a href="https://gloutnikov.com/post/awscli_multiple_accounts/">Using awscli with multiple AWS accounts</a>
+			<a href="https://gloutnikov.com/post/awscli-multiple-accounts/">Using awscli with multiple AWS accounts</a>
 			<br>
 			<small>
 				25 June 2022
@@ -309,7 +342,7 @@
 	<div class="panel-body">
 		<p>Described below is a convenient way to configure and switch <code>awscli</code> between multiple AWS accounts.</p>
 		
-			... <a href="https://gloutnikov.com/post/awscli_multiple_accounts/">Read More</a>
+			... <a href="https://gloutnikov.com/post/awscli-multiple-accounts/">Read More</a>
 		
 	</div>
 	<div class="panel-footer">
@@ -418,39 +451,6 @@
 </div>
 
 
-	<div class="panel panel-default">
-	<div class="panel-header">
-		<h3>
-			<a href="https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/">GraphQL Subscriptions with Go (gqlgen) Example</a>
-			<br>
-			<small>
-				28 March 2021
-			</small>
-		</h3>
-	</div>
-	<div class="panel-body">
-		<p>GraphQL subscriptions are extremely useful in situations when a server needs to update its clients. A chat application is a great example to demonstrate this, as when new messages arrive we want to distribute them among all chat participants as quickly as possible without polling. When I first started looking at implementing GraphQL subscriptions in Go it took me a bit before I had my aha moment and everything clicked together. Also, at that time there were not a whole lot of examples that I could look at or reference. This post will go over a concrete chat application example using GraphQL subscriptions and a backend built in Go with gqlgen.</p>
-		
-			... <a href="https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/">Read More</a>
-		
-	</div>
-	<div class="panel-footer">
-		
-		<small class="text-muted">
-			
-			
-				<a href="https://gloutnikov.com/tags/graphql"><span class="label label-success">graphql</span></a>
-			
-				<a href="https://gloutnikov.com/tags/go"><span class="label label-success">go</span></a>
-			
-				<a href="https://gloutnikov.com/tags/gqlgen"><span class="label label-success">gqlgen</span></a>
-			
-		</small>
-		
-	</div>
-</div>
-
-
 
 <div class="text-center center-block">
 	
@@ -468,10 +468,13 @@
         <a href="/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
       <li class="page-item">
+        <a href="/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
         <a href="/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
 </div>

@@ -140,6 +140,39 @@
 	<div class="panel panel-default">
 	<div class="panel-header">
 		<h3>
+			<a href="https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/">GraphQL Subscriptions with Go (gqlgen) Example</a>
+			<br>
+			<small>
+				28 March 2021
+			</small>
+		</h3>
+	</div>
+	<div class="panel-body">
+		<p>GraphQL subscriptions are extremely useful in situations when a server needs to update its clients. A chat application is a great example to demonstrate this, as when new messages arrive we want to distribute them among all chat participants as quickly as possible without polling. When I first started looking at implementing GraphQL subscriptions in Go it took me a bit before I had my aha moment and everything clicked together. Also, at that time there were not a whole lot of examples that I could look at or reference. This post will go over a concrete chat application example using GraphQL subscriptions and a backend built in Go with gqlgen.</p>
+		
+			... <a href="https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/">Read More</a>
+		
+	</div>
+	<div class="panel-footer">
+		
+		<small class="text-muted">
+			
+			
+				<a href="https://gloutnikov.com/tags/graphql"><span class="label label-success">graphql</span></a>
+			
+				<a href="https://gloutnikov.com/tags/go"><span class="label label-success">go</span></a>
+			
+				<a href="https://gloutnikov.com/tags/gqlgen"><span class="label label-success">gqlgen</span></a>
+			
+		</small>
+		
+	</div>
+</div>
+
+
+	<div class="panel panel-default">
+	<div class="panel-header">
+		<h3>
 			<a href="https://gloutnikov.com/post/pragmatic-programmer-tips/">Pragmatic Programmer Tips</a>
 			<br>
 			<small>
@@ -426,38 +459,6 @@
 </div>
 
 
-	<div class="panel panel-default">
-	<div class="panel-header">
-		<h3>
-			<a href="https://gloutnikov.com/post/hello-world/">Hello World! From Hugo</a>
-			<br>
-			<small>
-				11 October 2016
-			</small>
-		</h3>
-	</div>
-	<div class="panel-body">
-		First post from Hugo&ndash;the fast and modern static website engine.
-I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN post about Hugo.
-		
-			... <a href="https://gloutnikov.com/post/hello-world/">Read More</a>
-		
-	</div>
-	<div class="panel-footer">
-		
-		<small class="text-muted">
-			
-			
-				<a href="https://gloutnikov.com/tags/site"><span class="label label-success">site</span></a>
-			
-				<a href="https://gloutnikov.com/tags/hugo"><span class="label label-success">hugo</span></a>
-			
-		</small>
-		
-	</div>
-</div>
-
-
 
 <div class="text-center center-block">
 	
@@ -474,11 +475,14 @@ I quickly become a fan of statically generated sites after seeing Jekyll a few y
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/page/3/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
 </div>
