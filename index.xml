@@ -239,14 +239,15 @@ If you are wondering how naming things could be hard, I suggest checking out the
     </item>
     
     <item>
-      <title>Personal Projects</title>
+      <title>Projects</title>
       <link>https://gloutnikov.com/projects/</link>
       <pubDate>Tue, 29 Nov 2016 23:22:28 +0200</pubDate>
       
       <guid>https://gloutnikov.com/projects/</guid>
-      <description>NeterraProxy On-demand m3u8 playlist/playback daemon for Neterra.tv, running on Android.
+      <description>gRPC Go Boilerplate A minimal repo containing all the boilerplate for getting started with gRPC in Go. [Blog]
+NeterraProxy On-demand m3u8 playlist/playback daemon for Neterra.tv, running on Android.
 SiriusXM: The Heat Tracker &amp;amp; The Highway Tracker Tracks songs played on SiriusXM&amp;rsquo;s The Heat R&amp;amp;B and Hip-Hop station. Displays top played statistics and new songs. Python, MongoDB, Django. [Blog] [Tracker] [Web Client]
-Bulsatcom Fire TV Application Amazon Fire TV application for watching the Bulgarian TV provider Bulsatcom. The official and incompatible touch apps for Android and iOS were used to reverse engineer the APIs.</description>
+Bulsatcom Fire TV Application Amazon Fire TV application for watching the Bulgarian TV provider Bulsatcom.</description>
     </item>
     
     <item>
