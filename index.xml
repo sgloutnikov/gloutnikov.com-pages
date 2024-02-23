@@ -6,8 +6,15 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Aug 2023 20:55:41 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2024 10:32:28 -0800</lastBuildDate>
     <atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Number One Debugging Rule</title>
+      <link>https://gloutnikov.com/post/my_number_one_debugging_rule/</link>
+      <pubDate>Sun, 18 Feb 2024 10:32:28 -0800</pubDate>
+      <guid>https://gloutnikov.com/post/my_number_one_debugging_rule/</guid>
+      <description>&lt;p&gt;Over the years of working in the software industry I have developed a single rule for myself when trying to debug, figure out why something is broken or doesn&amp;rsquo;t work. I can&amp;rsquo;t count the number of times not following my rule has come to bite me and led to countless hours of banging my head against the wall.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Publishing and Using Private Go Modules</title>
       <link>https://gloutnikov.com/post/publishing_and_using_private_go_modules/</link>
