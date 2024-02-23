@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta property="og:title" content="Hello World! From Hugo">
+    <meta property="og:title" content="Publishing and Using Private Go Modules">
     
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2016-10-11">
+    <meta property="article:published_time" content="2023-08-19">
     
     <meta property="og:description" content="">
-    <meta property="og:url" content="https://gloutnikov.com/post/hello-world/">
+    <meta property="og:url" content="https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
-    <meta property="og:tags" content="site">
+    <meta property="og:tags" content="go">
     
-    <meta property="og:tags" content="hugo">
+    <meta property="og:tags" content="go-modules">
     
     <meta name="generator" content="Hugo 0.123.3">
-    <title>Hello World! From Hugo - Stefan Gloutnikov</title>
+    <title>Publishing and Using Private Go Modules - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
     
     <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
     
@@ -124,21 +126,58 @@
 
 <main>
 	<header>
-		<h1>Hello World! From Hugo</h1>
+		<h1>Publishing and Using Private Go Modules</h1>
 	</header>
 
 	<small>
-		11 October 2016
+		19 August 2023
 		<br><br>
 	</small>
 
 	<article>
-		<p>First post from <a href="http://gohugo.io/" target="_blank">Hugo</a>&ndash;the fast and modern static website engine.</p>
-<p>I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN <a href="https://news.ycombinator.com/item?id=12672394" target="_blank">post</a> about Hugo. This baby runs straight out of the box with a simple &lsquo;homebrew install&rsquo; command, and as a bonus, it&rsquo;s written in Go&ndash;a new language I began playing around with recently and really enjoy.</p>
-<p>Never being a &ldquo;web guy&rdquo; myself, I love the simplicity behind Hugo. One rainy day later coupled with some music, I was able to produce this site, and am very satisfied with the result. Of course, there are more things in the layout and colors I want to tweak to my linking, but that will come later.</p>
-<p>Setting up this site also gave me the opportunity and excuse to try out the <a href="https://atom.io/" target="_blank">Atom</a> and <a href="https://code.visualstudio.com/" target="_blank">VS Code</a> text editors :) Liking Atom a little more than VS Code for its file management/view so far, but too early to tell.</p>
-<p>Thanks to <a href="http://spf13.com/" target="_blank">Steve Francia</a> and the Hugo open source community for building this beautiful product. After sharpening my Go skills, I look forward to contributing to the project. Also thanks to Alex Urquhart for the original Hugo <a href="https://github.com/alexurquhart/hugo-geo" target="_blank">theme</a> I am using.</p>
-<br>
+		<p>In the following post we go over and show an example of publishing and using a Go module from a private Git repository.</p>
+<p>Go modules are packaged in git repositories, versioned by git tags. This is also true for private git repositories, with just a few minor changes. Let’s look at how to publish and use a Go module from a private git repository.</p>
+<h2 id="publishing-private-module">Publishing Private Module</h2>
+<ul>
+<li>Module name is the same as the repository name</li>
+<li>Commit and push module to private repository as usual</li>
+<li>Tag and push tags: <code>git tag &quot;v0.1.0&quot; &amp;&amp; git push --tags</code></li>
+</ul>
+<h2 id="using-private-module">Using Private Module</h2>
+<ul>
+<li>You should already have git setup and have access to <code>git clone</code> the private repository with SSH.
+Provide private module credentials for SSH by adding the following to your <code>.gitconfig</code> because Go
+defaults to <code>https://</code>:</li>
+</ul>
+<pre tabindex="0"><code>[url &#34;ssh://git@github.com/&#34;]
+	insteadOf = https://github.com/
+</code></pre><ul>
+<li>Add the private module to the <code>GOPRIVATE</code> environment variable. The variable is a comma-separated list of glob patterns.</li>
+</ul>
+<pre tabindex="0"><code>export GOPRIVATE=github.com/sgloutnikov/example-greeter-secret
+</code></pre><ul>
+<li>Create a new project to use this private module and run <code>go mod download all</code> or <code>go mod tidy</code>.</li>
+</ul>
+<p><code>main.go</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> <span style="color:#0ff;font-weight:bold">&#34;github.com/sgloutnikov/example-greeter-secret&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
+</span></span><span style="display:flex;"><span>	greeter.SayHello()
+</span></span><span style="display:flex;"><span>	greeter.SayHey()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Resulting <code>go.mod</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>module greeter-user
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">go</span> <span style="color:#ff0;font-weight:bold">1.20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>require github.com/sgloutnikov/example-greeter-secret v0<span style="color:#ff0;font-weight:bold">.1.0</span>
+</span></span></code></pre></div><p>Run the project</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ go run main.go
+</span></span><span style="display:flex;"><span>Hello!
+</span></span><span style="display:flex;"><span>Hey!
+</span></span></code></pre></div>
 	</article>
 </main>
 
@@ -190,6 +229,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
   
   <script src="https://gloutnikov.com//js/App.js"></script>
   

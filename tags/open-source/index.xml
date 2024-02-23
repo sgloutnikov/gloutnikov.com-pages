@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>open-source on Stefan Gloutnikov</title>
+    <title>Open-Source on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/open-source/</link>
-    <description>Recent content in open-source on Stefan Gloutnikov</description>
+    <description>Recent content in Open-Source on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jul 2022 12:14:52 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 12:14:52 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dataset Release: Six Years of SiriusXM Now Playing Data</title>
       <link>https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/</link>
       <pubDate>Fri, 22 Jul 2022 12:14:52 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/dataset-sxm-nowplaying-v1/</guid>
       <description>&lt;p&gt;My Sirius XM &lt;a href=&#34;https://github.com/sgloutnikov/sxm-tracker&#34; target=&#34;_blank&#34;&gt;now playing tracker&lt;/a&gt; has been running for six years without any major interruptions. Today I gathered all the data collected to date and am open sourcing the dataset for anyone to use.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

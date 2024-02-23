@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>project on Stefan Gloutnikov</title>
+    <title>Project on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/project/</link>
-    <description>Recent content in project on Stefan Gloutnikov</description>
+    <description>Recent content in Project on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Nov 2016 19:14:53 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Nov 2016 19:14:53 +0200</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SiriusXM: The Heat Tracker</title>
       <link>https://gloutnikov.com/post/theheat-tracker/</link>
       <pubDate>Tue, 29 Nov 2016 19:14:53 +0200</pubDate>
-      
       <guid>https://gloutnikov.com/post/theheat-tracker/</guid>
       <description>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, The Heat was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify.</description>
     </item>
-    
   </channel>
 </rss>

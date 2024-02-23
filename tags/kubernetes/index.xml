@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on Stefan Gloutnikov</title>
+    <title>Kubernetes on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on Stefan Gloutnikov</description>
+    <description>Recent content in Kubernetes on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Oct 2022 10:19:12 -0800</lastBuildDate><atom:link href="https://gloutnikov.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Oct 2022 10:19:12 -0800</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Helm impersonations with kubie</title>
       <link>https://gloutnikov.com/post/helm_impersonation_with_kubie/</link>
       <pubDate>Sun, 16 Oct 2022 10:19:12 -0800</pubDate>
-      
       <guid>https://gloutnikov.com/post/helm_impersonation_with_kubie/</guid>
       <description>&lt;p&gt;In a &lt;a href=&#34;https://gloutnikov.com/post/k8s-impersonation-with-kubie&#34;&gt;previous post&lt;/a&gt; I discussed a convenient shell alias for elevating &lt;code&gt;kubectl&lt;/code&gt; command privileges. Below is a similar alias to do the same, but for helm commands.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Kubernetes impersonations with kubie</title>
       <link>https://gloutnikov.com/post/k8s-impersonation-with-kubie/</link>
       <pubDate>Sun, 26 Jun 2022 15:21:49 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/k8s-impersonation-with-kubie/</guid>
       <description>&lt;p&gt;Some Kubernetes resources require elevated privileges to access. For example, passing &lt;code&gt;--as &amp;lt;namespace&amp;gt;-admin&lt;/code&gt; to each &lt;code&gt;kubectl&lt;/code&gt; command. Below is a convenient alias to elevate your permissions for such resources.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Getting Started with Apache Pulsar on Kubernetes</title>
       <link>https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/</link>
       <pubDate>Fri, 16 Jul 2021 01:29:51 +0200</pubDate>
-      
       <guid>https://gloutnikov.com/post/getting-started-with-pulsar-on-k8s/</guid>
       <description>&lt;p&gt;Apache Pulsar is a distributed pub-sub messaging system that I have recently enjoyed testing for some projects of mine. It has grown very much on me and am now preferring it over Apache Kafka. In this post we will go over installing and getting started with an Apache Pulsar instance running on Kubernetes.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

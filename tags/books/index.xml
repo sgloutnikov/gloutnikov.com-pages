@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>books on Stefan Gloutnikov</title>
+    <title>Books on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/books/</link>
-    <description>Recent content in books on Stefan Gloutnikov</description>
+    <description>Recent content in Books on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Sep 2020 21:57:40 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Sep 2020 21:57:40 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/books/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pragmatic Programmer Tips</title>
       <link>https://gloutnikov.com/post/pragmatic-programmer-tips/</link>
       <pubDate>Sun, 06 Sep 2020 21:57:40 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/pragmatic-programmer-tips/</guid>
       <description>&lt;p&gt;One of my favorite software engineering books recently released a new edition and has been an absolute pleasure to read again. &lt;a href=&#34;https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/&#34; target=&#34;_blank&#34;&gt;The Pragmatic Programmer&lt;/a&gt; is back with a 20th-anniversary edition and a fresh look at the modern software development landscape.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go-Modules on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/go-modules/</link>
+    <description>Recent content in Go-Modules on Stefan Gloutnikov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Aug 2023 20:55:41 +0200</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/go-modules/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Publishing and Using Private Go Modules</title>
+      <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/</link>
+      <pubDate>Sat, 19 Aug 2023 20:55:41 +0200</pubDate>
+      <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/</guid>
+      <description>&lt;p&gt;In the following post we go over and show an example of publishing and using a Go module from a private Git repository.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

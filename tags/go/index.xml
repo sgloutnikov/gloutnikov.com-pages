@@ -1,56 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>go on Stefan Gloutnikov</title>
+    <title>Go on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/go/</link>
-    <description>Recent content in go on Stefan Gloutnikov</description>
+    <description>Recent content in Go on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Mar 2023 20:55:41 +0200</lastBuildDate><atom:link href="https://gloutnikov.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 20:55:41 +0200</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Publishing and Using Private Go Modules</title>
+      <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/</link>
+      <pubDate>Sat, 19 Aug 2023 20:55:41 +0200</pubDate>
+      <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/</guid>
+      <description>&lt;p&gt;In the following post we go over and show an example of publishing and using a Go module from a private Git repository.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Integration Tests with External Dependencies in Go</title>
       <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</link>
       <pubDate>Sat, 25 Mar 2023 20:55:41 +0200</pubDate>
-      
       <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</guid>
       <description>&lt;p&gt;Integration tests are tests which use or depend on some external software like a database, cache layer, or any service. While unit tests validate smaller pieces of software logic, it is always good to also run integration tests in an as-close-as-possible to real environment, and preferably also have them automated. This post will go over a way to easily include and automate the use of external dependencies in your integration tests and CI/CD environment.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>gRPC Go Example and Boilerplate</title>
       <link>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</link>
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</guid>
       <description>&lt;p&gt;I put together a simple example and all the boilerplate needed to get started with a gRPC service in Go. The following Git repository includes some of what I consider best practices, useful middleware, observability, and other features.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Embedding Git commit hash in a Go binary</title>
       <link>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</link>
       <pubDate>Sat, 03 Sep 2022 13:16:45 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</guid>
       <description>&lt;p&gt;This post will go over how to embed the Git commit hash inside a Go binary in order to support a &lt;code&gt;/versionz&lt;/code&gt; endpoint. A &lt;code&gt;/versionz&lt;/code&gt; could include multiple things, including manually defined version numbers, but another nice to have is the Git commit hash which produced the binary of the running software.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CNCF Projects Programming Language Statistics</title>
       <link>https://gloutnikov.com/post/cncf-language-stats/</link>
       <pubDate>Sun, 28 Aug 2022 12:42:47 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/cncf-language-stats/</guid>
       <description>&lt;p&gt;I had heard before that Go dominates as the programming language of the cloud and wanted to investigate that claim. In this post I looked at the repositories of all Cloud Native Computing Foundation (CNCF) projects and assembled statistics on the programming languages used.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>GraphQL Subscriptions with Go (gqlgen) Example</title>
       <link>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</link>
       <pubDate>Sun, 28 Mar 2021 14:08:22 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/graphql-subscriptions-go-gqlgen-example/</guid>
       <description>&lt;p&gt;GraphQL subscriptions are extremely useful in situations when a server needs to update its clients. A chat application is a great example to demonstrate this, as when new messages arrive we want to distribute them among all chat participants as quickly as possible without polling. When I first started looking at implementing GraphQL subscriptions in Go it took me a bit before I had my aha moment and everything clicked together. Also, at that time there were not a whole lot of examples that I could look at or reference. This post will go over a concrete chat application example using GraphQL subscriptions and a backend built in Go with gqlgen.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

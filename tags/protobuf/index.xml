@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>protobuf on Stefan Gloutnikov</title>
+    <title>Protobuf on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/protobuf/</link>
-    <description>Recent content in protobuf on Stefan Gloutnikov</description>
+    <description>Recent content in Protobuf on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Aug 2022 11:31:51 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/protobuf/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Aug 2022 11:31:51 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/protobuf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Consuming Protobuf Messages in Apache Flink Example</title>
       <link>https://gloutnikov.com/post/apache-flink-protobuf-example/</link>
       <pubDate>Sun, 07 Aug 2022 11:31:51 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/apache-flink-protobuf-example/</guid>
       <description>&lt;p&gt;When I first dealt with consuming Protobuf messages in Apache Flink it took me some time to get everything working. In this post we will go over a simple example from a project I worked on that demonstrates how to consume Protobuf messages in Apache Flink.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

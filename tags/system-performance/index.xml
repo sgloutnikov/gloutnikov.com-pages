@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>system-performance on Stefan Gloutnikov</title>
+    <title>System-Performance on Stefan Gloutnikov</title>
     <link>https://gloutnikov.com/tags/system-performance/</link>
-    <description>Recent content in system-performance on Stefan Gloutnikov</description>
+    <description>Recent content in System-Performance on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jul 2022 14:20:34 -0700</lastBuildDate><atom:link href="https://gloutnikov.com/tags/system-performance/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 14:20:34 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/system-performance/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux Observability Tools</title>
       <link>https://gloutnikov.com/post/linux-observability-tools/</link>
       <pubDate>Sun, 24 Jul 2022 14:20:34 -0700</pubDate>
-      
       <guid>https://gloutnikov.com/post/linux-observability-tools/</guid>
       <description>&lt;p&gt;The following is a collection of Linux observability tool diagrams that I have collected and keep close by for reference. They primarily come from the blog posts or books of Brendan Gregg.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

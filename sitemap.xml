@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/tags/go/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/go-modules/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/integration_tests_with_external_dependencies-copy/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2023-08-19T20:55:41+02:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/ci-cd/</loc>
     <lastmod>2023-03-25T20:55:41+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/github-actions/</loc>
     <lastmod>2023-03-25T20:55:41+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/tags/go/</loc>
-    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
-  </url><url>
     <loc>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</loc>
-    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2023-03-25T20:55:41+02:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2023-03-25T20:55:41+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/testcontainers/</loc>
