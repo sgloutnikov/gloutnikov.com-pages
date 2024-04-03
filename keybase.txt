@@ -6,7 +6,7 @@ I hereby claim:
 
   * I am an admin of https://gloutnikov.com
   * I am sgloutnikov (https://keybase.io/sgloutnikov) on keybase.
-  * I have a public key with fingerprint 2121 0D73 CC8D 9C08 5211  E90A F5B6 73B1 EF93 FABB
+  * I have a public key with fingerprint 9DF9 1748 23DB 5D2D 4E45  422C C7A7 8DE8 D6EB 2EC3
 
 To do so, I am signing this object:
 
@@ -14,12 +14,22 @@ To do so, I am signing this object:
   "body": {
     "key": {
       "eldest_kid": "0101ae47b0581ff082d3a4717b30eb54f044dfcab6239f9535b5b514288270e83b650a",
-      "fingerprint": "21210d73cc8d9c085211e90af5b673b1ef93fabb",
+      "fingerprint": "9df9174823db5d2d4e45422cc7a78de8d6eb2ec3",
       "host": "keybase.io",
-      "key_id": "f5b673b1ef93fabb",
-      "kid": "0101ae47b0581ff082d3a4717b30eb54f044dfcab6239f9535b5b514288270e83b650a",
+      "key_id": "c7a78de8d6eb2ec3",
+      "kid": "0116edc5e91054ca202b7828fc0a478ef582eb724d2a977ad75b1a0bacb17ad95a2e0a",
       "uid": "6465b441e0365c78989bafd5b9e73e19",
       "username": "sgloutnikov"
+    },
+    "merkle_root": {
+      "ctime": 1712127833,
+      "hash_meta": "27f034be535e36ba08655ef955abd4934158ad1f6e60d05e36603d92896f0f6f",
+      "seqno": 25609423
+    },
+    "revoke": {
+      "sig_ids": [
+        "dbf38028cf48c8b972cae66931e62edfb9382a91af41ce72c45d0ec767c743a70f"
+      ]
     },
     "service": {
       "hostname": "gloutnikov.com",
@@ -28,36 +38,33 @@ To do so, I am signing this object:
     "type": "web_service_binding",
     "version": 1
   },
-  "ctime": 1502693756,
+  "ctime": 1712127995,
   "expire_in": 157680000,
-  "prev": "68c64b2488324978bc4d0a205139c528b453b8366489863c789a2a38b065abb0",
-  "seqno": 6,
+  "prev": "a427d853d5c775b70d07a073427814ed53f17a2249cd881abdb75ecd417f8fba",
+  "seqno": 58,
   "tag": "signature"
 }
 
 which yields the signature:
 
 -----BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.73
-Comment: https://keybase.io/crypto
 
-yMIqAnicrZJfbAxBHMevOK3zJy5Koi9NttWINjWzs7M7e+L8CyIiiBBN1GVnd/Zu
-09o9e3vHRU+EapQ2F0TShFBBI8QLIRGNKOXFv4f2QUOqpRKJP9UIHmiZbYgXj2Ye
-JjO/z+/7+31/me7pEwOhgonnVr6bOrL9WMHDrlPpQM3RNQ17BOoYWSGyR6hj4wer
-N1jKi9VZhhARAARQY5JCASbQNAERDaRJClQoAoxiyQSSZJi6RmURqaaKEaZ8Q0kk
-RFQAI4jKGGhClWBadpy5SdeyPS4rQhECQ0G6TgxVBwSLEDIVaCamsoIoZKaKTI1S
-nphwUn4Gb45qKVZtOfyNX2Lj7f2D/899p8flZEnGVJIgA0jGukJUolLNNDBVmYIY
-VH0wxVxb28E4nYrXO2nPtuqcjJCrEnggY+nMn61v5jf0l6nWnR1cIOk6nqM79TyW
-8LxkKuLnetmkD+9iNPZbJkYt2+DD5BkZ5qYsxxYikJO6Z/m6EANRVpGC5SqB7U5a
-LotZPoEVmQC+/Dos41siuixRUSIEiZKqEKpLBtBEgCFSdSwSKmFECZJlibuVkW9a
-EzVEKJAxnzQQfGM7bUeI8EqeFvd9W3Fb89IuE3J372ybFCgIBSYHJ/ifLBCaMvPP
-1zu5tXC05MzwEXi5vDc3dv/biRWvN37Yf6G2MDrPXTjQ/+ya/T2tlR0OdqC1tSMD
-nTNWDg0dSATVlz8bKkp6x5pvhisa889H2tZ/sZf0vDDxWac5d4fuLfJeu2LXp3eb
-N4X71fyj6GDfjetNlZeW5LNG75tbxcv3PSi9fmjd16GWtr5XUSXaMWv2YMm3xaWs
-vej8supEe+vjDWUNT8uHm8+k74ZKy+Y2tp2+9+bs0uBY6fsnBz9NW/D2QPvFOVtu
-d348vzMUZtF53cGCl1doxeylipbIDe//nG2piR0PqZU3Rg45wR9wtGl17ej8vY1T
-WsPlVyubWhflJ3wVa1f1jG1pOVmcnUZ/AWGIQIs=
-=Q1VT
+owFtk8+rTVEUx69fxSuFeKVIThmol/bvHzf+BhMykG77x9r3ne6951znnHeR7kAZ
+KJOXgVIG0ivkx8DMRMpAMXllIJSEyIyBMmOdm5eUswenvfZ3rfU9n3X28tYNnbn5
+64OPB44MD79Z9+Kr76StnR3nM1/Gc1n3fDaA2QuGEeqmN8hj1s0IJdSB0J5IQ1Mi
+hkXuhKbacwJeikSEiCk4rxi3yUouPS4qmDFMEzDcK0lctpClvOhDNa7yosGyNiZL
+tTCMRy8jiwKEFIyFoJ02EUxU4BkEjomLZd1moDnvajiUlxjDTW9m7z/6Nd9UQQwS
+LCVSBMcI89owkwJB+waSNAy8ZiIyZ7V2UUtPHfEueIo7Kx2Dme+lWTkllPRCUCBc
+yaCNNda7FKW3oDlQ2wprqAo3AlTX/WG51BT5oJxk04VsBNVgCL2qLJuWb2jyVkU1
+ZZRpwzl+o6sXeyNoHCYznQgXHhAlcOUdMUpKQLTS+SgsF1QaF2lSoEgkrUYRHi0z
+ViWSVEIrNZwuyqzLpCJWMI4WKpiUA2i713kf0dVZ92T2ZBp94oYwE5IwwXirWXCg
+lOUUFIOYvOUG+VCXBA2Ap0JGAkErHbTgTpOUnZq2/apJHmbl22n9ofAXwqFQjtDW
+uCqbMpRDPFtsmnHdbeE058at+Az43p8yPZ8XEf8WzJhAVedlgbBQ+S83a+VCBmfH
+eQW9vFVIrQzBp+0DEyzpBNPRSB5xYDhdjbS0I5pj2FABUfKEo2ZM2BCNoUjXawkh
+CqqTSd79BSkN+nT9drJ5v3DNUgXZdO7S0sbO/Fxn7/z+jbce6WNvmwcHX6+u3Fy7
+YJvWt7erM7dl21pkeaXzq+g+u3hv8413T1e+f/h59MTq3em13Z+u3Ll/eeftPf7h
+9m/rOldfPiZnczocPVcfbn7+cmGf2Hv8x66rFbx/cmr51eqW3w==
+=Icp0
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
