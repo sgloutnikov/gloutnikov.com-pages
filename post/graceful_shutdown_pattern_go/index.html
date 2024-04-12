@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="An example of a graceful shutdown pattern in Go">
+    <meta name="keywords" content="golang, go, graceful shutdown, pattern">
+    <meta property="og:title" content="Graceful Shutdown Pattern in Go">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2024-03-16">
+    
+    <meta property="og:description" content="An example of a graceful shutdown pattern in Go">
+    <meta property="og:url" content="https://gloutnikov.com/post/graceful_shutdown_pattern_go/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="go">
+    
+    <meta name="generator" content="Hugo 0.123.3">
+    <title>Graceful Shutdown Pattern in Go - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.png" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://twitter.com/sgloutnikov"><i class="fab fa-twitter fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>Graceful Shutdown Pattern in Go</h1>
+	</header>
+
+	<small>
+		16 March 2024
+		<br><br>
+	</small>
+
+	<article>
+		<p>The following is an example of a graceful shutdown pattern I like to use in my Go applications which upon pressing <code>Ctrl+C</code> to quit allows for performing clean-up tasks.</p>
+<p>After running the application pressing <code>Ctrl+C</code> sends an interrupt signal triggering a shutting down state. The shutting down state is used to clean up anything and has a defined timer limit. The application exists after either completing all shutting down tasks before the timer expires, the shutting down timer expires, or another <code>Ctrl-C</code> interrupt is issued to force the shutdown.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
+</span></span><span style="display:flex;"><span>	logger := log.New(os.Stdout, <span style="color:#0ff;font-weight:bold">&#34;INFO: &#34;</span>, log.Ldate|log.Ltime)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> stop()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	log.Print(<span style="color:#0ff;font-weight:bold">&#34;Application is running&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Listen for the interrupt signal
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	&lt;-ctx.Done()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Restore default behavior on the interrupt signal and notify user of shutdown
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	stop()
+</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// The context is used to inform the application it has 5 seconds to finish any tasks
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	_, cancel := context.WithTimeout(context.Background(), <span style="color:#ff0;font-weight:bold">5</span>*time.Second)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> cancel()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Handle cleanup here if any
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;simulating cleanup work&#34;</span>)
+</span></span><span style="display:flex;"><span>	time.Sleep(<span style="color:#ff0;font-weight:bold">3</span>*time.Second)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;Application exited&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFG2Y6XSY5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GFG2Y6XSY5');
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>
