@@ -6,8 +6,15 @@
     <description>Recent content on Stefan Gloutnikov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Mar 2024 13:10:52 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2024 17:23:12 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bruno: New API Client You Should Try</title>
+      <link>https://gloutnikov.com/post/bruno_api_client/</link>
+      <pubDate>Fri, 05 Apr 2024 17:23:12 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/bruno_api_client/</guid>
+      <description>&lt;p&gt;If you are doing any API development, a pretty useful tool can be an API Client. Some place to store and easily call various API endpoints with various payloads for testing.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Graceful Shutdown Pattern in Go</title>
       <link>https://gloutnikov.com/post/graceful_shutdown_pattern_go/</link>

@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/tags/api/</loc>
+    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/bruno_api_client/</loc>
+    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/go/</loc>
     <lastmod>2024-03-16T13:10:52-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/graceful_shutdown_pattern_go/</loc>
-    <lastmod>2024-03-16T13:10:52-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2024-03-16T13:10:52-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2024-03-16T13:10:52-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2024-03-16T13:10:52-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/my_number_one_debugging_rule/</loc>
