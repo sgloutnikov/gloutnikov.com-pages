@@ -6742,6 +6742,7 @@ a:active {
 #links .active {
     font-family: 'Oswald', sans-serif;
     color: #81bbdc;
+    font-size: 20px;
     letter-spacing: 2px;
     margin-left: 10px
 }
