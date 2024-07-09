@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/tags/poetry/</loc>
+    <lastmod>2024-07-07T21:42:43-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2024-07-07T21:42:43-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2024-07-07T21:42:43-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/t.t.t.-by-piet-hein/</loc>
+    <lastmod>2024-07-07T21:42:43-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2024-07-07T21:42:43-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/tags/api/</loc>
     <lastmod>2024-04-05T17:23:12-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/bruno_api_client/</loc>
-    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2024-04-05T17:23:12-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2024-04-05T17:23:12-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/go/</loc>
