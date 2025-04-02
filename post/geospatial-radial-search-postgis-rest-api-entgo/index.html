@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="An example of entgo integration with PostGIS. Example of geospatial radial search with entgo and PostGIS.">
+    <meta name="keywords" content="go, entgo, postgis, geospatial, radial, radial search">
+    <meta property="og:title" content="Geospatial Radial Search RESTful API with PostGIS and entgo Example">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2024-10-12">
+    
+    <meta property="og:description" content="An example of entgo integration with PostGIS. Example of geospatial radial search with entgo and PostGIS.">
+    <meta property="og:url" content="https://gloutnikov.com/post/geospatial-radial-search-postgis-rest-api-entgo/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="go">
+    
+    <meta property="og:tags" content="entgo">
+    
+    <meta property="og:tags" content="postgis">
+    
+    <meta name="generator" content="Hugo 0.133.0">
+    <title>Geospatial Radial Search RESTful API with PostGIS and entgo Example - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About Me</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://bsky.app/profile/gloutnikov.com"><i class="fab fa-bluesky fa-2x"></i></a>
+			
+				<a href="https://mastodon.social/@sgloutnikov"><i class="fab fa-mastodon fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About Me</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>Geospatial Radial Search RESTful API with PostGIS and entgo Example</h1>
+	</header>
+
+	<small>
+		12 October 2024
+		<br><br>
+	</small>
+
+	<article>
+		<p>Let&rsquo;s look at an example of building a location-based search RESTful API&ndash;something you might use to find restaurants or points of interest in a radius around you. Specifically, we&rsquo;ll use a database that efficiently handles geospatial queries and a RESTful API that lets users store location data as well as radial search for nearby points of interest.</p>
+<p>We will use a mix of common technologies for implementing this RESTful API and backend. For example, <a href="https://postgis.net" target="_blank">PostGIS</a> extends the capabilities of the PostgreSQL relational database by adding support for storing, indexing, and querying geospatial data. <a href="https://entgo.io" target="_blank">Ent</a> is a simple, yet powerful entity framework for Go, that makes it easy to build and maintain applications with large data-models. This post assumes you already have some knowledge and experience with PostgreSQL, PostGIS and entgo as they are already very well documented tools.</p>
+<p>Going forward, you should have your PostgreSQL database setup and working with the PostGIS extension. Here is an example of ensuring the extension is available when bootstrapping our Ent client:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>entClient, err := ent.Open(dialect.Postgres, ...)
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>_, err = entClient.ExecContext(context.Background(), <span style="color:#0ff;font-weight:bold">&#34;CREATE EXTENSION IF NOT EXISTS postgis;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    log.Fatal().Err(err).Msg(<span style="color:#0ff;font-weight:bold">&#34;failed creating extension postgis&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="data-structure">Data Structure</h2>
+<p>Ent does not understand Geospatial types out of the box, so will create our own for use as an <a href="https://entgo.io/docs/schema-fields/#other-field" target="_blank">Other field</a> inside our ent schema. The custom type must be either a type that is convertible to the Go basic type, a type that implements the <a href="https://pkg.go.dev/entgo.io/ent/schema/field#ValueScanner" target="_blank">ValueScanner</a> interface, or has an <a href="https://entgo.io/docs/schema-fields/#external-valuescanner" target="_blank">External ValueScanner</a>. We declare and implement a <code>GeoJson</code> struct as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;database/sql/driver&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;encoding/json&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;entgo.io/ent/dialect/sql&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;github.com/rs/zerolog/log&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;github.com/twpayne/go-geom/encoding/ewkbhex&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0ff;font-weight:bold">&#34;github.com/twpayne/go-geom/encoding/geojson&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> GeoJson <span style="color:#fff;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	*geojson.Geometry
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> (t *GeoJson) Value() (driver.Value, <span style="color:#fff;font-weight:bold">error</span>) {
+</span></span><span style="display:flex;"><span>	geometry, err := t.Decode()
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	encodedGeometry, err := ewkbhex.Encode(geometry, ewkbhex.NDR)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> encodedGeometry, <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> (t *GeoJson) Scan(value <span style="color:#fff;font-weight:bold">interface</span>{}) <span style="color:#fff;font-weight:bold">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> value == <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	geometry, err := ewkbhex.Decode(<span style="color:#fff;font-weight:bold">string</span>(value.([]<span style="color:#fff;font-weight:bold">uint8</span>)))
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		log.Error().Err(err).Msg(<span style="color:#0ff;font-weight:bold">&#34;failed to decode geometry&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	geometryAsBytes, err := geojson.Marshal(geometry)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		log.Error().Err(err).Msg(<span style="color:#0ff;font-weight:bold">&#34;failed to marshal geometry&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">var</span> geoJson GeoJson
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err = json.Unmarshal(geometryAsBytes, &amp;geoJson); err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		log.Error().Err(err).Msg(<span style="color:#0ff;font-weight:bold">&#34;failed to unmarshal GeoJson&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> err
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	*t = geoJson
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="schema">Schema</h2>
+<p>Next, let&rsquo;s set up an Ent schema and use our <code>GeoJson</code> type as a PostGIS geometry <a href="https://postgis.net/docs/ST_Point.html" target="_blank">point</a>. Doing so will allow us to leverage PostGIS for coordinate searches while converting back and forward to a common <a href="https://geojson.org" target="_blank">GeoJSON</a> for our REST clients. We will also add some additional fields for each row to make this example more interesting.</p>
+<p>We create a <code>V1POI</code> (storing points of interest) schema with some fields. A primary key <code>id</code>, string <code>name</code>, PostGIS geometry point <code>location</code> and some additional metadata we may want to attach in a JSON <code>details</code> field. It is helpful to have additional struct validation tags for when data is passed between HTTP clients using the <code>StructTag</code> <a href="https://entgo.io/docs/schema-fields/#struct-tags" target="_blank">method</a>, but we will skip it in this example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> V1POI <span style="color:#fff;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	ent.Schema
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> (V1POI) Fields() []ent.Field {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> []ent.Field{
+</span></span><span style="display:flex;"><span>		field.UUID(<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>, uuid.UUID{}).
+</span></span><span style="display:flex;"><span>			Default(uuid.New).
+</span></span><span style="display:flex;"><span>			StorageKey(<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>),
+</span></span><span style="display:flex;"><span>		field.String(<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>).
+</span></span><span style="display:flex;"><span>			NotEmpty().
+</span></span><span style="display:flex;"><span>			MinLen(<span style="color:#ff0;font-weight:bold">1</span>),
+</span></span><span style="display:flex;"><span>		field.Other(<span style="color:#0ff;font-weight:bold">&#34;location&#34;</span>, &amp;GeoJson{}).
+</span></span><span style="display:flex;"><span>			SchemaType(<span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">string</span>{
+</span></span><span style="display:flex;"><span>				dialect.Postgres: <span style="color:#0ff;font-weight:bold">&#34;geometry(point, 4326)&#34;</span>,
+</span></span><span style="display:flex;"><span>			}),
+</span></span><span style="display:flex;"><span>		field.JSON(<span style="color:#0ff;font-weight:bold">&#34;details&#34;</span>, <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">interface</span>{}{}).
+</span></span><span style="display:flex;"><span>			Default(<span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">interface</span>{}{}),
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>Lastly, we want to create a <a href="https://postgis.net/workshops/postgis-intro/indexing.html" target="_blank">spatial index</a> on our <code>location</code> column so that coordinates are nicely indexed by PostGIS. Refer to the documentation linked, but it will look something like running this SQL in your database:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">CREATE</span> <span style="color:#fff;font-weight:bold">INDEX</span> poi_location_geom_idx
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">ON</span> v1poi
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">USING</span> GIST (<span style="color:#fff;font-weight:bold">location</span>);
+</span></span></code></pre></div><h2 id="custom-radial-search-predicate">Custom Radial Search Predicate</h2>
+<p>At this stage we have our schema set up and are ready to insert and query data. Because we have a custom field, we need to help <code>entgo</code> query using this column. We will write a <a href="https://entgo.io/docs/predicates/#custom-predicates" target="_blank">custom predicate</a> that uses the PostGIS syntax to properly query the database and use the benefits of PostGIS.</p>
+<p>At the start of this example, we mentioned we want to query for points of interest around a given coordinate. That is, give me all the points around this <code>lat</code>, <code>long</code> coordinate within a <code>x</code> meters radius.</p>
+<p>In SQL one way we could write this is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">WHERE</span> ST_DistanceSphere(<span style="color:#fff;font-weight:bold">location</span>, ST_MakePoint(lat, long, <span style="color:#ff0;font-weight:bold">4326</span>)) &lt;= radius_meters
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>where <code>radius_meters</code> is a number for the amount of meters.</p>
+<p>Translating this into a custom entgo predicate we could have the following function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> Radial(column, lat, long, radius <span style="color:#fff;font-weight:bold">string</span>) <span style="color:#fff;font-weight:bold">func</span>(selector *sql.Selector) {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">func</span>(selector *sql.Selector) {
+</span></span><span style="display:flex;"><span>		selector.Where(sql.P(<span style="color:#fff;font-weight:bold">func</span>(b *sql.Builder) {
+</span></span><span style="display:flex;"><span>			b.WriteString(<span style="color:#0ff;font-weight:bold">&#34;ST_DistanceSphere(&#34;</span>).Ident(column).Comma().
+</span></span><span style="display:flex;"><span>				WriteString(<span style="color:#0ff;font-weight:bold">&#34;ST_MakePoint(&#34;</span>).
+</span></span><span style="display:flex;"><span>				Arg(lat).WriteString(<span style="color:#0ff;font-weight:bold">&#34;, &#34;</span>).
+</span></span><span style="display:flex;"><span>				Arg(long).WriteString(<span style="color:#0ff;font-weight:bold">&#34;, &#34;</span>).
+</span></span><span style="display:flex;"><span>				WriteString(<span style="color:#0ff;font-weight:bold">&#34;4326)&#34;</span>).
+</span></span><span style="display:flex;"><span>				WriteString(<span style="color:#0ff;font-weight:bold">&#34;) &#34;</span>).
+</span></span><span style="display:flex;"><span>				WriteString(<span style="color:#0ff;font-weight:bold">&#34;&lt;= &#34;</span>).Arg(radius)
+</span></span><span style="display:flex;"><span>		}))
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Giving us the ability to reuse this custom predicate function across multiple handlers if desired. In addition to the standard <code>lat</code>, <code>long</code> and <code>radius</code> parameters we also pass the column name we would query&ndash;<code>location</code> in our example. Resulting in a query like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>... EntClient.V1POI.Query().Where(Radial(<span style="color:#0ff;font-weight:bold">&#34;location&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;37.35411&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;-121.95524&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;1000&#34;</span>)) ...
+</span></span></code></pre></div><h2 id="handler">Handler</h2>
+<p>At this stage we have everything needed for constructing our RESTful API that can store and query geospatial data. Because we used <a href="https://geojson.org" target="_blank">GeoJSON</a> in the <code>GeoJson</code> type we created we just need to conform to its formatting. So, calling an endpoint to create a point of interest could look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST -d <span style="color:#0ff;font-weight:bold">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;name&#34;: &#34;Test Restaurant&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;location&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        &#34;type&#34;: &#34;Point&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        &#34;coordinates&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">            37.35411,
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">            -121.95524
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        ]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">}&#39;</span> http://localhost:8080/v1/poi
+</span></span></code></pre></div>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFG2Y6XSY5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GFG2Y6XSY5');
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Entgo on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/entgo/</link>
+    <description>Recent content in Entgo on Stefan Gloutnikov</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Oct 2024 16:48:19 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/entgo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Geospatial Radial Search RESTful API with PostGIS and entgo Example</title>
+      <link>https://gloutnikov.com/post/geospatial-radial-search-postgis-rest-api-entgo/</link>
+      <pubDate>Sat, 12 Oct 2024 16:48:19 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/geospatial-radial-search-postgis-rest-api-entgo/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s look at an example of building a location-based search RESTful API&amp;ndash;something you might use to find restaurants or points of interest in a radius around you. Specifically, we&amp;rsquo;ll use a database that efficiently handles geospatial queries and a RESTful API that lets users store location data as well as radial search for nearby points of interest.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
