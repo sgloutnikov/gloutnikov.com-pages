@@ -202,7 +202,7 @@
       <link>https://gloutnikov.com/post/vaadin-ui-refresh/</link>
       <pubDate>Thu, 16 Mar 2017 21:19:15 +0200</pubDate>
       <guid>https://gloutnikov.com/post/vaadin-ui-refresh/</guid>
-      <description>After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time.</description>
+      <description>&lt;p&gt;After having worked with GWT several years ago and really liking the framework, I recently found myself trying out Vaadin for a hobby application I want to develop. Vaadin and GWT have their similarities and differences. One of the differences is that Vaadin runs its application logic on the server side, unlike GWT which runs on the client side. This calls for some little extra setup required in the IDE in order to run the application and be able to instantly see UI changes in your browser while developing, without having to restart the application server every time. As a total newbie in Vaadin, I found it a little frustrating that there were no simple instructions on how to achieve this or how it worked. After some digging, I did find a Vaadin blog &lt;a href=&#34;https://vaadin.com/blog/-/blogs/getting-started-with-vaadin-development-using-eclipse-maven&#34; target=&#34;_blank&#34;&gt;post&lt;/a&gt; that was probably the most helpful, but it only focused on using Eclipse.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Host your own Heroku with Dokku on DreamHost&#39;s Cloud</title>
@@ -223,14 +223,14 @@
       <link>https://gloutnikov.com/post/theheat-tracker/</link>
       <pubDate>Tue, 29 Nov 2016 19:14:53 +0200</pubDate>
       <guid>https://gloutnikov.com/post/theheat-tracker/</guid>
-      <description>There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, The Heat was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify.</description>
+      <description>&lt;p&gt;There are a few SiriusXM stations that I always listened to in my car. With Hip-Hop being one of my favorite genres, &lt;a href=&#34;https://www.siriusxm.com/theheat&#34; target=&#34;_blank&#34;&gt;The Heat&lt;/a&gt; was one of my favorite stations. I liked that they play new and old songs, and I would always pick up on some new song that is beginning to trend. After moving to Bulgaria I lost this ability, and I could not justify paying more for online radio than Spotify. This seemed like a good excuse for using the data which SiriusXM provides on their websites for &amp;rsquo;now playing&amp;rsquo;, and a fun small project to learn something about technologies that I had not used before.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World! From Hugo</title>
       <link>https://gloutnikov.com/post/hello-world/</link>
       <pubDate>Tue, 11 Oct 2016 12:56:44 +0300</pubDate>
       <guid>https://gloutnikov.com/post/hello-world/</guid>
-      <description>First post from Hugo&amp;ndash;the fast and modern static website engine.&#xA;I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN post about Hugo.</description>
+      <description>&lt;p&gt;First post from &lt;a href=&#34;http://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;&amp;ndash;the fast and modern static website engine.&lt;/p&gt;&#xA;&lt;p&gt;I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN &lt;a href=&#34;https://news.ycombinator.com/item?id=12672394&#34; target=&#34;_blank&#34;&gt;post&lt;/a&gt; about Hugo. This baby runs straight out of the box with a simple &amp;lsquo;homebrew install&amp;rsquo; command, and as a bonus, it&amp;rsquo;s written in Go&amp;ndash;a new language I began playing around with recently and really enjoy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

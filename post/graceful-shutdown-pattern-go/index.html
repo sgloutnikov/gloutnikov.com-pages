@@ -16,7 +16,7 @@
     
     <meta property="og:tags" content="go">
     
-    <meta name="generator" content="Hugo 0.133.0">
+    <meta name="generator" content="Hugo 0.145.0">
     <title>Graceful Shutdown Pattern in Go - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -140,24 +140,24 @@
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
 </span></span><span style="display:flex;"><span>	logger := log.New(os.Stdout, <span style="color:#0ff;font-weight:bold">&#34;INFO: &#34;</span>, log.Ldate|log.Ltime)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS</span>
+</span></span><span style="display:flex;"><span>	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 </span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> stop()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	log.Print(<span style="color:#0ff;font-weight:bold">&#34;Application is running&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Listen for the interrupt signal
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	&lt;-ctx.Done()
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Listen for the interrupt signal</span>
+</span></span><span style="display:flex;"><span>	&lt;-ctx.Done()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Restore default behavior on the interrupt signal and notify user of shutdown
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	stop()
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Restore default behavior on the interrupt signal and notify user of shutdown</span>
+</span></span><span style="display:flex;"><span>	stop()
 </span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// The context is used to inform the application it has 5 seconds to finish any tasks
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	_, cancel := context.WithTimeout(context.Background(), <span style="color:#ff0;font-weight:bold">5</span>*time.Second)
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// The context is used to inform the application it has 5 seconds to finish any tasks</span>
+</span></span><span style="display:flex;"><span>	_, cancel := context.WithTimeout(context.Background(), <span style="color:#ff0;font-weight:bold">5</span>*time.Second)
 </span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> cancel()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Handle cleanup here if any
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;simulating cleanup work&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Handle cleanup here if any</span>
+</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;simulating cleanup work&#34;</span>)
 </span></span><span style="display:flex;"><span>	time.Sleep(<span style="color:#ff0;font-weight:bold">3</span>*time.Second)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;Application exited&#34;</span>)

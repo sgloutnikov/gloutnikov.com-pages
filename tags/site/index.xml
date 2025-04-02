@@ -13,7 +13,7 @@
       <link>https://gloutnikov.com/post/hello-world/</link>
       <pubDate>Tue, 11 Oct 2016 12:56:44 +0300</pubDate>
       <guid>https://gloutnikov.com/post/hello-world/</guid>
-      <description>First post from Hugo&amp;ndash;the fast and modern static website engine.&#xA;I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN post about Hugo.</description>
+      <description>&lt;p&gt;First post from &lt;a href=&#34;http://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;&amp;ndash;the fast and modern static website engine.&lt;/p&gt;&#xA;&lt;p&gt;I quickly become a fan of statically generated sites after seeing Jekyll a few years ago. After getting tired of WordPress, it was on my radar to update my site to a statically generated one, and learn something new at the same time. I was not a fan of the installation dependencies I had to manage with Jekyll, but yesterday I stumbled upon a HN &lt;a href=&#34;https://news.ycombinator.com/item?id=12672394&#34; target=&#34;_blank&#34;&gt;post&lt;/a&gt; about Hugo. This baby runs straight out of the box with a simple &amp;lsquo;homebrew install&amp;rsquo; command, and as a bonus, it&amp;rsquo;s written in Go&amp;ndash;a new language I began playing around with recently and really enjoy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
