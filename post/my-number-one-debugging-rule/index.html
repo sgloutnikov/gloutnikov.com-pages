@@ -3,25 +3,21 @@
 <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="An example of a graceful shutdown pattern in Go">
-    <meta name="keywords" content="golang, go, graceful shutdown, pattern">
-    <meta property="og:title" content="Graceful Shutdown Pattern in Go">
+    <meta name="description" content="My number one rule when debugging a problem">
+    <meta name="keywords" content="">
+    <meta property="og:title" content="My Number One Debugging Rule">
     
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2024-03-16">
+    <meta property="article:published_time" content="2024-02-18">
     
-    <meta property="og:description" content="An example of a graceful shutdown pattern in Go">
-    <meta property="og:url" content="https://gloutnikov.com/post/graceful_shutdown_pattern_go/">
+    <meta property="og:description" content="My number one rule when debugging a problem">
+    <meta property="og:url" content="https://gloutnikov.com/post/my-number-one-debugging-rule/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
-    <meta property="og:tags" content="go">
-    
     <meta name="generator" content="Hugo 0.133.0">
-    <title>Graceful Shutdown Pattern in Go - Stefan Gloutnikov</title>
+    <title>My Number One Debugging Rule - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
     
     <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
     
@@ -126,43 +122,33 @@
 
 <main>
 	<header>
-		<h1>Graceful Shutdown Pattern in Go</h1>
+		<h1>My Number One Debugging Rule</h1>
 	</header>
 
 	<small>
-		16 March 2024
+		18 February 2024
 		<br><br>
 	</small>
 
 	<article>
-		<p>The following is an example of a graceful shutdown pattern I like to use in my Go applications which upon pressing <code>Ctrl+C</code> to quit allows for performing clean-up tasks.</p>
-<p>After running the application pressing <code>Ctrl+C</code> sends an interrupt signal triggering a shutting down state. The shutting down state is used to clean up anything and has a defined timer limit. The application exists after either completing all shutting down tasks before the timer expires, the shutting down timer expires, or another <code>Ctrl-C</code> interrupt is issued to force the shutdown.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
-</span></span><span style="display:flex;"><span>	logger := log.New(os.Stdout, <span style="color:#0ff;font-weight:bold">&#34;INFO: &#34;</span>, log.Ldate|log.Ltime)
+		<p>Over the years of working in the software industry I have developed a single rule for myself when trying to debug, figure out why something is broken or doesn&rsquo;t work. I can&rsquo;t count the number of times not following my rule has come to bite me and led to countless hours of banging my head against the wall.</p>
+<h3 id="check-the-basics">&ldquo;Check The Basics&rdquo;</h3>
+<p>Check the absolute basics before diving deeper in deeper into debugging a problem with various other tools. In my experience an extremely high percentage of times the problem is due to some form of human error or something primitive like “is it on?”</p>
+<p>Here is an example of a problem I ran into last week and spent hours debugging. Unfortunately, I did not follow my own rule carefully and was reminded of it after resolving the issue. I use Docker on an ARM64 Mac and that could sometimes require setting platform flags when building and/or running containers between ARM and x86 architectures.</p>
+<p>I wrote my Dockerfile, added an entrypoint.sh script, built my container, and when I ran the container, I got an error:</p>
+<p><code>exec ./entrypoint.sh: exec format error</code></p>
+<p>Googling around, the exact error is most common due to platform mix-ups, so I begin toggling platform flags on how I am building and running the container without resolution. It gets even stranger, because if I override the entry point and execute the entrypoint.sh from inside the container the script runs fine. After:</p>
+<ul>
+<li>Rebuilding the container several times with various combinations of platform flags</li>
+<li>Inspecting and even switching my Mac Docker runtimes</li>
+<li>Running in native Docker on a Linux VM</li>
+<li>More time spent Googling around</li>
+</ul>
+<p>I ran out of ideas, so I asked my colleague for help and to look at my entrypoint.sh script. As I do Command+a to copy and paste the script to him I see it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span> <span style="color:#007f7f">#!/usr/bin/env bash</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> stop()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	log.Print(<span style="color:#0ff;font-weight:bold">&#34;Application is running&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Listen for the interrupt signal
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	&lt;-ctx.Done()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Restore default behavior on the interrupt signal and notify user of shutdown
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	stop()
-</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// The context is used to inform the application it has 5 seconds to finish any tasks
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	_, cancel := context.WithTimeout(context.Background(), <span style="color:#ff0;font-weight:bold">5</span>*time.Second)
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> cancel()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Handle cleanup here if any
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;simulating cleanup work&#34;</span>)
-</span></span><span style="display:flex;"><span>	time.Sleep(<span style="color:#ff0;font-weight:bold">3</span>*time.Second)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;Application exited&#34;</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>... 
+</span></span></code></pre></div><p>Is that space character before the shebang really the problem? It sure is! Check the basics! I&rsquo;m not sure how it got in there, but we see another case where the problem was not difficult at all to solve, just harder to spot without first checking the absolute basics.</p>
 	</article>
 </main>
 
@@ -214,8 +200,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
-  
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
   
   <script src="https://gloutnikov.com//js/App.js"></script>
   

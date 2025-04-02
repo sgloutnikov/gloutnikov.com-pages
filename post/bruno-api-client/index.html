@@ -3,19 +3,21 @@
 <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="My number one rule when debugging a problem">
-    <meta name="keywords" content="">
-    <meta property="og:title" content="My Number One Debugging Rule">
+    <meta name="description" content="An example of a graceful shutdown pattern in Go">
+    <meta name="keywords" content="golang, go, graceful shutdown, pattern">
+    <meta property="og:title" content="Bruno: New API Client You Should Try">
     
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2024-02-18">
+    <meta property="article:published_time" content="2024-04-05">
     
-    <meta property="og:description" content="My number one rule when debugging a problem">
-    <meta property="og:url" content="https://gloutnikov.com/post/my_number_one_debugging_rule/">
+    <meta property="og:description" content="An example of a graceful shutdown pattern in Go">
+    <meta property="og:url" content="https://gloutnikov.com/post/bruno-api-client/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
+    <meta property="og:tags" content="api">
+    
     <meta name="generator" content="Hugo 0.133.0">
-    <title>My Number One Debugging Rule - Stefan Gloutnikov</title>
+    <title>Bruno: New API Client You Should Try - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
@@ -122,33 +124,30 @@
 
 <main>
 	<header>
-		<h1>My Number One Debugging Rule</h1>
+		<h1>Bruno: New API Client You Should Try</h1>
 	</header>
 
 	<small>
-		18 February 2024
+		5 April 2024
 		<br><br>
 	</small>
 
 	<article>
-		<p>Over the years of working in the software industry I have developed a single rule for myself when trying to debug, figure out why something is broken or doesn&rsquo;t work. I can&rsquo;t count the number of times not following my rule has come to bite me and led to countless hours of banging my head against the wall.</p>
-<h3 id="check-the-basics">&ldquo;Check The Basics&rdquo;</h3>
-<p>Check the absolute basics before diving deeper in deeper into debugging a problem with various other tools. In my experience an extremely high percentage of times the problem is due to some form of human error or something primitive like “is it on?”</p>
-<p>Here is an example of a problem I ran into last week and spent hours debugging. Unfortunately, I did not follow my own rule carefully and was reminded of it after resolving the issue. I use Docker on an ARM64 Mac and that could sometimes require setting platform flags when building and/or running containers between ARM and x86 architectures.</p>
-<p>I wrote my Dockerfile, added an entrypoint.sh script, built my container, and when I ran the container, I got an error:</p>
-<p><code>exec ./entrypoint.sh: exec format error</code></p>
-<p>Googling around, the exact error is most common due to platform mix-ups, so I begin toggling platform flags on how I am building and running the container without resolution. It gets even stranger, because if I override the entry point and execute the entrypoint.sh from inside the container the script runs fine. After:</p>
+		<p>If you are doing any API development, a pretty useful tool can be an API Client. Some place to store and easily call various API endpoints with various payloads for testing.</p>
+<p>There are multiple variants available like <a href="https://www.postman.com" target="_blank">Postman</a>, <a href="https://insomnia.rest" target="_blank">Insomnia</a>, <a href="https://httpie.io" target="_blank">HTTPie</a>, or even good ol&rsquo; <code>curl</code> from the terminal. The problem with the graphical API clients is that they are getting increasingly bloated and tied to cloud services. For example, you can&rsquo;t store your API call configurations without an account created on their cloud service.</p>
+<p>Enter <a href="https://www.usebruno.com" target="_blank">Bruno</a>. Bruno is a fast and Git-griendly opensource API client, aimed at revolutionizing the status quo represented by Postman, Insomnia, and similar tools out there. Bruno stores all its configurations visible on the filesystem, so you can manage and track any changes with Git. There is no need for any cloud integration, you just use the client and commit your changes to your git repository. Some features I really appreciate:</p>
 <ul>
-<li>Rebuilding the container several times with various combinations of platform flags</li>
-<li>Inspecting and even switching my Mac Docker runtimes</li>
-<li>Running in native Docker on a Linux VM</li>
-<li>More time spent Googling around</li>
+<li>Lightweight and quick</li>
+<li>Multiple environments and variables for templating API calls</li>
+<li>Store all configuration in a Git repo</li>
+<li>Authentication suport</li>
 </ul>
-<p>I ran out of ideas, so I asked my colleague for help and to look at my entrypoint.sh script. As I do Command+a to copy and paste the script to him I see it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span> <span style="color:#007f7f">#!/usr/bin/env bash</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>... 
-</span></span></code></pre></div><p>Is that space character before the shebang really the problem? It sure is! Check the basics! I&rsquo;m not sure how it got in there, but we see another case where the problem was not difficult at all to solve, just harder to spot without first checking the absolute basics.</p>
+<center>
+  <br>
+  <a class="myImg">
+      <img src="/post/2024/bruno.png" target="_self" style="width: 100%" >
+  </a>
+</center>
 	</article>
 </main>
 

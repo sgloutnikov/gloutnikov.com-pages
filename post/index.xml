@@ -24,23 +24,23 @@
     </item>
     <item>
       <title>Bruno: New API Client You Should Try</title>
-      <link>https://gloutnikov.com/post/bruno_api_client/</link>
+      <link>https://gloutnikov.com/post/bruno-api-client/</link>
       <pubDate>Fri, 05 Apr 2024 17:23:12 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/bruno_api_client/</guid>
+      <guid>https://gloutnikov.com/post/bruno-api-client/</guid>
       <description>&lt;p&gt;If you are doing any API development, a pretty useful tool can be an API Client. Some place to store and easily call various API endpoints with various payloads for testing.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Graceful Shutdown Pattern in Go</title>
-      <link>https://gloutnikov.com/post/graceful_shutdown_pattern_go/</link>
+      <link>https://gloutnikov.com/post/graceful-shutdown-pattern-go/</link>
       <pubDate>Sat, 16 Mar 2024 13:10:52 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/graceful_shutdown_pattern_go/</guid>
+      <guid>https://gloutnikov.com/post/graceful-shutdown-pattern-go/</guid>
       <description>&lt;p&gt;The following is an example of a graceful shutdown pattern I like to use in my Go applications which upon pressing &lt;code&gt;Ctrl+C&lt;/code&gt; to quit allows for performing clean-up tasks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My Number One Debugging Rule</title>
-      <link>https://gloutnikov.com/post/my_number_one_debugging_rule/</link>
+      <link>https://gloutnikov.com/post/my-number-one-debugging-rule/</link>
       <pubDate>Sun, 18 Feb 2024 10:32:28 -0800</pubDate>
-      <guid>https://gloutnikov.com/post/my_number_one_debugging_rule/</guid>
+      <guid>https://gloutnikov.com/post/my-number-one-debugging-rule/</guid>
       <description>&lt;p&gt;Over the years of working in the software industry I have developed a single rule for myself when trying to debug, figure out why something is broken or doesn&amp;rsquo;t work. I can&amp;rsquo;t count the number of times not following my rule has come to bite me and led to countless hours of banging my head against the wall.&lt;/p&gt;</description>
     </item>
     <item>

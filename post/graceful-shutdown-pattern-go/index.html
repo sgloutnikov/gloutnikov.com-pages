@@ -5,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="An example of a graceful shutdown pattern in Go">
     <meta name="keywords" content="golang, go, graceful shutdown, pattern">
-    <meta property="og:title" content="Bruno: New API Client You Should Try">
+    <meta property="og:title" content="Graceful Shutdown Pattern in Go">
     
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2024-04-05">
+    <meta property="article:published_time" content="2024-03-16">
     
     <meta property="og:description" content="An example of a graceful shutdown pattern in Go">
-    <meta property="og:url" content="https://gloutnikov.com/post/bruno_api_client/">
+    <meta property="og:url" content="https://gloutnikov.com/post/graceful-shutdown-pattern-go/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
-    <meta property="og:tags" content="api">
+    <meta property="og:tags" content="go">
     
     <meta name="generator" content="Hugo 0.133.0">
-    <title>Bruno: New API Client You Should Try - Stefan Gloutnikov</title>
+    <title>Graceful Shutdown Pattern in Go - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
     
     <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
     
@@ -124,30 +126,43 @@
 
 <main>
 	<header>
-		<h1>Bruno: New API Client You Should Try</h1>
+		<h1>Graceful Shutdown Pattern in Go</h1>
 	</header>
 
 	<small>
-		5 April 2024
+		16 March 2024
 		<br><br>
 	</small>
 
 	<article>
-		<p>If you are doing any API development, a pretty useful tool can be an API Client. Some place to store and easily call various API endpoints with various payloads for testing.</p>
-<p>There are multiple variants available like <a href="https://www.postman.com" target="_blank">Postman</a>, <a href="https://insomnia.rest" target="_blank">Insomnia</a>, <a href="https://httpie.io" target="_blank">HTTPie</a>, or even good ol&rsquo; <code>curl</code> from the terminal. The problem with the graphical API clients is that they are getting increasingly bloated and tied to cloud services. For example, you can&rsquo;t store your API call configurations without an account created on their cloud service.</p>
-<p>Enter <a href="https://www.usebruno.com" target="_blank">Bruno</a>. Bruno is a fast and Git-griendly opensource API client, aimed at revolutionizing the status quo represented by Postman, Insomnia, and similar tools out there. Bruno stores all its configurations visible on the filesystem, so you can manage and track any changes with Git. There is no need for any cloud integration, you just use the client and commit your changes to your git repository. Some features I really appreciate:</p>
-<ul>
-<li>Lightweight and quick</li>
-<li>Multiple environments and variables for templating API calls</li>
-<li>Store all configuration in a Git repo</li>
-<li>Authentication suport</li>
-</ul>
-<center>
-  <br>
-  <a class="myImg">
-      <img src="/post/2024/bruno.png" target="_self" style="width: 100%" >
-  </a>
-</center>
+		<p>The following is an example of a graceful shutdown pattern I like to use in my Go applications which upon pressing <code>Ctrl+C</code> to quit allows for performing clean-up tasks.</p>
+<p>After running the application pressing <code>Ctrl+C</code> sends an interrupt signal triggering a shutting down state. The shutting down state is used to clean up anything and has a defined timer limit. The application exists after either completing all shutting down tasks before the timer expires, the shutting down timer expires, or another <code>Ctrl-C</code> interrupt is issued to force the shutdown.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
+</span></span><span style="display:flex;"><span>	logger := log.New(os.Stdout, <span style="color:#0ff;font-weight:bold">&#34;INFO: &#34;</span>, log.Ldate|log.Ltime)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> stop()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	log.Print(<span style="color:#0ff;font-weight:bold">&#34;Application is running&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Listen for the interrupt signal
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	&lt;-ctx.Done()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Restore default behavior on the interrupt signal and notify user of shutdown
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	stop()
+</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;shutting down gracefully, press Ctrl+C again to force&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// The context is used to inform the application it has 5 seconds to finish any tasks
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	_, cancel := context.WithTimeout(context.Background(), <span style="color:#ff0;font-weight:bold">5</span>*time.Second)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">defer</span> cancel()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Handle cleanup here if any
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;simulating cleanup work&#34;</span>)
+</span></span><span style="display:flex;"><span>	time.Sleep(<span style="color:#ff0;font-weight:bold">3</span>*time.Second)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	logger.Println(<span style="color:#0ff;font-weight:bold">&#34;Application exited&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
 	</article>
 </main>
 
@@ -199,6 +214,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
   
   <script src="https://gloutnikov.com//js/App.js"></script>
   
