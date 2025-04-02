@@ -10,9 +10,9 @@
     <atom:link href="https://gloutnikov.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Replacing Docker Desktop with Colima</title>
-      <link>https://gloutnikov.com/post/replacing_docker_desktop_with-colima/</link>
+      <link>https://gloutnikov.com/post/replacing-docker-desktop-with-colima/</link>
       <pubDate>Sun, 27 Nov 2022 15:36:23 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/replacing_docker_desktop_with-colima/</guid>
+      <guid>https://gloutnikov.com/post/replacing-docker-desktop-with-colima/</guid>
       <description>&lt;p&gt;Recent license changes to Docker Desktop meant that large companies would need a license to use it. I spent some time looking for a suitable alternative to Docker Desktop on MacOS, and until recently, that was running and ssh-ing into a Linux Virtual Machine. I stumbled upon the &lt;a href=&#34;https://github.com/lima-vm/lima&#34; target=&#34;_blank&#34;&gt;lima&lt;/a&gt; and &lt;a href=&#34;https://github.com/abiosoft/colima&#34; target=&#34;_blank&#34;&gt;colima&lt;/a&gt; projects, with the latter bringing container runtimes on macOS, and this is what I am using going forward. This post will go over installing and using &lt;code&gt;colima&lt;/code&gt; to replace Docker Desktop on your MacOS (and Linux) machine.&lt;/p&gt;</description>
     </item>
     <item>

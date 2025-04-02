@@ -24,30 +24,30 @@
     </item>
     <item>
       <title>Publishing and Using Private Go Modules</title>
-      <link>https://gloutnikov.com/post/publishing_and_using_private_go_modules/</link>
+      <link>https://gloutnikov.com/post/publishing-and-using-private-go-modules/</link>
       <pubDate>Sat, 19 Aug 2023 20:55:41 +0200</pubDate>
-      <guid>https://gloutnikov.com/post/publishing_and_using_private_go_modules/</guid>
+      <guid>https://gloutnikov.com/post/publishing-and-using-private-go-modules/</guid>
       <description>&lt;p&gt;In the following post we go over and show an example of publishing and using a Go module from a private Git repository.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Integration Tests with External Dependencies in Go</title>
-      <link>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</link>
+      <link>https://gloutnikov.com/post/integration-tests-with-external-dependencies/</link>
       <pubDate>Sat, 25 Mar 2023 20:55:41 +0200</pubDate>
-      <guid>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</guid>
+      <guid>https://gloutnikov.com/post/integration-tests-with-external-dependencies/</guid>
       <description>&lt;p&gt;Integration tests are tests which use or depend on some external software like a database, cache layer, or any service. While unit tests validate smaller pieces of software logic, it is always good to also run integration tests in an as-close-as-possible to real environment, and preferably also have them automated. This post will go over a way to easily include and automate the use of external dependencies in your integration tests and CI/CD environment.&lt;/p&gt;</description>
     </item>
     <item>
       <title>gRPC Go Example and Boilerplate</title>
-      <link>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</link>
+      <link>https://gloutnikov.com/post/grpc-go-example-and-boilerplate/</link>
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</guid>
+      <guid>https://gloutnikov.com/post/grpc-go-example-and-boilerplate/</guid>
       <description>&lt;p&gt;I put together a simple example and all the boilerplate needed to get started with a gRPC service in Go. The following Git repository includes some of what I consider best practices, useful middleware, observability, and other features.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Embedding Git commit hash in a Go binary</title>
-      <link>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</link>
+      <link>https://gloutnikov.com/post/embedding-git-hash-in-go-binary/</link>
       <pubDate>Sat, 03 Sep 2022 13:16:45 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</guid>
+      <guid>https://gloutnikov.com/post/embedding-git-hash-in-go-binary/</guid>
       <description>&lt;p&gt;This post will go over how to embed the Git commit hash inside a Go binary in order to support a &lt;code&gt;/versionz&lt;/code&gt; endpoint. A &lt;code&gt;/versionz&lt;/code&gt; could include multiple things, including manually defined version numbers, but another nice to have is the Git commit hash which produced the binary of the running software.&lt;/p&gt;</description>
     </item>
     <item>

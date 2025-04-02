@@ -10,9 +10,9 @@
     <atom:link href="https://gloutnikov.com/tags/getting-started/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>gRPC Go Example and Boilerplate</title>
-      <link>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</link>
+      <link>https://gloutnikov.com/post/grpc-go-example-and-boilerplate/</link>
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</guid>
+      <guid>https://gloutnikov.com/post/grpc-go-example-and-boilerplate/</guid>
       <description>&lt;p&gt;I put together a simple example and all the boilerplate needed to get started with a gRPC service in Go. The following Git repository includes some of what I consider best practices, useful middleware, observability, and other features.&lt;/p&gt;</description>
     </item>
   </channel>

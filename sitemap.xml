@@ -44,7 +44,7 @@
     <loc>https://gloutnikov.com/tags/go-modules/</loc>
     <lastmod>2023-08-19T20:55:41+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/publishing_and_using_private_go_modules/</loc>
+    <loc>https://gloutnikov.com/post/publishing-and-using-private-go-modules/</loc>
     <lastmod>2023-08-19T20:55:41+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/ci-cd/</loc>
@@ -53,7 +53,7 @@
     <loc>https://gloutnikov.com/tags/github-actions/</loc>
     <lastmod>2023-03-25T20:55:41+02:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/integration_tests_with_external_dependencies/</loc>
+    <loc>https://gloutnikov.com/post/integration-tests-with-external-dependencies/</loc>
     <lastmod>2023-03-25T20:55:41+02:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/testcontainers/</loc>
@@ -68,7 +68,7 @@
     <loc>https://gloutnikov.com/tags/grpc/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/grpc_go_example_and_boilerplate/</loc>
+    <loc>https://gloutnikov.com/post/grpc-go-example-and-boilerplate/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/colima/</loc>
@@ -77,13 +77,13 @@
     <loc>https://gloutnikov.com/tags/docker/</loc>
     <lastmod>2022-11-27T15:36:23-07:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/replacing_docker_desktop_with-colima/</loc>
+    <loc>https://gloutnikov.com/post/replacing-docker-desktop-with-colima/</loc>
     <lastmod>2022-11-27T15:36:23-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/helm/</loc>
     <lastmod>2022-10-16T10:19:12-08:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/helm_impersonation_with_kubie/</loc>
+    <loc>https://gloutnikov.com/post/helm-impersonation-with-kubie/</loc>
     <lastmod>2022-10-16T10:19:12-08:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/kubernetes/</loc>
@@ -95,7 +95,7 @@
     <loc>https://gloutnikov.com/tags/shell-alias/</loc>
     <lastmod>2022-10-16T10:19:12-08:00</lastmod>
   </url><url>
-    <loc>https://gloutnikov.com/post/embedding_git_hash_in_go_binary/</loc>
+    <loc>https://gloutnikov.com/post/embedding-git-hash-in-go-binary/</loc>
     <lastmod>2022-09-03T13:16:45-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/cncf/</loc>
