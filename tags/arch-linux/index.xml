@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Stefan Gloutnikov</title>
-    <link>https://gloutnikov.com/tags/linux/</link>
-    <description>Recent content in Linux on Stefan Gloutnikov</description>
+    <title>Arch-Linux on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/arch-linux/</link>
+    <description>Recent content in Arch-Linux on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 12 Oct 2024 16:48:19 -0700</lastBuildDate>
-    <atom:link href="https://gloutnikov.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gloutnikov.com/tags/arch-linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arch Linux with Full Disk Encryption Install Notes</title>
       <link>https://gloutnikov.com/post/arch-linux-install-notes/</link>
       <pubDate>Sat, 12 Oct 2024 16:48:19 -0700</pubDate>
       <guid>https://gloutnikov.com/post/arch-linux-install-notes/</guid>
       <description>&lt;p&gt;The following post outlines installing Arch Linux with full-disk encryption&amp;ndash;more specifically LVM on LUKS. After recently getting a &lt;a href=&#34;https://frame.work&#34; target=&#34;_blank&#34;&gt;Framework 13&lt;/a&gt; laptop, I wanted to install Arch Linux on it with FDE to be on the safer side as well as try out &lt;code&gt;Btrfs&lt;/code&gt;  system snapshots and restore capabilities.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Linux Observability Tools</title>
-      <link>https://gloutnikov.com/post/linux-observability-tools/</link>
-      <pubDate>Sun, 24 Jul 2022 14:20:34 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/linux-observability-tools/</guid>
-      <description>&lt;p&gt;The following is a collection of Linux observability tool diagrams that I have collected and keep close by for reference. They primarily come from the blog posts or books of Brendan Gregg.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:title" content="Arch Linux with Full Disk Encryption Install Notes">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2024-10-12">
+    
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://gloutnikov.com/post/arch-linux-install-notes/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="arch-linux">
+    
+    <meta property="og:tags" content="linux">
+    
+    <meta name="generator" content="Hugo 0.145.0">
+    <title>Arch Linux with Full Disk Encryption Install Notes - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About Me</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://bsky.app/profile/gloutnikov.com"><i class="fab fa-bluesky fa-2x"></i></a>
+			
+				<a href="https://mastodon.social/@sgloutnikov"><i class="fab fa-mastodon fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About Me</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>Arch Linux with Full Disk Encryption Install Notes</h1>
+	</header>
+
+	<small>
+		12 October 2024
+		<br><br>
+	</small>
+
+	<article>
+		<p>The following post outlines installing Arch Linux with full-disk encryption&ndash;more specifically LVM on LUKS. After recently getting a <a href="https://frame.work" target="_blank">Framework 13</a> laptop, I wanted to install Arch Linux on it with FDE to be on the safer side as well as try out <code>Btrfs</code>  system snapshots and restore capabilities.</p>
+<p>The <a href="https://wiki.archlinux.org/title/Installation_guide" target="_blank">Arch Wiki</a> is a must read for comprehensive details, but these notes serve as a quick guide for future installations. The commands listed are what I used during my installation, but of course drive names, labels, etc. can vary.</p>
+<p>Notes include:</p>
+<ul>
+<li>Working minimal Arch installation with latest and LTS kernels</li>
+<li><a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system" target="_blank">Full-disk encryption</a> (LVM on LUKS)</li>
+<li>Use of <a href="https://wiki.archlinux.org/title/Btrfs" target="_blank">Btrfs</a> filesystem</li>
+</ul>
+<p>Further things to consider after installation:</p>
+<ul>
+<li>Enable <a href="https://wiki.archlinux.org/title/Zram" target="_blank">zram</a> for swap</li>
+<li><a href="https://wiki.archlinux.org/title/Plymouth" target="_blank">Plymouth</a> for graphical boot process</li>
+<li><a href="https://wiki.archlinux.org/title/Snapper" target="_blank">Snapper</a> for managing snapshots of Btrfs subvolumes</li>
+<li><a href="https://github.com/vinceliuice/grub2-themes" target="_blank">grub2-themes</a> for modern design themes for Grub2</li>
+<li>Encrypted swapfile and hibernation setup</li>
+</ul>
+<h2 id="network">Network</h2>
+<p>After booting installatino .iso, ensure there is a working network connection. An ethernet cable connection should automatically pick up a DHCP IP or connect to WiFi.</p>
+<p><code>ip a</code> &ndash; Show network interfaces and address info. <br>
+<code>iwctl</code> &ndash; Enter Net wireless daemon client. <br>
+<code>station wlan0 get-networks</code> &ndash; List wireless networks. <br>
+<code>iwctl --passphrase &quot;Passphrase&quot; station wlan0 connect &lt;NetworkName&gt;</code> &ndash; Connect <code>wlan0</code> interface to <code>NetworkName</code> wireless network.</p>
+<h2 id="disk-partitions">Disk Partitions</h2>
+<p><code>lsblk</code> &ndash; show available storage volumes, <code>nvme0n1</code> in my case. <br>
+<code>fdisk /dev/nvme0n1</code> &ndash; enter fdisk utility. <br>
+<code>g</code> &ndash; create empty partitioin table. <br>
+<code>n</code> &ndash; create new partition. <br>
+Use defaults until end. Size of +1G to be used for EFI partition <br>
+<code>n</code> <br>
+<code>+1G</code> &ndash; for boot partition. <br>
+<code>n</code> &ndash; Defults till end for LVM partition. <br>
+<code>t</code> <br>
+Default 2, 44 for Linux LVM <br>
+<code>w</code> &ndash; write to disk.</p>
+<h2 id="format-partitions">Format Partitions</h2>
+<p><code>mkfs.fat -F32 /dev/nvme0n1p1</code> <br>
+<code>mkfs.ext4 /dev/nvme0n1p2</code> <br>
+<code>cryptsetup luksFormat /dev/nvme0n1p3</code> <br>
+Enter encryption key <br>
+<code>cryptsetup open --type luks /dev/nvme0n1p3 cryptlvm</code> &ndash; open encrypted partition and name it cryptlvm (can be something else to liking). <br>
+<code>pvcreate /dev/mapper/cryptlvm</code> &ndash; create physical volume. <br>
+<code>vgcreate Arch /dev/mapper/cryptlvm</code> &ndash; create volume group. <br>
+<code>lvcreate -L 68G Arch -n swap</code> &ndash; partition for using later with hibernation, but will use zram for swap. <br>
+<code>lvcreate -l 100%FREE Arch -n root</code> &ndash; Entire rest of space for btrfs partition. <br>
+<code>modprobe dm_mod</code> &ndash; load dm_mod kernel module. <br>
+<code>vgscan</code> &ndash; verifying VolGrouop was found. <br>
+<code>vgchange -ay</code> &ndash; Activate all volume groups. <br>
+<code>mkfs.btrfs -L root -n 32k /dev/Arch/root</code> &ndash; Format btrfs with larger 32k nodesize for less fragmentation at the cost of more expensive memory operations.</p>
+<h2 id="prepare-btrfs-subvolumes">Prepare Btrfs Subvolumes</h2>
+<p><code>mount /dev/mapper/Arch-root /mnt</code> <br>
+<code>cd /mnt</code> <br>
+<code>btrfs su create @</code> <br>
+<code>btrfs su create @snapshots</code> <br>
+<code>btrfs su create @home</code> <br>
+<code>btrfs su create @root</code> <br>
+<code>btrfs su create @log</code> <br>
+<code>btrfs su create @sddm</code> <br>
+<code>btrfs su create @tmp</code> <br>
+<code>btrfs su create @opt</code> <br>
+<code>btrfs su create @images</code> <br>
+<code>btrfs su create @containers</code> <br></p>
+<p><code>umount /mnt</code> <br>
+<code>mount -o subvol=@,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt</code> <br>
+<code>cd /mnt</code> <br>
+<code>mkdir -p efi</code> <br>
+<code>mkdir -p boot</code> <br>
+<code>mkdir -p .snapshots</code> <br>
+<code>mkdir -p home</code> <br>
+<code>mkdir -p root</code> <br>
+<code>mkdir -p var/log</code> <br>
+<code>mkdir -p var/lib/sddm</code> <br>
+<code>mkdir -p tmp</code> <br>
+<code>mkdir -p opt</code> <br>
+<code>mkdir -p var/lib/libvirt/images</code> <br>
+<code>mkdir -p var/lib/containers</code> <br>
+<code>mount -o subvol=@snapshots,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/.snapshots</code> <br>
+<code>mount -o subvol=@home,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/home</code> <br>
+<code>mount -o subvol=@root,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/root</code> <br>
+<code>mount -o subvol=@log,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/log</code> <br>
+<code>mount -o subvol=@sddm,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/sddm</code> <br>
+<code>mount -o subvol=@tmp,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/tmp</code> <br>
+<code>mount -o subvol=@opt,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/opt</code> <br>
+<code>mount -o subvol=@images,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/libvirt/images</code> <br>
+<code>mount -o subvol=@containers,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/containers</code> <br>
+<code>mount /dev/nvme0n1p1 /mnt/efi</code> <br>
+<code>mount /dev/nvme0n1p2 /mnt/boot</code> <br></p>
+<h2 id="install-required-packages">Install required packages</h2>
+<p><code>pacstrap -i /mnt base</code></p>
+<h2 id="generate-fstab-file">Generate fstab file</h2>
+<p><code>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab</code></p>
+<h2 id="update-fstab-for-btrfs-mounts">Update fstab for btrfs mounts</h2>
+<p><code>vim /mnt/etc/fstab</code> (Default UUID may be fine) Edit mount lines to <code>subvol=@,noatime,compress=zstd:1</code></p>
+<h2 id="finish-installation">Finish installation</h2>
+<p><code>arch-chroot /mnt</code>
+<code>passwd</code> &ndash; set root password. <br>
+<code>useradd -m -g users -G wheel &lt;username&gt;</code> &ndash; create a user. <br>
+<code>passwd &lt;username&gt;</code> &ndash; create password for user. <br>
+<code>pacman -S base-devel dosfstools grub efibootmgr lvm2 mtools vim networkmanager os-prober sudo iwd btrfs-progs</code></p>
+<h2 id="install-linux-kernel">Install Linux Kernel</h2>
+<p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; linux and lts kernel. <br>
+<code>pacman -S linux-firmware</code></p>
+<h2 id="gpu-driver">GPU Driver</h2>
+<p>AMD/Intel: <code>pacman -S mesa</code></p>
+<p>Nvidia: <code>pacman -S nvidia nvidia-utils nvidia-lts</code></p>
+<p>AMD: <code>pacman -S libva-mesa-driver</code></p>
+<p>Intel: <code>pacman -S intel-media-driver</code></p>
+<h2 id="generate-ram-disks-for-kernels">Generate ram disks for kernels</h2>
+<p><code>vim /etc/mkinitcpio.conf</code></p>
+<p>Add to HOOKS: after <code>block</code> and before <code>filesystems</code> add <code>encrypt</code> and <code>lvm2</code>.</p>
+<p><code>mkinitcpio -p linux</code> <br>
+<code>mkinitcpio -p linux-lts</code> <br></p>
+<h2 id="set-locale-and-boot-loader">Set locale and boot loader</h2>
+<p><code>vim /etc/locale.gen</code> and uncomment line you want (en_US.UTF-8 UTF-8) <br>
+<code>locale-gen</code> <br>
+<code>vim /etc/default/grub</code> <br>
+On GRUB_CMDLINX_LINUX_DEFAULT after <code>loglevel</code> and before <code>quiet</code> add <code>cryptdevice=/dev/nvme0n1p3:Arch</code> <br>
+<code>vim /etc/hostname</code> &ndash; change hostname to whatever you want. <br></p>
+<p><code>grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=grub_uefi --recheck</code> <br>
+<code>cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo</code>
+<code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
+<h2 id="enable-network-manager">Enable network manager</h2>
+<p><code>systemctl enable NetworkManager</code></p>
+<h2 id="cleanup-and-reboot">Cleanup and reboot</h2>
+<p><code>exit</code>
+<code>umount -a</code> &ndash; unmount everything can ignore errors. <br>
+<code>reboot</code></p>
+<h2 id="fresh-install-ready">Fresh install ready</h2>
+<p>Arch Linux install ready for use and tinkering :)</p>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFG2Y6XSY5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GFG2Y6XSY5');
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>
