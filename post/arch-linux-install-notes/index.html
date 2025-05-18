@@ -135,12 +135,12 @@
 	</small>
 
 	<article>
-		<p>The following post outlines installing Arch Linux with full-disk encryption&ndash;more specifically LVM on LUKS. After recently getting a <a href="https://frame.work" target="_blank">Framework 13</a> laptop, I wanted to install Arch Linux on it with FDE to be on the safer side as well as try out <code>Btrfs</code>  system snapshots and restore capabilities.</p>
+		<p>The following post outlines installing Arch Linux with full-disk encryption on a btrfs filesystem. After recently getting a <a href="https://frame.work" target="_blank">Framework 13</a> laptop, I wanted to install Arch Linux on it with FDE to be on the safer side as well as try out <code>Btrfs</code>  system snapshots and restore capabilities.</p>
 <p>The <a href="https://wiki.archlinux.org/title/Installation_guide" target="_blank">Arch Wiki</a> is a must read for comprehensive details, but these notes serve as a quick guide for future installations. The commands listed are what I used during my installation, but of course drive names, labels, etc. can vary.</p>
 <p>Notes include:</p>
 <ul>
 <li>Working minimal Arch installation with latest and LTS kernels</li>
-<li><a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system" target="_blank">Full-disk encryption</a> (LVM on LUKS)</li>
+<li><a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system" target="_blank">Full-disk encryption</a></li>
 <li>Use of <a href="https://wiki.archlinux.org/title/Btrfs" target="_blank">Btrfs</a> filesystem</li>
 </ul>
 <p>Further things to consider after installation:</p>
@@ -160,83 +160,77 @@
 <code>iwctl --passphrase &quot;Passphrase&quot; station wlan0 connect &lt;NetworkName&gt;</code> &ndash; Connect <code>wlan0</code> interface to <code>NetworkName</code> wireless network.</p>
 <h2 id="disk-partitions">Disk Partitions</h2>
 <p><code>lsblk</code> &ndash; show available storage volumes, <code>nvme0n1</code> in my case. <br>
-<code>fdisk /dev/nvme0n1</code> &ndash; enter fdisk utility. <br>
-<code>g</code> &ndash; create empty partitioin table. <br>
-<code>n</code> &ndash; create new partition. <br>
-Use defaults until end. Size of +1G to be used for EFI partition <br>
-<code>n</code> <br>
-<code>+1G</code> &ndash; for boot partition. <br>
-<code>n</code> &ndash; Defults till end for LVM partition. <br>
-<code>t</code> <br>
-Default 2, 44 for Linux LVM <br>
+<code>wipefs --all /dev/nvme0n1</code> &ndash; Clean all partitions on device. <br>
+<code>gdisk /dev/nvme0n1</code> &ndash; enter gdisk utility. <br>
+<code>n</code> &ndash; create new <code>EF00</code> type partition for EFI. +1G <br>
+<code>n</code> &ndash; create new boot partition. +1G, rest defaults <br>
+<code>n</code> &ndash; Defults till end for last partition to use all space. <br>
 <code>w</code> &ndash; write to disk.</p>
 <h2 id="format-partitions">Format Partitions</h2>
 <p><code>mkfs.fat -F32 /dev/nvme0n1p1</code> <br>
 <code>mkfs.ext4 /dev/nvme0n1p2</code> <br>
-<code>cryptsetup luksFormat /dev/nvme0n1p3</code> <br>
-Enter encryption key <br>
-<code>cryptsetup open --type luks /dev/nvme0n1p3 cryptlvm</code> &ndash; open encrypted partition and name it cryptlvm (can be something else to liking). <br>
-<code>pvcreate /dev/mapper/cryptlvm</code> &ndash; create physical volume. <br>
-<code>vgcreate Arch /dev/mapper/cryptlvm</code> &ndash; create volume group. <br>
-<code>lvcreate -L 68G Arch -n swap</code> &ndash; partition for using later with hibernation, but will use zram for swap. <br>
-<code>lvcreate -l 100%FREE Arch -n root</code> &ndash; Entire rest of space for btrfs partition. <br>
-<code>modprobe dm_mod</code> &ndash; load dm_mod kernel module. <br>
-<code>vgscan</code> &ndash; verifying VolGrouop was found. <br>
-<code>vgchange -ay</code> &ndash; Activate all volume groups. <br>
-<code>mkfs.btrfs -L root -n 32k /dev/Arch/root</code> &ndash; Format btrfs with larger 32k nodesize for less fragmentation at the cost of more expensive memory operations.</p>
+<code>cryptsetup luksFormat --type luks2 --hash sha256 --pbkdf pbkdf2 --pbkdf-force-iterations 600000 --label arch /dev/nvme0n1p3</code> <br>
+<code>cryptsetup luksOpen /dev/nvme0n1p3 arch</code> <br>
+<code>mkfs.btrfs -L btrfs -n 32k /dev/mapper/arch</code> &ndash; Format btrfs with larger 32k nodesize for less fragmentation at the cost of more expensive memory operations.</p>
 <h2 id="prepare-btrfs-subvolumes">Prepare Btrfs Subvolumes</h2>
-<p><code>mount /dev/mapper/Arch-root /mnt</code> <br>
+<p><code>mount /dev/mapper/arch /mnt</code> <br>
 <code>cd /mnt</code> <br>
 <code>btrfs su create @</code> <br>
-<code>btrfs su create @snapshots</code> <br>
 <code>btrfs su create @home</code> <br>
-<code>btrfs su create @root</code> <br>
-<code>btrfs su create @log</code> <br>
-<code>btrfs su create @sddm</code> <br>
-<code>btrfs su create @tmp</code> <br>
 <code>btrfs su create @opt</code> <br>
-<code>btrfs su create @images</code> <br>
-<code>btrfs su create @containers</code> <br></p>
+<code>btrfs su create @cache</code> <br>
+<code>btrfs su create @docker</code> <br>
+<code>btrfs su create @libvirt</code> <br>
+<code>btrfs su create @machines</code> <br>
+<code>btrfs su create @sddm</code> <br>
+<code>btrfs su create @log</code> <br>
+<code>btrfs su create @spool</code> <br>
+<code>btrfs su create @tmp</code> <br></p>
+<p>Mount the subvolumes, efi and boot partitions.</p>
 <p><code>umount /mnt</code> <br>
-<code>mount -o subvol=@,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@ /dev/mapper/arch /mnt</code> <br>
 <code>cd /mnt</code> <br>
 <code>mkdir -p efi</code> <br>
 <code>mkdir -p boot</code> <br>
-<code>mkdir -p .snapshots</code> <br>
 <code>mkdir -p home</code> <br>
-<code>mkdir -p root</code> <br>
-<code>mkdir -p var/log</code> <br>
-<code>mkdir -p var/lib/sddm</code> <br>
-<code>mkdir -p tmp</code> <br>
 <code>mkdir -p opt</code> <br>
-<code>mkdir -p var/lib/libvirt/images</code> <br>
-<code>mkdir -p var/lib/containers</code> <br>
-<code>mount -o subvol=@snapshots,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/.snapshots</code> <br>
-<code>mount -o subvol=@home,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/home</code> <br>
-<code>mount -o subvol=@root,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/root</code> <br>
-<code>mount -o subvol=@log,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/log</code> <br>
-<code>mount -o subvol=@sddm,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/sddm</code> <br>
-<code>mount -o subvol=@tmp,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/tmp</code> <br>
-<code>mount -o subvol=@opt,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/opt</code> <br>
-<code>mount -o subvol=@images,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/libvirt/images</code> <br>
-<code>mount -o subvol=@containers,noatime,compress=zstd:1 /dev/mapper/Arch-root /mnt/var/lib/containers</code> <br>
+<code>mkdir -p var/cache</code> <br>
+<code>mkdir -p var/lib/docker</code> <br>
+<code>mkdir -p var/lib/libvirt</code> <br>
+<code>mkdir -p var/lib/machines</code> <br>
+<code>mkdir -p var/lib/sddm</code> <br>
+<code>mkdir -p var/log</code> <br>
+<code>mkdir -p var/spool</code> <br>
+<code>mkdir -p tmp</code> <br></p>
+<p><code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@home /dev/mapper/arch /mnt/home</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@opt /dev/mapper/arch /mnt/opt</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@cache /dev/mapper/arch /mnt/var/cache</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@docker /dev/mapper/arch /mnt/lib/docker</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@libvirt /dev/mapper/arch /mnt/lib/libvirt</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@machines /dev/mapper/arch /mnt/lib/machines</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@sddm /dev/mapper/arch /mnt/lib/sddm</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@log /dev/mapper/arch /mnt/var/log</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@spool /dev/mapper/arch /mnt/var/spool</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@tmp /dev/mapper/arch /mnt/var/tmp</code> <br>
 <code>mount /dev/nvme0n1p1 /mnt/efi</code> <br>
 <code>mount /dev/nvme0n1p2 /mnt/boot</code> <br></p>
 <h2 id="install-required-packages">Install required packages</h2>
 <p><code>pacstrap -i /mnt base</code></p>
 <h2 id="generate-fstab-file">Generate fstab file</h2>
-<p><code>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab</code></p>
-<h2 id="update-fstab-for-btrfs-mounts">Update fstab for btrfs mounts</h2>
-<p><code>vim /mnt/etc/fstab</code> (Default UUID may be fine) Edit mount lines to <code>subvol=@,noatime,compress=zstd:1</code></p>
+<p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <h2 id="finish-installation">Finish installation</h2>
-<p><code>arch-chroot /mnt</code>
+<p><code>arch-chroot /mnt</code> <br>
+<code>ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</code> <br>
+<code>hwclock --systohc</code> <br>
+<code>echo myhostname &gt; /etc/hostname</code> <br>
 <code>passwd</code> &ndash; set root password. <br>
 <code>useradd -m -g users -G wheel &lt;username&gt;</code> &ndash; create a user. <br>
 <code>passwd &lt;username&gt;</code> &ndash; create password for user. <br>
-<code>pacman -S base-devel dosfstools grub efibootmgr lvm2 mtools vim networkmanager os-prober sudo iwd btrfs-progs</code></p>
+<code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano networkmanager os-prober sudo iwd btrfs-progs bash-completion</code>
+<code>EDITOR=vim visudo</code>  uncomment: <code>%wheel ALL=(ALL) ALL</code></p>
 <h2 id="install-linux-kernel">Install Linux Kernel</h2>
-<p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; linux and lts kernel. <br>
-<code>pacman -S linux-firmware</code></p>
+<p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; latest and lts kernel. <br>
+<code>pacman -S linux-firmware amd-ucode</code></p>
 <h2 id="gpu-driver">GPU Driver</h2>
 <p>AMD/Intel: <code>pacman -S mesa</code></p>
 <p>Nvidia: <code>pacman -S nvidia nvidia-utils nvidia-lts</code></p>
@@ -244,23 +238,23 @@ Enter encryption key <br>
 <p>Intel: <code>pacman -S intel-media-driver</code></p>
 <h2 id="generate-ram-disks-for-kernels">Generate ram disks for kernels</h2>
 <p><code>vim /etc/mkinitcpio.conf</code></p>
-<p>Add to HOOKS: after <code>block</code> and before <code>filesystems</code> add <code>encrypt</code> and <code>lvm2</code>.</p>
+<p>Add to HOOKS: after <code>block</code> and before <code>filesystems</code> add <code>encrypt</code>.</p>
 <p><code>mkinitcpio -p linux</code> <br>
 <code>mkinitcpio -p linux-lts</code> <br></p>
 <h2 id="set-locale-and-boot-loader">Set locale and boot loader</h2>
 <p><code>vim /etc/locale.gen</code> and uncomment line you want (en_US.UTF-8 UTF-8) <br>
-<code>locale-gen</code> <br>
-<code>vim /etc/default/grub</code> <br>
-On GRUB_CMDLINX_LINUX_DEFAULT after <code>loglevel</code> and before <code>quiet</code> add <code>cryptdevice=/dev/nvme0n1p3:Arch</code> <br>
-<code>vim /etc/hostname</code> &ndash; change hostname to whatever you want. <br></p>
-<p><code>grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=grub_uefi --recheck</code> <br>
-<code>cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo</code>
-<code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
+<code>locale-gen</code> <br></p>
+<p><code>vim /etc/default/grub</code> <br>
+On <code>GRUB_CMDLINE_LINUX</code> add <code>cryptdevice=UUID=XXX-XXX-XXX:arch</code> <br>
+Uncommet <code>GRUB_ENABLE_CRYPTODISK=y</code></p>
+<p>Tip to get partition UUID: <code>blkid -o value -s UUID /dev/nvme0n1p3</code> and write it at end of <code>/etc/default/grub</code> then cut/paste at cryptdevice line: <code>lkid -o value -s UUID /dev/nvme0n1p3 &gt;&gt; /etc/default/grub</code></p>
+<p><code>grub-install --target=x86_64-efi --efi-directory=/efi --recheck</code> <br>
+<code>grub-mkconfig -o /boot/grub/grub.cfg</code> <br></p>
 <h2 id="enable-network-manager">Enable network manager</h2>
 <p><code>systemctl enable NetworkManager</code></p>
 <h2 id="cleanup-and-reboot">Cleanup and reboot</h2>
-<p><code>exit</code>
-<code>umount -a</code> &ndash; unmount everything can ignore errors. <br>
+<p><code>exit</code> <br>
+<code>umount -R /mnt</code> <br>
 <code>reboot</code></p>
 <h2 id="fresh-install-ready">Fresh install ready</h2>
 <p>Arch Linux install ready for use and tinkering :)</p>
