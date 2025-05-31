@@ -218,7 +218,7 @@
 <p><code>pacstrap -i /mnt base</code></p>
 <h2 id="generate-fstab-file">Generate fstab file</h2>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
-<h2 id="finish-installation">Finish installation</h2>
+<h2 id="additional-installation">Additional installation</h2>
 <p><code>arch-chroot /mnt</code> <br>
 <code>ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</code> <br>
 <code>hwclock --systohc</code> <br>
@@ -247,7 +247,7 @@
 <p><code>vim /etc/default/grub</code> <br>
 On <code>GRUB_CMDLINE_LINUX</code> add <code>cryptdevice=UUID=XXX-XXX-XXX:arch</code> <br>
 Uncommet <code>GRUB_ENABLE_CRYPTODISK=y</code></p>
-<p>Tip to get partition UUID: <code>blkid -o value -s UUID /dev/nvme0n1p3</code> and write it at end of <code>/etc/default/grub</code> then cut/paste at cryptdevice line: <code>lkid -o value -s UUID /dev/nvme0n1p3 &gt;&gt; /etc/default/grub</code></p>
+<p>Tip to get partition UUID: <code>blkid -o value -s UUID /dev/nvme0n1p3</code> and write it at end of <code>/etc/default/grub</code> then cut/paste at cryptdevice line: <code>blkid -o value -s UUID /dev/nvme0n1p3 &gt;&gt; /etc/default/grub</code></p>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/efi --recheck</code> <br>
 <code>grub-mkconfig -o /boot/grub/grub.cfg</code> <br></p>
 <h2 id="enable-network-manager">Enable network manager</h2>
