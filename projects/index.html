@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://gloutnikov.com/projects/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
-    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="generator" content="Hugo 0.147.9">
     <title>Projects - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -125,8 +125,6 @@
 		<h1>Projects</h1>
 	</header>
 
-	<br>
-
 	<article>
 		<h4 id="grpc-go-boilerplate"><a href="https://github.com/sgloutnikov/grpc-go-boilerplate" target="_blank">gRPC Go Boilerplate</a></h4>
 <p>A minimal repo containing all the boilerplate for getting started with gRPC in Go. <a href="/post/grpc_go_example_and_boilerplate/">[Blog]</a></p>
@@ -147,10 +145,32 @@
 	</article>
 </main>
 
-<br>
 <div id="bottom-nav" class="text-center center-block">
 	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
 </div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 						</div>
 					</div>
