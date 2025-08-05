@@ -182,6 +182,7 @@
 <code>btrfs su create @docker</code> <br>
 <code>btrfs su create @libvirt</code> <br>
 <code>btrfs su create @machines</code> <br>
+<code>btrfs su create @portables</code> <br>
 <code>btrfs su create @sddm</code> <br>
 <code>btrfs su create @log</code> <br>
 <code>btrfs su create @spool</code> <br>
@@ -198,6 +199,7 @@
 <code>mkdir -p var/lib/docker</code> <br>
 <code>mkdir -p var/lib/libvirt</code> <br>
 <code>mkdir -p var/lib/machines</code> <br>
+<code>mkdir -p var/lib/portables</code> <br>
 <code>mkdir -p var/lib/sddm</code> <br>
 <code>mkdir -p var/log</code> <br>
 <code>mkdir -p var/spool</code> <br>
@@ -208,6 +210,7 @@
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@docker /dev/mapper/arch /mnt/lib/docker</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@libvirt /dev/mapper/arch /mnt/lib/libvirt</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@machines /dev/mapper/arch /mnt/lib/machines</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@portables /dev/mapper/arch /mnt/lib/portables</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@sddm /dev/mapper/arch /mnt/lib/sddm</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@log /dev/mapper/arch /mnt/var/log</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@spool /dev/mapper/arch /mnt/var/spool</code> <br>
