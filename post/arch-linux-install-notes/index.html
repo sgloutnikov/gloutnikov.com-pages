@@ -173,6 +173,7 @@
 <code>cryptsetup luksOpen /dev/nvme0n1p3 arch</code> <br>
 <code>mkfs.btrfs -L btrfs -n 32k /dev/mapper/arch</code> &ndash; Format btrfs with larger 32k nodesize for less fragmentation at the cost of more expensive memory operations.</p>
 <h2 id="prepare-btrfs-subvolumes">Prepare Btrfs Subvolumes</h2>
+<p>Omit some subvolumes if deemed not necessary.</p>
 <p><code>mount /dev/mapper/arch /mnt</code> <br>
 <code>cd /mnt</code> <br>
 <code>btrfs su create @</code> <br>
@@ -188,7 +189,7 @@
 <code>btrfs su create @spool</code> <br>
 <code>btrfs su create @tmp</code> <br></p>
 <p>Mount the subvolumes, efi and boot partitions.</p>
-<p><code>umount /mnt</code> <br>
+<p><code>cd &amp;&amp; umount /mnt</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@ /dev/mapper/arch /mnt</code> <br>
 <code>cd /mnt</code> <br>
 <code>mkdir -p efi</code> <br>
@@ -229,7 +230,7 @@
 <code>passwd</code> &ndash; set root password. <br>
 <code>useradd -m -g users -G wheel &lt;username&gt;</code> &ndash; create a user. <br>
 <code>passwd &lt;username&gt;</code> &ndash; create password for user. <br>
-<code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano networkmanager os-prober sudo iwd btrfs-progs bash-completion</code>
+<code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano wget git networkmanager os-prober sudo iwd btrfs-progs bash-completion</code> <br>
 <code>EDITOR=vim visudo</code>  uncomment: <code>%wheel ALL=(ALL) ALL</code></p>
 <h2 id="install-linux-kernel">Install Linux Kernel</h2>
 <p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; latest and lts kernel. <br>
