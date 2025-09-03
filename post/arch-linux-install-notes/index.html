@@ -177,6 +177,7 @@
 <p><code>mount /dev/mapper/arch /mnt</code> <br>
 <code>cd /mnt</code> <br>
 <code>btrfs su create @</code> <br>
+<code>btrfs su create @swap</code> (btrfs cannot snapshot subvolumes containing an active swapfile)<br>
 <code>btrfs su create @home</code> <br>
 <code>btrfs su create @opt</code> <br>
 <code>btrfs su create @cache</code> <br>
@@ -194,6 +195,7 @@
 <code>cd /mnt</code> <br>
 <code>mkdir -p efi</code> <br>
 <code>mkdir -p boot</code> <br>
+<code>mkdir -p swap</code> <br>
 <code>mkdir -p home</code> <br>
 <code>mkdir -p opt</code> <br>
 <code>mkdir -p var/cache</code> <br>
@@ -205,7 +207,8 @@
 <code>mkdir -p var/log</code> <br>
 <code>mkdir -p var/spool</code> <br>
 <code>mkdir -p var/tmp</code> <br></p>
-<p><code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@home /dev/mapper/arch /mnt/home</code> <br>
+<p><code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@swap /dev/mapper/arch /mnt/swap</code> <br>
+<code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@home /dev/mapper/arch /mnt/home</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@opt /dev/mapper/arch /mnt/opt</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@cache /dev/mapper/arch /mnt/var/cache</code> <br>
 <code>mount -o noatime,nodiratime,compress=zstd:1,subvol=@docker /dev/mapper/arch /mnt/var/lib/docker</code> <br>
@@ -230,7 +233,7 @@
 <code>passwd</code> &ndash; set root password. <br>
 <code>useradd -m -g users -G wheel &lt;username&gt;</code> &ndash; create a user. <br>
 <code>passwd &lt;username&gt;</code> &ndash; create password for user. <br>
-<code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano wget git networkmanager os-prober sudo btrfs-progs bash-completion</code> <br>
+<code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano wget git iwd impala os-prober sudo btrfs-progs bash-completion</code> <br>
 <code>EDITOR=vim visudo</code>  uncomment: <code>%wheel ALL=(ALL) ALL</code></p>
 <h2 id="install-linux-kernel">Install Linux Kernel</h2>
 <p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; latest and lts kernel. <br>
@@ -254,11 +257,9 @@ Uncommet <code>GRUB_ENABLE_CRYPTODISK=y</code></p>
 <p>Tip to get partition UUID: <code>blkid -o value -s UUID /dev/nvme0n1p3</code> and write it at end of <code>/etc/default/grub</code> then cut/paste at cryptdevice line: <code>blkid -o value -s UUID /dev/nvme0n1p3 &gt;&gt; /etc/default/grub</code></p>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/efi --recheck</code> <br>
 <code>grub-mkconfig -o /boot/grub/grub.cfg</code> <br></p>
-<h2 id="enable-network-manager">Enable network manager</h2>
-<p><code>systemctl enable NetworkManager</code></p>
 <h2 id="cleanup-and-reboot">Cleanup and reboot</h2>
 <p><code>exit</code> <br>
-<code>umount -R /mnt</code> <br>
+<code>cd &amp;&amp; umount -R /mnt</code> <br>
 <code>reboot</code></p>
 <h2 id="fresh-install-ready">Fresh install ready</h2>
 <p>Arch Linux install ready for use and tinkering :)</p>
