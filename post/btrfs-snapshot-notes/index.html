@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Arch Linux btrfs snapshot notes. Creating snapthos manually and upon system state change so they can be booted and restored.">
+    <meta name="keywords" content="btrfs-snapshots, btrfs, arch-linux">
+    <meta property="og:title" content="btrfs Snapshot and Restore Notes">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-05-17">
+    
+    <meta property="og:description" content="Arch Linux btrfs snapshot notes. Creating snapthos manually and upon system state change so they can be booted and restored.">
+    <meta property="og:url" content="https://gloutnikov.com/post/btrfs-snapshot-notes/">
+    <meta property="og:site_name" content="Stefan Gloutnikov">
+    
+    <meta property="og:tags" content="arch-linux">
+    
+    <meta property="og:tags" content="linux">
+    
+    <meta property="og:tags" content="btrfs">
+    
+    <meta name="generator" content="Hugo 0.148.1">
+    <title>btrfs Snapshot and Restore Notes - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://gloutnikov.com/">Stefan Gloutnikov</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://gloutnikov.com/aboutme/">About Me</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Blog</a></li>
+				
+					<li><a href="https://gloutnikov.com/projects/">Projects</a></li>
+				
+					<li><a href="https://gloutnikov.com/quotes/">Quotes</a></li>
+				
+					<li><a href="https://gloutnikov.com/">Notes</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://gloutnikov.com/">Stefan Gloutnikov</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Software Engineer</small>
+		
+		
+		
+			<img id="profile-pic" src="https://gloutnikov.com//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://www.linkedin.com/in/sgloutnikov"><i class="fab fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://github.com/sgloutnikov"><i class="fab fa-github fa-2x"></i></a>
+			
+				<a href="https://bsky.app/profile/gloutnikov.com"><i class="fab fa-bluesky fa-2x"></i></a>
+			
+				<a href="https://mastodon.social/@sgloutnikov"><i class="fab fa-mastodon fa-2x"></i></a>
+			
+				<a href="https://keybase.io/sgloutnikov"><i class="fab fa-keybase fa-2x"></i></a>
+			
+
+			<a href="mailto:stefan@gloutnikov.com"><i class="far fa-envelope fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				
+					<a href="https://gloutnikov.com/aboutme/">About Me</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/">Blog</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/projects/">Projects</a>
+				
+			
+				
+					<a href="https://gloutnikov.com/quotes/">Quotes</a>
+				
+			
+				
+					<a href="https://notes.gloutnikov.com">Notes</a>
+				
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
+
+<main>
+	<header>
+		<h1>btrfs Snapshot and Restore Notes</h1>
+	</header>
+
+	<small>
+		17 May 2025
+		<br><br>
+	</small>
+
+	<article>
+		<p>Notes on setting up automated btrfs snapshots with the ability to boot them from GRUB and restore them. This post targets an Arch Linux installation but is useful for any Linux system.</p>
+<p>The post will go over setting up the <code>snapper</code> tool for creating btrfs snapshots as well as creating automated snapshots when new packages are installed and the system state changes.</p>
+<h2 id="install-dependencies">Install Dependencies</h2>
+<p><code>sudo pacman -S snapper snap-pac grub-btrfs inotify-tools</code> <br>
+<code>yay -S btrfs-assistant</code></p>
+<h2 id="create-snapper-configurations">Create Snapper Configurations</h2>
+<p><code>sudo snapper -c root create-config /</code> <br>
+<code>sudo snapper -c home create-config /home</code></p>
+<p>Verify configs</p>
+<p><code>sudo snapper list-configs # Verify</code> <br></p>
+<p><code>sudo snapper -c root set-config ALLOW_USERS=&quot;$USER&quot; SYNC_ACL=yes</code> <br>
+<code>sudo snapper -c home set-config ALLOW_USERS=&quot;$USER&quot; SYNC_ACL=yes</code></p>
+<p>Set updatedb to not index snapshot directoreis</p>
+<p>Add <code>.snapshots</code> at end of <code>PRUNENAMES</code> in <code>/etc/updatedb.conf</code></p>
+<h2 id="disable-automatic-timeline-snapshots-during-setup">Disable automatic timeline snapshots during setup</h2>
+<p><code>sudo systemctl status snapper-timeline.timer snapper-cleanup.timer</code> <br>
+<code>sudo systemctl disable --now snapper-timeline.timer snapper-cleanup.timer</code></p>
+<h2 id="enable-overlayfs-so-we-can-boot-snapshots">Enable overlayfs so we can boot snapshots</h2>
+<p>In <code>/etc/mkinitcpio.conf</code> in <code>HOOKS</code> add <code>grub-btrfs-overlayfs</code> at the end</p>
+<p><code>sudo mkinitcpio -P</code></p>
+<h2 id="enable-grub-btrfsd-service">Enable grub-btrfsd service</h2>
+<p>This service automatically updates grub when new snapshots are created or deleted</p>
+<p><code>sudo systemctl enable --now grub-btrfsd.service</code></p>
+<h2 id="setup-timeline-snapshots">Setup timeline snapshots</h2>
+<p>Setup sensible snapshot limits per snapper <a href="https://wiki.archlinux.org/title/Snapper#Set_snapshot_limits" target="_blank">Arch wiki limits section</a>.</p>
+<p>Disable timeline snapshots for the home subvolume.</p>
+<p><code>sudo snapper -c home set-config TIMELINE_CREATE=no</code></p>
+<h2 id="enable-timeline-creation-and-cleanup-timer">Enable timeline creation and cleanup timer</h2>
+<p><code>sudo systemctl enable --now snapper-timeline.timer</code> <br>
+<code>sudo systemctl enable --now snapper-cleanup.timer</code> <br>
+<code>sudo systemctl status snapper-timeline.timer</code> <br>
+<code>sudo systemctl status snapper-cleanup.timer</code></p>
+<h2 id="check-btrfs-assistant">Check btrfs-assistant</h2>
+<p>Can start using btrfs-assistant for manual snapshots.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=FiK1cGbyaxs" target="_blank">Arch Linux with Snapshots: Install Arch Linux (2025) - Part 1/3</a></li>
+<li><a href="https://www.youtube.com/watch?v=rl-VasRoUe4" target="_blank">Arch Linux with Snapshots: Setup Snapper (2025) - Part 2/3</a></li>
+<li><a href="https://www.youtube.com/watch?v=aCy5kdSlHmY" target="_blank">Arch Linux with Snapshots: Snapper in Action (2025) - Part 3/3</a></li>
+<li><a href="https://youtu.be/b4vTKg-qW_0?si=2_vD1YLL9jXSaSvD&amp;t=1359" target="_blank">Debian 12: Fighting with OpenSUSE Snapper!</a></li>
+</ul>
+	</article>
+</main>
+
+<br>
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFG2Y6XSY5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GFG2Y6XSY5');
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="https://gloutnikov.com//js/App.js"></script>
+  
+</body>
+</html>
