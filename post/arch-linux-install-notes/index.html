@@ -246,8 +246,10 @@
 <p>AMD: <code>pacman -S libva-mesa-driver</code></p>
 <p>Intel: <code>pacman -S intel-media-driver</code></p>
 <h2 id="generate-ram-disks-for-kernels">Generate ram disks for kernels</h2>
+<p>Using busyibox-based initramfs. Verify required kernel modules per <a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#Configuring_mkinitcpio" target="_blank">Arch wiki</a> as defaults may have changed to use systemd-based initramfs.</p>
 <p><code>vim /etc/mkinitcpio.conf</code></p>
 <p>Add to HOOKS: after <code>block</code> and before <code>filesystems</code> add <code>encrypt</code>.</p>
+<p>Example HOOKS: <code>HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems fsck)</code> <br></p>
 <p><code>mkinitcpio -p linux</code> <br>
 <code>mkinitcpio -p linux-lts</code> <br></p>
 <h2 id="set-locale-and-boot-loader">Set locale and boot loader</h2>
