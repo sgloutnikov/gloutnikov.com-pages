@@ -236,7 +236,9 @@
 <code>useradd -m -g users -G wheel &lt;username&gt;</code> &ndash; create a user. <br>
 <code>passwd &lt;username&gt;</code> &ndash; create password for user. <br>
 <code>pacman -S base-devel dosfstools grub efibootmgr mtools vim nano wget git iwd networkmanager impala os-prober sudo btrfs-progs bash-completion</code> <br>
-<code>EDITOR=vim visudo</code>  uncomment: <code>%wheel ALL=(ALL) ALL</code></p>
+<code>EDITOR=vim visudo</code>  uncomment: <code>%wheel ALL=(ALL) ALL</code> <br>
+<code>vim /etc/locale.gen</code> and uncomment line you want (en_US.UTF-8 UTF-8) <br>
+<code>locale-gen</code> <br></p>
 <h2 id="install-linux-kernel">Install Linux Kernel</h2>
 <p><code>pacman -S linux linux-headers linux-lts linux-lts-headers</code> &ndash; latest and lts kernel. <br>
 <code>pacman -S linux-firmware amd-ucode</code></p>
@@ -252,16 +254,21 @@
 <p>Example HOOKS: <code>HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems fsck)</code> <br></p>
 <p><code>mkinitcpio -p linux</code> <br>
 <code>mkinitcpio -p linux-lts</code> <br></p>
-<h2 id="set-locale-and-boot-loader">Set locale and boot loader</h2>
-<p><code>vim /etc/locale.gen</code> and uncomment line you want (en_US.UTF-8 UTF-8) <br>
-<code>locale-gen</code> <br></p>
+<h2 id="set-boot-loader">Set boot loader</h2>
 <p><code>vim /etc/default/grub</code> <br>
 On <code>GRUB_CMDLINE_LINUX</code> add <code>cryptdevice=UUID=XXX-XXX-XXX:arch</code> <br>
 Uncommet <code>GRUB_ENABLE_CRYPTODISK=y</code></p>
 <p>Tip to get partition UUID: <code>blkid -o value -s UUID /dev/nvme0n1p3</code> and write it at end of <code>/etc/default/grub</code> then cut/paste at cryptdevice line: <code>blkid -o value -s UUID /dev/nvme0n1p3 &gt;&gt; /etc/default/grub</code></p>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/efi --recheck</code> <br>
 <code>grub-mkconfig -o /boot/grub/grub.cfg</code> <br></p>
-<h2 id="cleanup-and-reboot">Cleanup and reboot</h2>
+<h2 id="networking-and-reboot">Networking and reboot</h2>
+<p>Enable networking services so WiFi is ready to be used on boot.</p>
+<p><code>systemctl enable NetworkManager</code> <br>
+<code>systemctl enable iwd</code> <br></p>
+<p><code>vim /etc/NetworkManager/conf.d/wifi_backend.conf</code> Add:<br></p>
+<p><code>[device]</code> <br>
+<code>wifi.backend=iwd</code> <br></p>
+<p>Exit and reboot.</p>
 <p><code>exit</code> <br>
 <code>cd &amp;&amp; umount -R /mnt</code> <br>
 <code>reboot</code></p>
