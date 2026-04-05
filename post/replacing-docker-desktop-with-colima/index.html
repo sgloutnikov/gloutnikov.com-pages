@@ -18,7 +18,7 @@
     
     <meta property="og:tags" content="colima">
     
-    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <title>Replacing Docker Desktop with Colima - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -150,7 +150,7 @@
 <li>Easily usable Docker on macOS :)</li>
 </ul>
 <h2 id="installation">Installation</h2>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install colima
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install colima
 </span></span><span style="display:flex;"><span><span style="color:#007f7f"># Install Docker and Docker Compose (Note: this the CLI + plug-in and not Docker Desktop)</span>
 </span></span><span style="display:flex;"><span>brew install docker docker-compose
 </span></span><span style="display:flex;"><span>mkdir -p ~/.docker/cli-plugins
@@ -160,10 +160,10 @@
 </span></span></code></pre></div><p>Colima is now installed, and we can start the virtual machine that will be running our containers&ndash;like how Docker works on MacOS.</p>
 <h2 id="configuration--usage">Configuration &amp; Usage</h2>
 <p>Start the VM with default configuration: 2 CPUs, 2GB RAM, 60GB storage.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colima start
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colima start
 </span></span></code></pre></div><p>To configure the VM edit the config file at <code>~/.colima/default/colima.yaml</code> or via the command line <code>colima help start</code>.</p>
 <p>After the VM boots the docker CLI is automatically configured and ready to go. To verify:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run hello-world
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run hello-world
 </span></span><span style="display:flex;"><span>docker ps -a
 </span></span><span style="display:flex;"><span>docker images
 </span></span><span style="display:flex;"><span>...

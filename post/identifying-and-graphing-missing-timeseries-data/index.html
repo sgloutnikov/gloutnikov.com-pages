@@ -20,7 +20,7 @@
     
     <meta property="og:tags" content="scala">
     
-    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <title>Identifying and Graphing Missing Time Series Data with Apache Spark and Highcharts - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -153,7 +153,7 @@
   .sort("year", "month", "day")
 </code></pre>
 <p>Our totalSongsPerDay <em>DataFrame</em> looks like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+----+-----+---+-----+
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+----+-----+---+-----+
 </span></span><span style="display:flex;"><span>|year|month|day|count|
 </span></span><span style="display:flex;"><span>+----+-----+---+-----+
 </span></span><span style="display:flex;"><span>|2016|    6| 20|  271|
@@ -172,7 +172,7 @@
 )</code></pre>
 <pre><code class="scala">val emptyDateRDD = spark.sparkContext.parallelize(emptyDateList)
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[2016,6,20,0]
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[2016,6,20,0]
 </span></span><span style="display:flex;"><span>[2016,6,21,0]
 </span></span><span style="display:flex;"><span>[2016,6,22,0]
 </span></span><span style="display:flex;"><span>...
@@ -192,7 +192,7 @@
   $"eMonth" === $"month" && $"eDay" === $"day", "left_outer")
   .withColumn("mergedCount", $"eCount" + $"count")
   .sort("eYear", "eMonth", "eDay")</code></pre>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
 </span></span><span style="display:flex;"><span>|eYear|eMonth|eDay|eCount|year|month| day |count|mergedCount|
 </span></span><span style="display:flex;"><span>+-----+------+----+------+----+-----+-----+-----+-----------+
 </span></span><span style="display:flex;"><span>| 2016|     6|  20|     0|2016|    6|   20|  271|        271|

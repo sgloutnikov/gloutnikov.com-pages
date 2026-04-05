@@ -16,7 +16,7 @@
     
     <meta property="og:tags" content="go">
     
-    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <title>Graceful Shutdown Pattern in Go - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -137,7 +137,7 @@
 	<article>
 		<p>The following is an example of a graceful shutdown pattern I like to use in my Go applications which upon pressing <code>Ctrl+C</code> to quit allows for performing clean-up tasks.</p>
 <p>After running the application pressing <code>Ctrl+C</code> sends an interrupt signal triggering a shutting down state. The shutting down state is used to clean up anything and has a defined timer limit. The application exists after either completing all shutting down tasks before the timer expires, the shutting down timer expires, or another <code>Ctrl-C</code> interrupt is issued to force the shutdown.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> main() {
 </span></span><span style="display:flex;"><span>	logger := log.New(os.Stdout, <span style="color:#0ff;font-weight:bold">&#34;INFO: &#34;</span>, log.Ldate|log.Ltime)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#007f7f">// Create context that listens for the interrupt signal from the OS</span>

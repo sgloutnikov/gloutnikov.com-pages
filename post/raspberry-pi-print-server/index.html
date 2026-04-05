@@ -16,7 +16,7 @@
     
     <meta property="og:tags" content="raspberry-pi">
     
-    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <title>Print on Your Old Printer from Any Client on Your Home Network - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -139,7 +139,7 @@
 <p>The printer in question is a more than 15-year-old HP LaserJet 1020. I love that thing, still chugging along and still printing like a champ! The only issue was that since it’s old, driver support was gone, and I couldn’t print to it from other computers in my household. Luckily, I discovered a way to share the printer via a Raspberry Pi that I had already running on my network as a Pi-Hole server.</p>
 <p>First, connect your printer to the Raspberry Pi via USB.</p>
 <h3 id="install-the-print-server-cups">Install The Print Server (cups)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f"># Update repos and install cups </span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f"># Update repos and install cups </span>
 </span></span><span style="display:flex;"><span>sudo apt update
 </span></span><span style="display:flex;"><span>sudo apt install cups
 </span></span><span style="display:flex;"><span>
@@ -151,11 +151,11 @@
 </span></span><span style="display:flex;"><span>sudo /etc/init.d/cups restart
 </span></span></code></pre></div><p>Check that <code>cups</code> can be accessed locally at <code>http://pi-local-ip:631/</code>. You can skip the SSL warning and enter your <code>pi</code> username/password if prompted.</p>
 <h3 id="install-hp-drivers--configure-printer">Install HP Drivers &amp; Configure Printer</h3>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f"># Install HP Printer Drivers and PostScript Printer Description</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f"># Install HP Printer Drivers and PostScript Printer Description</span>
 </span></span><span style="display:flex;"><span>sudo apt install hplip
 </span></span><span style="display:flex;"><span>sudo apt install hplip-ppds
 </span></span></code></pre></div><p>The final step will be to add/configure your printer.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo hp-setup -i
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo hp-setup -i
 </span></span></code></pre></div><p>This command will allow you to setup and add the printer to your system and print a test page at the end. The setup also had to download additional plugins for my printer. It took about a minute or two to print a test page, which I attributed to my printer being old. The <code>-i</code> is used for interactive mode in case you do not have a monitor attached.</p>
 <h3 id="verify">Verify</h3>
 <p>After completing the <code>hp-setup</code> you should see your printer listed on the <code>cups</code> web UI in the <code>Printers</code> tab. You should also now see the printer from your other computers when adding a new networked printer. In my case everything worked just by listing the available printers from my macOS, Windows, and iOS clients.</p>

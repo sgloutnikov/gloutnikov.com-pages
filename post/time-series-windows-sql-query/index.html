@@ -18,7 +18,7 @@
     
     <meta property="og:tags" content="sql">
     
-    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="generator" content="Hugo 0.160.0">
     <title>Time Series Session Window(s) SQL Query - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -148,28 +148,28 @@
 <p><img src="/post/2021/time-series-windows-sql-query/session-window-closeup.png#center" alt="session-window-closeup"></p>
 <h4 id="building-the-query">Building the Query</h4>
 <p>Start by identifying when the condition we care about is true. After this stage, we will have all timestamps when the condition we care about is true.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">FROM</span> (full_time_series_source)
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">WHERE</span> (filter_conditions)
 </span></span></code></pre></div><p>Next, we identify how much time has passed between points and store that in a <code>tsDelta</code> column. We use the <code>LAG()</code> SQL window function to do so. Also added here though unused, is the total elapsed time since the first condition was met in a <code>total</code> column. You may have a case that uses this value as well.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time,
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time,
 </span></span><span style="display:flex;"><span>       time - LAG(time, <span style="color:#ff0;font-weight:bold">1</span>)      OVER w <span style="color:#fff;font-weight:bold">AS</span> tsDelta,
 </span></span><span style="display:flex;"><span>       time - FIRST_VALUE(time) OVER w total
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">FROM</span> (previous_result)
 </span></span><span style="display:flex;"><span>WINDOW w <span style="color:#fff;font-weight:bold">AS</span> (<span style="color:#fff;font-weight:bold">ORDER</span> <span style="color:#fff;font-weight:bold">BY</span> time)
 </span></span></code></pre></div><p>After we have the time delta between points we can begin forming the windows by checking each against our maximum allowed gap of time. We treat points with time deltas smaller than the max allowed gap as part of the same window. Each point is placed in a window identified by <code>windowId</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time,
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> time,
 </span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">COUNT</span>(<span style="color:#fff;font-weight:bold">CASE</span> <span style="color:#fff;font-weight:bold">WHEN</span> tsDelta &gt;= <span style="color:#fff;font-weight:bold">interval</span> <span style="color:#0ff;font-weight:bold">&#39;(max_gap)&#39;</span> <span style="color:#fff;font-weight:bold">THEN</span> <span style="color:#ff0;font-weight:bold">1</span> <span style="color:#fff;font-weight:bold">END</span>)
 </span></span><span style="display:flex;"><span>             OVER (<span style="color:#fff;font-weight:bold">ORDER</span> <span style="color:#fff;font-weight:bold">BY</span> time) <span style="color:#fff;font-weight:bold">AS</span> windowId
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">FROM</span> (previous_result)
 </span></span></code></pre></div><p>With each point now placed in its appropriate window we <code>GROUP BY</code> that window ID and find where each window starts and ends.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> windowId, <span style="color:#fff;font-weight:bold">MIN</span>(time) <span style="color:#fff;font-weight:bold">as</span> winstart, <span style="color:#fff;font-weight:bold">MAX</span>(time) <span style="color:#fff;font-weight:bold">as</span> winend
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">SELECT</span> windowId, <span style="color:#fff;font-weight:bold">MIN</span>(time) <span style="color:#fff;font-weight:bold">as</span> winstart, <span style="color:#fff;font-weight:bold">MAX</span>(time) <span style="color:#fff;font-weight:bold">as</span> winend
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">FROM</span> (previous_result)
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">GROUP</span> <span style="color:#fff;font-weight:bold">BY</span> windowId
 </span></span></code></pre></div><p>The final step is to select the desired shape of our result output.</p>
 <h4 id="full-query">Full Query</h4>
 <p>Putting all this together into a query we can run in TimescaleDB. The query uses 60 seconds as the max allowed gap.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">WITH</span> time_condition <span style="color:#fff;font-weight:bold">AS</span> (
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">WITH</span> time_condition <span style="color:#fff;font-weight:bold">AS</span> (
 </span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">SELECT</span> time
 </span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">FROM</span> (MY_TABLE)
 </span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">WHERE</span> (MY_CONDITIONS) <span style="color:#fff;font-weight:bold">AND</span> (MORE_CONDITIONS)
