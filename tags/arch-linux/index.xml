@@ -6,8 +6,15 @@
     <description>Recent content in Arch-Linux on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 May 2025 22:25:40 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 12 Sep 2025 22:31:22 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/tags/arch-linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arch Linux with Limine Bootloader Install Notes</title>
+      <link>https://gloutnikov.com/post/arch-linux-limine-install-notes/</link>
+      <pubDate>Fri, 12 Sep 2025 22:31:22 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/arch-linux-limine-install-notes/</guid>
+      <description>&lt;p&gt;Limine is a relatively new bootloader that looked very interesting, and I wanted to try it out on my Arch installation. Overall, I&amp;rsquo;m very happy with it and decided to keep using it. These notes are an addition to my &lt;a href=&#34;https://gloutnikov.com/post/arch-linux-install-notes&#34;&gt;previous Arch install notes&lt;/a&gt; covering installing Arch Linux with full-disk encryption and btrfs, but instead of GRUB we will use Limine as the bootloader.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>btrfs Snapshot and Restore Notes (GRUB)</title>
       <link>https://gloutnikov.com/post/btrfs-snapshot-notes/</link>
