@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/keyd/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/linux/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/post/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
+    <loc>https://gloutnikov.com/tags/</loc>
+    <lastmod>2025-12-20T21:47:30-07:00</lastmod>
+  </url><url>
     <loc>https://gloutnikov.com/post/arch-linux-limine-install-notes/</loc>
     <lastmod>2025-09-12T22:31:22-07:00</lastmod>
   </url><url>
@@ -12,18 +30,6 @@
     <lastmod>2025-09-12T22:31:22-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/tags/limine/</loc>
-    <lastmod>2025-09-12T22:31:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/linux/</loc>
-    <lastmod>2025-09-12T22:31:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/post/</loc>
-    <lastmod>2025-09-12T22:31:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/</loc>
-    <lastmod>2025-09-12T22:31:22-07:00</lastmod>
-  </url><url>
-    <loc>https://gloutnikov.com/tags/</loc>
     <lastmod>2025-09-12T22:31:22-07:00</lastmod>
   </url><url>
     <loc>https://gloutnikov.com/post/btrfs-snapshot-notes/</loc>

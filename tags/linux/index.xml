@@ -6,8 +6,15 @@
     <description>Recent content in Linux on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Sep 2025 22:31:22 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 20 Dec 2025 21:47:30 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Key Remapping in Linux with keyd</title>
+      <link>https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/</link>
+      <pubDate>Sat, 20 Dec 2025 21:47:30 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/</guid>
+      <description>&lt;p&gt;There are many ways to handle key remapping in Linux, from various utilities to configuring them in your desktop environment. After trying quite a few I settled on &lt;code&gt;keyd&lt;/code&gt; because of its ease of use and the benefit of getting a system wide remapping regardless of environment or tty.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Arch Linux with Limine Bootloader Install Notes</title>
       <link>https://gloutnikov.com/post/arch-linux-limine-install-notes/</link>

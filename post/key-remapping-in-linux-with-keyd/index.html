@@ -4,23 +4,28 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta property="og:title" content="Linux">
+    <meta name="keywords" content="btrfs-snapshots, btrfs, arch-linux">
+    <meta property="og:title" content="Key Remapping in Linux with keyd">
     
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-12-20">
     
     <meta property="og:description" content="">
-    <meta property="og:url" content="https://gloutnikov.com/tags/linux/">
+    <meta property="og:url" content="https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
+    <meta property="og:tags" content="linux">
+    
+    <meta property="og:tags" content="keyd">
+    
     <meta name="generator" content="Hugo 0.148.1">
-    <title>Linux - Stefan Gloutnikov</title>
+    <title>Key Remapping in Linux with keyd - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
-    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/darcula.min.css">
     
-    <link href="/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="Linux" />
+    <link rel="stylesheet" href="https://gloutnikov.com/css/style.css">
     
     
 
@@ -121,29 +126,65 @@
 			<div class="row">
 				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-7">
 
-<article>
+<main>
 	<header>
-		<h1>Linux</a></h1>
+		<h1>Key Remapping in Linux with keyd</h1>
 	</header>
-<ul>
-	
-	<li><a href="https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/">Key Remapping in Linux with keyd</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/arch-linux-limine-install-notes/">Arch Linux with Limine Bootloader Install Notes</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/btrfs-snapshot-notes/">btrfs Snapshot and Restore Notes (GRUB)</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/arch-linux-install-notes/">Arch Linux with Full Disk Encryption Install Notes</a></li>
-	
-	<li><a href="https://gloutnikov.com/post/linux-observability-tools/">Linux Observability Tools</a></li>
-	
-</ul>
-</article>
+
+	<small>
+		20 December 2025
+		<br><br>
+	</small>
+
+	<article>
+		<p>There are many ways to handle key remapping in Linux, from various utilities to configuring them in your desktop environment. After trying quite a few I settled on <code>keyd</code> because of its ease of use and the benefit of getting a system wide remapping regardless of environment or tty.</p>
+<p><a href="https://github.com/rvaiya/keyd" target="_blank">keyd</a> runs as a system service using kernel level input primitives so as soon as your system boots you get your custom key remapping. Caps Lock as CTRL in your tty, you got it and more! Check out the official <a href="https://github.com/rvaiya/keyd" target="_blank">keyd repository</a> for more details and available features.</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>After installing keyd for your distribution enable the service with <code>sudo systemctl enable keyd --now</code>. Create a configuration in <code>/etc/keyd/default.conf</code> and reload the config with <code>sudo keyd reload</code>.</p>
+<p>Here is a simple configuration that I&rsquo;m currently using on my system to get started.</p>
+<pre tabindex="0"><code>[ids]
+
+*
+
+[main]
+# Maps capslock to escape when pressed and control when held.
+capslock = overload(control, esc)
+
+# Swap super and left alt keys
+leftalt = leftmeta
+leftmeta = leftalt
+</code></pre><h3 id="disable-while-typing-touchpad">Disable While Typing (Touchpad)</h3>
+<p>Sometimes there are issues with disabling your laptop touchpad while typing on a Linux system. There is really good information on <a href="https://linuxtouchpad.org/" target="_blank">The Linux Touchpad Dev Guide</a> that describes how to diagnose and fix this problem if you are encountering it. The author includes an example and a fix to DWT not working with keyd in <a href="https://linuxtouchpad.org/libinput/2022/05/07/disable-while-typing.html" target="_blank">this post</a>.</p>
+	</article>
+</main>
 
 <br>
 <div id="bottom-nav" class="text-center center-block">
 	<a href=" https://gloutnikov.com/" class="btn btn-default"><i class="fas fa-home"></i> Home</a>
 </div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "sgloutnikov" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 						</div>
 					</div>
@@ -165,6 +206,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
   
   <script src="https://gloutnikov.com//js/App.js"></script>
   
