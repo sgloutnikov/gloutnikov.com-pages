@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tailscale on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/tailscale/</link>
+    <description>Recent content in Tailscale on Stefan Gloutnikov</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Feb 2026 23:43:12 -0700</lastBuildDate>
+    <atom:link href="https://gloutnikov.com/tags/tailscale/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Push Over Tailscale SSH</title>
+      <link>https://gloutnikov.com/post/git-push-over-tailscale/</link>
+      <pubDate>Sun, 08 Feb 2026 23:43:12 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/git-push-over-tailscale/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine a scenario where we have an IoT device which is unable to reach our git repository due to some external factors (security, networking, etc.) but we still want to push code to it, maintain version control, and run that code on the device.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

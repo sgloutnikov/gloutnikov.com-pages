@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Dec 2025 21:47:30 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 08 Feb 2026 23:43:12 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Push Over Tailscale SSH</title>
+      <link>https://gloutnikov.com/post/git-push-over-tailscale/</link>
+      <pubDate>Sun, 08 Feb 2026 23:43:12 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/git-push-over-tailscale/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine a scenario where we have an IoT device which is unable to reach our git repository due to some external factors (security, networking, etc.) but we still want to push code to it, maintain version control, and run that code on the device.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Key Remapping in Linux with keyd</title>
       <link>https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/</link>

@@ -3,23 +3,25 @@
 <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="Remap keys in Linux easily and conveniently with keyd.">
-    <meta name="keywords" content="linux, keyd, key-remapping">
-    <meta property="og:title" content="Key Remapping in Linux with keyd">
+    <meta name="description" content="Push code to a remote host over tailscale ssh.">
+    <meta name="keywords" content="git, tailscale, ssh">
+    <meta property="og:title" content="Git Push Over Tailscale SSH">
     
     <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2025-12-20">
+    <meta property="article:published_time" content="2026-02-08">
     
-    <meta property="og:description" content="Remap keys in Linux easily and conveniently with keyd.">
-    <meta property="og:url" content="https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/">
+    <meta property="og:description" content="Push code to a remote host over tailscale ssh.">
+    <meta property="og:url" content="https://gloutnikov.com/post/git-push-over-tailscale/">
     <meta property="og:site_name" content="Stefan Gloutnikov">
     
-    <meta property="og:tags" content="linux">
+    <meta property="og:tags" content="git">
     
-    <meta property="og:tags" content="keyd">
+    <meta property="og:tags" content="tailscale">
     
     <meta name="generator" content="Hugo 0.160.0">
-    <title>Key Remapping in Linux with keyd - Stefan Gloutnikov</title>
+    <title>Git Push Over Tailscale SSH - Stefan Gloutnikov</title>
+    
+    <link rel="stylesheet" href="/modalimages/modalimg.css">
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
@@ -128,33 +130,60 @@
 
 <main>
 	<header>
-		<h1>Key Remapping in Linux with keyd</h1>
+		<h1>Git Push Over Tailscale SSH</h1>
 	</header>
 
 	<small>
-		20 December 2025
+		8 February 2026
 		<br><br>
 	</small>
 
 	<article>
-		<p>There are many ways to handle key remapping in Linux, from various utilities to configuring them in your desktop environment. After trying quite a few I settled on <code>keyd</code> because of its ease of use and the benefit of getting a system wide remapping regardless of environment or tty.</p>
-<p><a href="https://github.com/rvaiya/keyd" target="_blank">keyd</a> runs as a system service using kernel level input primitives so as soon as your system boots you get your custom key remapping. Caps Lock as CTRL in your tty, you got it and more! Check out the official <a href="https://github.com/rvaiya/keyd" target="_blank">keyd repository</a> for more details and available features.</p>
-<h3 id="getting-started">Getting Started</h3>
-<p>After installing keyd for your distribution enable the service with <code>sudo systemctl enable keyd --now</code>. Create a configuration in <code>/etc/keyd/default.conf</code> and reload the config with <code>sudo keyd reload</code>.</p>
-<p>Here is a simple configuration that I&rsquo;m currently using on my system to get started.</p>
-<pre tabindex="0"><code>[ids]
-
-*
-
-[main]
-# Maps capslock to escape when pressed and control when held.
-capslock = overload(control, esc)
-
-# Swap super and left alt keys
-leftalt = leftmeta
-leftmeta = leftalt
-</code></pre><h3 id="disable-while-typing-touchpad">Disable While Typing (Touchpad)</h3>
-<p>Sometimes there are issues with disabling your laptop touchpad while typing on a Linux system. There is really good information on <a href="https://linuxtouchpad.org/" target="_blank">The Linux Touchpad Dev Guide</a> that describes how to diagnose and fix this problem if you are encountering it. The author includes an example and a fix to DWT not working with keyd in <a href="https://linuxtouchpad.org/libinput/2022/05/07/disable-while-typing.html" target="_blank">this post</a>.</p>
+		<p>Let&rsquo;s imagine a scenario where we have an IoT device which is unable to reach our git repository due to some external factors (security, networking, etc.) but we still want to push code to it, maintain version control, and run that code on the device.</p>
+<p>The IoT device is, however, reachable from our laptop over our Tailscale network (or another form of VPN). As one of my colleagues says, &ldquo;We forget that before GitHub existed we all just pushed to our git repos over SSH.&rdquo; We still do that, but GitHub has hidden much of it from us.</p>
+<p>Here is a diagram of the situation:</p>
+<center>
+  <a class="myImg">
+      <img src="/post/2025/git-push-tailscale.png" target="_self" style="width: 75%" >
+  </a>
+  <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content"> 
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <img src="" class="imagepreview" style="width: 100%;" >
+        </div>
+      </div>          
+    </div>
+  </div>
+</center>
+<p>We would like to <code>git pull</code> from our Git Server repo (our normal flow), make code changes, and <code>git push</code> them to the IoT device.</p>
+<p>To <code>git push</code> to the IoT device, we just need to configure a <code>git remote</code> over SSH on our laptop, pointing to a bare repository on the IoT device. Enabling Tailscale SSH on the IoT device handles authentication for us, so we don&rsquo;t need to manage keys. Example of a simple flow that can be adapted as needed:</p>
+<h5 id="iot-device">IoT Device</h5>
+<p>On device <code>iot_test</code> we initialize a bare git repository <code>repo</code> in <code>$HOME/workspace</code>.</p>
+<p><code>stefan@iot_test:~/workspace/repo$ git init</code></p>
+<h5 id="laptop">Laptop</h5>
+<p>With a cloned repo from our Git server as usual.</p>
+<p><code>git checkout --orphan dev_feature1</code> create an orphaned branch <code>dev_feature1</code>. <br>
+<code>git remote add iot_test_repo ssh://stefan@iot_test:/home/stefan/worksapce/repo</code> the most important part adding a <code>git remote</code> pointing to the IoT device repository over SSH. <br>
+<code>git reset</code> <br>
+<code>git add src/feature1</code> add the code we want to send over to the IoT device. <br>
+<code>git commit -m &quot;added feature one&quot;</code> <br>
+<code>git push iot_test_repo dev_feature1</code> push the <code>dev_feature1</code> brach which includes the code we want to deliver to the <code>iot_test_repo</code> remote we added.</p>
+<h5 id="iot-device-1">IoT Device</h5>
+<p>Switch over to the brach we just pushed to and get our changes/code.</p>
+<p><code>stefan@iot_test:~/workspace/repo$ git checkout dev_feature1</code> switch to the branch we just pushed from the laptop. <br>
+<code>stefan@iot_test:~/workspace/repo$ git log</code> <br></p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>commit .......... (HEAD -&gt; dev_feature1)
+</span></span><span style="display:flex;"><span>Author: ..........
+</span></span><span style="display:flex;"><span>Date:   ..........
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    added feature one
+</span></span></code></pre></div><p><code>stefan@iot_test:~/workspace/repo$ tree</code> <br></p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>└── src
+</span></span><span style="display:flex;"><span>    └── feature1
+</span></span></code></pre></div>
 	</article>
 </main>
 
@@ -210,6 +239,8 @@ leftmeta = leftalt
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
   
   <script src="https://gloutnikov.com//js/App.js"></script>
+  
+  <script src="/modalimages/modalimg.js"></script>
   
 </body>
 </html>
