@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tailscale on Stefan Gloutnikov</title>
-    <link>https://gloutnikov.com/tags/tailscale/</link>
-    <description>Recent content in Tailscale on Stefan Gloutnikov</description>
+    <title>Webtop on Stefan Gloutnikov</title>
+    <link>https://gloutnikov.com/tags/webtop/</link>
+    <description>Recent content in Webtop on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 15 Mar 2026 22:31:23 -0700</lastBuildDate>
-    <atom:link href="https://gloutnikov.com/tags/tailscale/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gloutnikov.com/tags/webtop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux Desktop Environment on a Server from Your Browser</title>
       <link>https://gloutnikov.com/post/linux-server-desktop-in-a-browser/</link>
       <pubDate>Sun, 15 Mar 2026 22:31:23 -0700</pubDate>
       <guid>https://gloutnikov.com/post/linux-server-desktop-in-a-browser/</guid>
       <description>&lt;p&gt;I needed a desktop environment to use a certain application on my small Linux VPS. X11 forwarding over SSH was the first thing that came to mind, but I decided to see what else was out there. I&amp;rsquo;m glad I did, as it led me to the &lt;a href=&#34;https://github.com/linuxserver/docker-webtop&#34; target=&#34;_blank&#34;&gt;Webtop&lt;/a&gt; project.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Git Push Over Tailscale SSH</title>
-      <link>https://gloutnikov.com/post/git-push-over-tailscale/</link>
-      <pubDate>Sun, 08 Feb 2026 23:43:12 -0700</pubDate>
-      <guid>https://gloutnikov.com/post/git-push-over-tailscale/</guid>
-      <description>&lt;p&gt;Let&amp;rsquo;s imagine a scenario where we have an IoT device which is unable to reach our git repository due to some external factors (security, networking, etc.) but we still want to push code to it, maintain version control, and run that code on the device.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

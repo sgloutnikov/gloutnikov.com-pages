@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Feb 2026 23:43:12 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 15 Mar 2026 22:31:23 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://gloutnikov.com/tags/linux/</link>
+      <pubDate>Sun, 15 Mar 2026 22:31:23 -0700</pubDate>
+      <guid>https://gloutnikov.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tailscale</title>
+      <link>https://gloutnikov.com/tags/tailscale/</link>
+      <pubDate>Sun, 15 Mar 2026 22:31:23 -0700</pubDate>
+      <guid>https://gloutnikov.com/tags/tailscale/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Webtop</title>
+      <link>https://gloutnikov.com/tags/webtop/</link>
+      <pubDate>Sun, 15 Mar 2026 22:31:23 -0700</pubDate>
+      <guid>https://gloutnikov.com/tags/webtop/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Git</title>
       <link>https://gloutnikov.com/tags/git/</link>
@@ -16,24 +37,10 @@
       <description></description>
     </item>
     <item>
-      <title>Tailscale</title>
-      <link>https://gloutnikov.com/tags/tailscale/</link>
-      <pubDate>Sun, 08 Feb 2026 23:43:12 -0700</pubDate>
-      <guid>https://gloutnikov.com/tags/tailscale/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Keyd</title>
       <link>https://gloutnikov.com/tags/keyd/</link>
       <pubDate>Sat, 20 Dec 2025 21:47:30 -0700</pubDate>
       <guid>https://gloutnikov.com/tags/keyd/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://gloutnikov.com/tags/linux/</link>
-      <pubDate>Sat, 20 Dec 2025 21:47:30 -0700</pubDate>
-      <guid>https://gloutnikov.com/tags/linux/</guid>
       <description></description>
     </item>
     <item>

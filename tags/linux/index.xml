@@ -6,8 +6,15 @@
     <description>Recent content in Linux on Stefan Gloutnikov</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Dec 2025 21:47:30 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 15 Mar 2026 22:31:23 -0700</lastBuildDate>
     <atom:link href="https://gloutnikov.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Desktop Environment on a Server from Your Browser</title>
+      <link>https://gloutnikov.com/post/linux-server-desktop-in-a-browser/</link>
+      <pubDate>Sun, 15 Mar 2026 22:31:23 -0700</pubDate>
+      <guid>https://gloutnikov.com/post/linux-server-desktop-in-a-browser/</guid>
+      <description>&lt;p&gt;I needed a desktop environment to use a certain application on my small Linux VPS. X11 forwarding over SSH was the first thing that came to mind, but I decided to see what else was out there. I&amp;rsquo;m glad I did, as it led me to the &lt;a href=&#34;https://github.com/linuxserver/docker-webtop&#34; target=&#34;_blank&#34;&gt;Webtop&lt;/a&gt; project.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Key Remapping in Linux with keyd</title>
       <link>https://gloutnikov.com/post/key-remapping-in-linux-with-keyd/</link>
