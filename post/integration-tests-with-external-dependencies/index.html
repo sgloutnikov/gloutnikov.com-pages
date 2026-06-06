@@ -24,7 +24,7 @@
     
     <meta property="og:tags" content="github-actions">
     
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.162.1">
     <title>Integration Tests with External Dependencies in Go - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -148,9 +148,9 @@
 <h2 id="integration-test-declaration">Integration Test Declaration</h2>
 <p>It is important to distinguish between unit and integration tests so that they can be run independently of each other. Unlike integration, unit tests should not have external dependencies and run quickly.</p>
 <p>An effective way to declare integration tests is to name their function declarations ending in <code>Integration</code> and skip them if the <code>short</code> flag is passed when running.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestSomeNameHereIntegration(t *testing.T) {
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> testing.Short() {
-</span></span><span style="display:flex;"><span>		t.Skip()
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#cc7832">func</span> <span style="color:#ffc66d">TestSomeNameHereIntegration</span>(t *testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#cc7832">if</span> testing.<span style="color:#ffc66d">Short</span>() {
+</span></span><span style="display:flex;"><span>		t.<span style="color:#ffc66d">Skip</span>()
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>}
@@ -158,96 +158,96 @@
 <p>The following is an example of starting up a DynamoDB container in Docker using <code>testcontainers-go</code> and running a test against this DynamoDB instance. Please refer to the <a href="https://golang.testcontainers.org" target="_blank">documentation</a> for help with setting up your local container environment (<code>Docker</code>, <code>colima</code>, or <code>Podman</code>) to work with <code>testcontainers-go</code>.</p>
 <h3 id="setup-container">Setup Container</h3>
 <p>The <code>SetupDynamoDBContainer</code> function can be called during the setup phase of the integration tests. It will start an <code>amazon/dynamodb-local:1.20.0</code> container that tests can reach at the specified port.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> DynamoDBContainer <span style="color:#fff;font-weight:bold">struct</span> {
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#cc7832">type</span> DynamoDBContainer <span style="color:#cc7832">struct</span> {
 </span></span><span style="display:flex;"><span>	testcontainers.Container
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> SetupDynamoDBContainer(ctx context.Context, port <span style="color:#fff;font-weight:bold">string</span>) (*DynamoDBContainer, <span style="color:#fff;font-weight:bold">error</span>) {
-</span></span><span style="display:flex;"><span>	exposedPort := fmt.Sprintf(<span style="color:#0ff;font-weight:bold">&#34;%s:8000/tcp&#34;</span>, port)
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">func</span> <span style="color:#ffc66d">SetupDynamoDBContainer</span>(ctx context.Context, port <span style="color:#cc7832">string</span>) (*DynamoDBContainer, <span style="color:#cc7832">error</span>) {
+</span></span><span style="display:flex;"><span>	exposedPort := fmt.<span style="color:#ffc66d">Sprintf</span>(<span style="color:#6a8759">&#34;%s:8000/tcp&#34;</span>, port)
 </span></span><span style="display:flex;"><span>	req := testcontainers.ContainerRequest{
-</span></span><span style="display:flex;"><span>		Image:        <span style="color:#0ff;font-weight:bold">&#34;amazon/dynamodb-local:1.20.0&#34;</span>,
-</span></span><span style="display:flex;"><span>		Cmd:          []<span style="color:#fff;font-weight:bold">string</span>{<span style="color:#0ff;font-weight:bold">&#34;-jar&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;DynamoDBLocal.jar&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;-inMemory&#34;</span>},
-</span></span><span style="display:flex;"><span>		ExposedPorts: []<span style="color:#fff;font-weight:bold">string</span>{exposedPort},
-</span></span><span style="display:flex;"><span>		<span style="color:#007f7f">// Block until DynamoDB has started</span>
-</span></span><span style="display:flex;"><span>		WaitingFor: wait.ForExposedPort(),
+</span></span><span style="display:flex;"><span>		Image:        <span style="color:#6a8759">&#34;amazon/dynamodb-local:1.20.0&#34;</span>,
+</span></span><span style="display:flex;"><span>		Cmd:          []<span style="color:#cc7832">string</span>{<span style="color:#6a8759">&#34;-jar&#34;</span>, <span style="color:#6a8759">&#34;DynamoDBLocal.jar&#34;</span>, <span style="color:#6a8759">&#34;-inMemory&#34;</span>},
+</span></span><span style="display:flex;"><span>		ExposedPorts: []<span style="color:#cc7832">string</span>{exposedPort},
+</span></span><span style="display:flex;"><span>		<span style="color:#808080">// Block until DynamoDB has started</span>
+</span></span><span style="display:flex;"><span>		WaitingFor: wait.<span style="color:#ffc66d">ForExposedPort</span>(),
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	ddbContainer, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+</span></span><span style="display:flex;"><span>	ddbContainer, err := testcontainers.<span style="color:#ffc66d">GenericContainer</span>(ctx, testcontainers.GenericContainerRequest{
 </span></span><span style="display:flex;"><span>		ContainerRequest: req,
-</span></span><span style="display:flex;"><span>		Started:          <span style="color:#fff;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>		Started:          <span style="color:#cc7832">true</span>,
 </span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, err
+</span></span><span style="display:flex;"><span>	<span style="color:#cc7832">if</span> err != <span style="color:#cc7832">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#cc7832">return</span> <span style="color:#cc7832">nil</span>, err
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> &amp;DynamoDBContainer{Container: ddbContainer}, <span style="color:#fff;font-weight:bold">nil</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#cc7832">return</span> &amp;DynamoDBContainer{Container: ddbContainer}, <span style="color:#cc7832">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="test">Test</h3>
 <p>The tests use <a href="https://pkg.go.dev/testing#hdr-Main" target="_blank"><code>TestMain</code></a> to do some setup before running the actual tests. This is where we call our <code>SetupDynamoDBContainer</code> function and perform any additional setup steps.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">var</span> dynamoDBRepo *DynamoDBRepo
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#cc7832">var</span> dynamoDBRepo *DynamoDBRepo
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestMain(m *testing.M) {
-</span></span><span style="display:flex;"><span>	flag.Parse()
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> !testing.Short() {
-</span></span><span style="display:flex;"><span>		port := <span style="color:#0ff;font-weight:bold">&#34;8000&#34;</span>
-</span></span><span style="display:flex;"><span>		ctx := context.Background()
-</span></span><span style="display:flex;"><span>		ddbContainer, err := test.SetupDynamoDBContainer(ctx, port)
-</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">panic</span>(err)
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">func</span> <span style="color:#ffc66d">TestMain</span>(m *testing.M) {
+</span></span><span style="display:flex;"><span>	flag.<span style="color:#ffc66d">Parse</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#cc7832">if</span> !testing.<span style="color:#ffc66d">Short</span>() {
+</span></span><span style="display:flex;"><span>		port := <span style="color:#6a8759">&#34;8000&#34;</span>
+</span></span><span style="display:flex;"><span>		ctx := context.<span style="color:#ffc66d">Background</span>()
+</span></span><span style="display:flex;"><span>		ddbContainer, err := test.<span style="color:#ffc66d">SetupDynamoDBContainer</span>(ctx, port)
+</span></span><span style="display:flex;"><span>		<span style="color:#cc7832">if</span> err != <span style="color:#cc7832">nil</span> {
+</span></span><span style="display:flex;"><span>			panic(err)
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#007f7f">// Stop the container when tests exit</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">defer</span> <span style="color:#fff;font-weight:bold">func</span>() {
-</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">if</span> err := ddbContainer.Terminate(ctx); err != <span style="color:#fff;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>				fmt.Println(err)
+</span></span><span style="display:flex;"><span>		<span style="color:#808080">// Stop the container when tests exit</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#cc7832">defer</span> <span style="color:#cc7832">func</span>() {
+</span></span><span style="display:flex;"><span>			<span style="color:#cc7832">if</span> err := ddbContainer.<span style="color:#ffc66d">Terminate</span>(ctx); err != <span style="color:#cc7832">nil</span> {
+</span></span><span style="display:flex;"><span>				fmt.<span style="color:#ffc66d">Println</span>(err)
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}()
-</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Get created container&#39;s host. For some CI/CD environemntes it will not be localhost.</span>
-</span></span><span style="display:flex;"><span>		host, err := ddbContainer.Host(ctx)
-</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">panic</span>(err)
+</span></span><span style="display:flex;"><span>        <span style="color:#808080">// Get created container&#39;s host. For some CI/CD environemntes it will not be localhost.</span>
+</span></span><span style="display:flex;"><span>		host, err := ddbContainer.<span style="color:#ffc66d">Host</span>(ctx)
+</span></span><span style="display:flex;"><span>		<span style="color:#cc7832">if</span> err != <span style="color:#cc7832">nil</span> {
+</span></span><span style="display:flex;"><span>			panic(err)
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Initialize the use of the DynamoDB instance</span>
-</span></span><span style="display:flex;"><span>		dynamoDBRepo = NewDynamoDBRepo(<span style="color:#fff;font-weight:bold">true</span>, WithHost(host), WithPort(port))
+</span></span><span style="display:flex;"><span>        <span style="color:#808080">// Initialize the use of the DynamoDB instance</span>
+</span></span><span style="display:flex;"><span>		dynamoDBRepo = <span style="color:#ffc66d">NewDynamoDBRepo</span>(<span style="color:#cc7832">true</span>, <span style="color:#ffc66d">WithHost</span>(host), <span style="color:#ffc66d">WithPort</span>(port))
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	os.Exit(m.Run())
+</span></span><span style="display:flex;"><span>	os.<span style="color:#ffc66d">Exit</span>(m.<span style="color:#ffc66d">Run</span>())
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">func</span> TestDynamoDBRepoIntegration(t *testing.T) {
-</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> testing.Short() {
-</span></span><span style="display:flex;"><span>		t.Skip()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#cc7832">func</span> <span style="color:#ffc66d">TestDynamoDBRepoIntegration</span>(t *testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#cc7832">if</span> testing.<span style="color:#ffc66d">Short</span>() {
+</span></span><span style="display:flex;"><span>		t.<span style="color:#ffc66d">Skip</span>()
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>    ... test code with dynamoDBRepo  ...
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="makefile">Makefile</h2>
 <p>An effective way to run our tests locally or in a CI/CD environment is with a Makefile. Here are some example Makefile targets that can run our unit, integration, or all tests. The <code>PKG_LIST</code> variable is evaluated earlier in the Makefile and lists all <code>go</code> packages that should be tested, excluding some packages containing generated code. You can remove it to test against all packages in your project.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span>.PHONY: test
-</span></span><span style="display:flex;"><span>test: <span style="color:#007f7f">## Run all tests
-</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all unit and integration tests&#34;</span>
-</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span><span style="color:#ffc66d">.PHONY</span>: test
+</span></span><span style="display:flex;"><span><span style="color:#ffc66d">test</span>: <span style="color:#808080">## Run all tests
+</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#6a8759">&#34;Running all unit and integration tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go test -v <span style="color:#6a8759">${</span>PKG_LIST<span style="color:#6a8759">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>test_unit: <span style="color:#007f7f">## Run unit tests
-</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all unit tests&#34;</span>
-</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -short -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ffc66d">test_unit</span>: <span style="color:#808080">## Run unit tests
+</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#6a8759">&#34;Running all unit tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go test -short -v <span style="color:#6a8759">${</span>PKG_LIST<span style="color:#6a8759">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>test_integration: <span style="color:#007f7f">## Run integration tests
-</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#0ff;font-weight:bold">&#34;Running all integration tests&#34;</span>
-</span></span><span style="display:flex;"><span>	@go <span style="color:#fff;font-weight:bold">test</span> -run=<span style="color:#0ff;font-weight:bold">&#34;.Integration&#34;</span> -v <span style="color:#0ff;font-weight:bold">${</span>PKG_LIST<span style="color:#0ff;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#ffc66d">test_integration</span>: <span style="color:#808080">## Run integration tests
+</span></span></span><span style="display:flex;"><span>	@echo <span style="color:#6a8759">&#34;Running all integration tests&#34;</span>
+</span></span><span style="display:flex;"><span>	@go test -run=<span style="color:#6a8759">&#34;.Integration&#34;</span> -v <span style="color:#6a8759">${</span>PKG_LIST<span style="color:#6a8759">}</span>
 </span></span></code></pre></div><h2 id="github-actions-integration">GitHub Actions Integration</h2>
 <p>Running the tests in GitHub Actions CI/CD environment requires running the code in a Docker container and providing the container access to a Docker socket so that <code>testcontainers-go</code> can use it to spin up new dependency containers. Example of a test step running lint, unit and integration tests:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="font-weight:bold">lint-and-test</span>:
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#e8bf6a">lint-and-test</span>:
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">container</span>:
-</span></span><span style="display:flex;"><span>      <span style="font-weight:bold">image</span>: golangci/golangci-lint:v1.52
-</span></span><span style="display:flex;"><span>      <span style="font-weight:bold">volumes</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">container</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#e8bf6a">image</span>: golangci/golangci-lint:v1.52
+</span></span><span style="display:flex;"><span>      <span style="color:#e8bf6a">volumes</span>:
 </span></span><span style="display:flex;"><span>        - /var/run/docker.sock:/var/run/docker.sock
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">steps</span>:
-</span></span><span style="display:flex;"><span>      - <span style="font-weight:bold">uses</span>: actions/checkout@v2
-</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">if</span>: startsWith(github.ref, &#39;refs/tags/&#39;) == false
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e8bf6a">uses</span>: actions/checkout@v2
+</span></span><span style="display:flex;"><span>        <span style="color:#e8bf6a">if</span>: startsWith(github.ref, &#39;refs/tags/&#39;) == false
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      - <span style="font-weight:bold">name</span>: Lint and Test
-</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">id</span>: lint-and-test
-</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">run</span>: |<span style="color:#0ff;font-weight:bold">
-</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          go mod download all
-</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make clean &amp;&amp; make generate
-</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make lint
-</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">          make test</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e8bf6a">name</span>: Lint and Test
+</span></span><span style="display:flex;"><span>        <span style="color:#e8bf6a">id</span>: lint-and-test
+</span></span><span style="display:flex;"><span>        <span style="color:#e8bf6a">run</span>: |<span style="color:#6a8759">
+</span></span></span><span style="display:flex;"><span><span style="color:#6a8759">          go mod download all
+</span></span></span><span style="display:flex;"><span><span style="color:#6a8759">          make clean &amp;&amp; make generate
+</span></span></span><span style="display:flex;"><span><span style="color:#6a8759">          make lint
+</span></span></span><span style="display:flex;"><span><span style="color:#6a8759">          make test</span>
 </span></span></code></pre></div>
 	</article>
 </main>
@@ -276,8 +276,9 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 
 
 						</div>

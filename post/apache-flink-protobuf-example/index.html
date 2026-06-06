@@ -18,7 +18,7 @@
     
     <meta property="og:tags" content="protobuf">
     
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.162.1">
     <title>Consuming Protobuf Messages in Apache Flink Example - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -141,71 +141,71 @@
 <p><strong>Setup:</strong> This example consumes Protobuf messages from an Apache Pulsar source, but of course your use-case may differ. The setup for Protobuf should remain the same or similar. The compiled Protobuf Java class is called <code>TelemetryBatch</code>.</p>
 <p>Since our Protobuf messages are a custom type to Flink, we need a serializer. Refer to documentation on 3rd party serializers <a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/fault-tolerance/serialization/third_party_serializers/" target="_blank">here</a>.</p>
 <p>Added Protobuf serialization dependency (newer versions may be available and usable):</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="font-weight:bold">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;groupId&gt;</span>com.twitter<span style="font-weight:bold">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;artifactId&gt;</span>chill-protobuf<span style="font-weight:bold">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;version&gt;</span>0.7.6<span style="font-weight:bold">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007f7f">&lt;!-- exclusions for dependency conversion --&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;exclusions&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="font-weight:bold">&lt;exclusion&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="font-weight:bold">&lt;groupId&gt;</span>com.esotericsoftware.kryo<span style="font-weight:bold">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="font-weight:bold">&lt;artifactId&gt;</span>kryo<span style="font-weight:bold">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="font-weight:bold">&lt;/exclusion&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;/exclusions&gt;</span>
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007f7f">&lt;!-- We need protobuf for chill-protobuf --&gt;</span>
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;groupId&gt;</span>com.google.protobuf<span style="font-weight:bold">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;artifactId&gt;</span>protobuf-java<span style="font-weight:bold">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="font-weight:bold">&lt;version&gt;</span>3.7.0<span style="font-weight:bold">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">&lt;/dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#e8bf6a">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;groupId&gt;</span>com.twitter<span style="color:#e8bf6a">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;artifactId&gt;</span>chill-protobuf<span style="color:#e8bf6a">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;version&gt;</span>0.7.6<span style="color:#e8bf6a">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#808080">&lt;!-- exclusions for dependency conversion --&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;exclusions&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e8bf6a">&lt;exclusion&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#e8bf6a">&lt;groupId&gt;</span>com.esotericsoftware.kryo<span style="color:#e8bf6a">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#e8bf6a">&lt;artifactId&gt;</span>kryo<span style="color:#e8bf6a">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e8bf6a">&lt;/exclusion&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;/exclusions&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e8bf6a">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#808080">&lt;!-- We need protobuf for chill-protobuf --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e8bf6a">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;groupId&gt;</span>com.google.protobuf<span style="color:#e8bf6a">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;artifactId&gt;</span>protobuf-java<span style="color:#e8bf6a">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e8bf6a">&lt;version&gt;</span>3.7.0<span style="color:#e8bf6a">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e8bf6a">&lt;/dependency&gt;</span>
 </span></span></code></pre></div><p>Register the <code>TelemetryBatch</code> Protobuf message with the serializer:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> com.twitter.chill.protobuf.ProtobufSerializer;
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> ...TelemetryBatch;
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> com.twitter.chill.protobuf.ProtobufSerializer;
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> ...TelemetryBatch;
 </span></span><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span><span style="color:#007f7f">// Apache Flink setup</span>
-</span></span><span style="display:flex;"><span>Configuration config = <span style="color:#fff;font-weight:bold">new</span> Configuration();
-</span></span><span style="display:flex;"><span>StreamExecutionEnvironment env = StreamExecutionEnvironment.<span style="color:#007f7f">createLocalEnvironmentWithWebUI</span>(config);
+</span></span><span style="display:flex;"><span><span style="color:#808080">// Apache Flink setup</span>
+</span></span><span style="display:flex;"><span>Configuration config = <span style="color:#cc7832">new</span> Configuration();
+</span></span><span style="display:flex;"><span>StreamExecutionEnvironment env = StreamExecutionEnvironment.<span style="color:#9876aa">createLocalEnvironmentWithWebUI</span>(config);
 </span></span><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span>env.<span style="color:#007f7f">getConfig</span>().<span style="color:#007f7f">registerTypeWithKryoSerializer</span>(TelemetryBatch.<span style="color:#007f7f">class</span>, ProtobufSerializer.<span style="color:#007f7f">class</span>);
+</span></span><span style="display:flex;"><span>env.<span style="color:#9876aa">getConfig</span>().<span style="color:#9876aa">registerTypeWithKryoSerializer</span>(TelemetryBatch.<span style="color:#9876aa">class</span>, ProtobufSerializer.<span style="color:#9876aa">class</span>);
 </span></span></code></pre></div><p>Define a <code>DeserializationSchema</code> for our custom Protobuf messages:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">package</span> flink.io;
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cc7832">package</span> flink.io;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> ...TelemetryBatch;
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> org.apache.flink.api.common.serialization.DeserializationSchema;
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> org.apache.flink.api.common.typeinfo.TypeInformation;
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> ...TelemetryBatch;
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> org.apache.flink.api.common.serialization.DeserializationSchema;
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> org.apache.flink.api.common.typeinfo.TypeInformation;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">import</span> java.io.IOException;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> TelemetryBatchProtoDeserializer <span style="color:#fff;font-weight:bold">implements</span> DeserializationSchema&lt;TelemetryBatch&gt; {
-</span></span><span style="display:flex;"><span>    @Override
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">public</span> TypeInformation&lt;TelemetryBatch&gt; getProducedType() {
-</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> TypeInformation.<span style="color:#007f7f">of</span>(TelemetryBatch.<span style="color:#007f7f">class</span>);
+</span></span><span style="display:flex;"><span><span style="color:#cc7832">public</span> <span style="color:#cc7832">class</span> TelemetryBatchProtoDeserializer <span style="color:#cc7832">implements</span> DeserializationSchema&lt;TelemetryBatch&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#bbb529">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cc7832">public</span> TypeInformation&lt;TelemetryBatch&gt; <span style="color:#ffc66d">getProducedType</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#cc7832">return</span> TypeInformation.<span style="color:#9876aa">of</span>(TelemetryBatch.<span style="color:#9876aa">class</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @Override
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">public</span> TelemetryBatch deserialize(<span style="color:#fff;font-weight:bold">byte</span>[] message) <span style="color:#fff;font-weight:bold">throws</span> IOException {
-</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> TelemetryBatch.<span style="color:#007f7f">parseFrom</span>(message);
+</span></span><span style="display:flex;"><span>    <span style="color:#bbb529">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cc7832">public</span> TelemetryBatch <span style="color:#ffc66d">deserialize</span>(<span style="color:#cc7832">byte</span>[] message) <span style="color:#cc7832">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        <span style="color:#cc7832">return</span> TelemetryBatch.<span style="color:#9876aa">parseFrom</span>(message);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @Override
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">boolean</span> isEndOfStream(TelemetryBatch nextElement) {
-</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#bbb529">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cc7832">public</span> <span style="color:#cc7832">boolean</span> <span style="color:#ffc66d">isEndOfStream</span>(TelemetryBatch nextElement) {
+</span></span><span style="display:flex;"><span>        <span style="color:#cc7832">return</span> <span style="color:#cc7832">false</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Finally, consume the <code>TelemetryBatch</code> Protobuf message in Flink from the Pulsar source and process it as desired. In this example <code>TelemetryBatchProcessedSplitter</code> is just a class implementing <code>FlatMapFunction</code> with some logic to deal with each <code>TelemetryBatch</code> message and <code>TelemetryMessageProcessed</code> is a POJO for holding data about a processed message.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> TelemetryBatchProcessedSplitter <span style="color:#fff;font-weight:bold">implements</span> FlatMapFunction&lt;TelemetryBatch, TelemetryMessageProcessed&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#cc7832">public</span> <span style="color:#cc7832">class</span> TelemetryBatchProcessedSplitter <span style="color:#cc7832">implements</span> FlatMapFunction&lt;TelemetryBatch, TelemetryMessageProcessed&gt; {
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>FlinkPulsarSource&lt;TelemetryBatch&gt; source = <span style="color:#fff;font-weight:bold">new</span> FlinkPulsarSource&lt;&gt;(serviceUrl, adminUrl,
-</span></span><span style="display:flex;"><span>                PulsarDeserializationSchema.<span style="color:#007f7f">valueOnly</span>(<span style="color:#fff;font-weight:bold">new</span> TelemetryBatchProtoDeserializer()), props)
-</span></span><span style="display:flex;"><span>                .<span style="color:#007f7f">setStartFromLatest</span>();
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>FlinkPulsarSource&lt;TelemetryBatch&gt; source = <span style="color:#cc7832">new</span> FlinkPulsarSource&lt;&gt;(serviceUrl, adminUrl,
+</span></span><span style="display:flex;"><span>                PulsarDeserializationSchema.<span style="color:#9876aa">valueOnly</span>(<span style="color:#cc7832">new</span> TelemetryBatchProtoDeserializer()), props)
+</span></span><span style="display:flex;"><span>                .<span style="color:#9876aa">setStartFromLatest</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>DataStream&lt;TelemetryBatch&gt; batchStream = env.<span style="color:#007f7f">addSource</span>(source);
+</span></span><span style="display:flex;"><span>DataStream&lt;TelemetryBatch&gt; batchStream = env.<span style="color:#9876aa">addSource</span>(source);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>DataStream&lt;TelemetryMessageProcessed&gt; telemetryProcessedStream =
-</span></span><span style="display:flex;"><span>        batchStream.<span style="color:#007f7f">flatMap</span>(<span style="color:#fff;font-weight:bold">new</span> TelemetryBatchProcessedSplitter())
+</span></span><span style="display:flex;"><span>        batchStream.<span style="color:#9876aa">flatMap</span>(<span style="color:#cc7832">new</span> TelemetryBatchProcessedSplitter())
 </span></span><span style="display:flex;"><span>        .
 </span></span><span style="display:flex;"><span>        .
 </span></span></code></pre></div>
@@ -236,8 +236,9 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 
 
 						</div>

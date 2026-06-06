@@ -20,7 +20,7 @@
     
     <meta property="og:tags" content="tailscale">
     
-    <meta name="generator" content="Hugo 0.160.0">
+    <meta name="generator" content="Hugo 0.162.1">
     <title>Desktop Environment on a Linux Server from Your Browser - Stefan Gloutnikov</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -142,12 +142,12 @@
 		<p>I needed a desktop environment to use a certain application on my small Linux VPS. X11 forwarding over SSH was the first thing that came to mind, but I decided to see what else was out there. I&rsquo;m glad I did, as it led me to the <a href="https://github.com/linuxserver/docker-webtop" target="_blank">Webtop</a> project.</p>
 <p>The <a href="https://github.com/linuxserver/docker-webtop" target="_blank">Webtop</a> project offers full desktop environments (based on Alpine, Ubuntu, Fedora, and Arch) that you can access right from your web browser. With a simple Docker container, we can launch a Desktop environment with VNC on our server. And even better, we can pair it with Tailscale so that nothing is exposed to the public internet.</p>
 <p>Here is an example <code>docker-compose.yml</code> file with Debian and XFCE which I run on Raspberry Pi at home. I prefer to explicitly define the IP and Port binds, especially when running on a publicly available server. Note the local and Tailscale IPs in this case.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">webtop</span>:
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">image</span>: lscr.io/linuxserver/webtop:debian-xfce
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">container_name</span>: webtop
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">environment</span>:
+<div class="highlight"><pre tabindex="0" style="color:#a9b7c6;background-color:#2b2b2b;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#e8bf6a">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#e8bf6a">webtop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">image</span>: lscr.io/linuxserver/webtop:debian-xfce
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">container_name</span>: webtop
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">environment</span>:
 </span></span><span style="display:flex;"><span>      - PUID=1000
 </span></span><span style="display:flex;"><span>      - PGID=1000
 </span></span><span style="display:flex;"><span>      - TZ=America/Los_Angeles
@@ -156,15 +156,15 @@
 </span></span><span style="display:flex;"><span>      - SELKIES_MANUAL_WIDTH=1920
 </span></span><span style="display:flex;"><span>      - SELKIES_MANUAL_HEIGHT=1080
 </span></span><span style="display:flex;"><span>      - MAX_RESOLUTION=1920x1080
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">volumes</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">volumes</span>:
 </span></span><span style="display:flex;"><span>      - ./webtop_data:/config
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ff0;font-weight:bold">192.168</span>.X.X:3000:3000
-</span></span><span style="display:flex;"><span>      - <span style="color:#ff0;font-weight:bold">192.168</span>.X.X:3001:3001
-</span></span><span style="display:flex;"><span>      - <span style="color:#ff0;font-weight:bold">100.</span>X.X.X:3000:3000
-</span></span><span style="display:flex;"><span>      - <span style="color:#ff0;font-weight:bold">100.</span>X.X.X:3001:3001
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">shm_size</span>: <span style="color:#0ff;font-weight:bold">&#34;1gb&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">restart</span>: unless-stopped
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#6897bb">192.168</span>.X.X:3000:3000
+</span></span><span style="display:flex;"><span>      - <span style="color:#6897bb">192.168</span>.X.X:3001:3001
+</span></span><span style="display:flex;"><span>      - <span style="color:#6897bb">100.</span>X.X.X:3000:3000
+</span></span><span style="display:flex;"><span>      - <span style="color:#6897bb">100.</span>X.X.X:3001:3001
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">shm_size</span>: <span style="color:#6a8759">&#34;1gb&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e8bf6a">restart</span>: unless-stopped
 </span></span></code></pre></div><p>Lastly, pointing your browser to the appropriate IP or host on port 3001 will drop you inside the desktop environment. Enjoy!</p>
 	</article>
 </main>
@@ -193,8 +193,9 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 
 
 						</div>
